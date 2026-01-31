@@ -64,8 +64,10 @@ export const [AppContext, useApp] = createContextHook(() => {
   };
 
   const updateFontSize = async (size: FontSize) => {
+    console.log("Updating font size to:", size);
     setFontSize(size);
     await AsyncStorage.setItem("fontSize", size);
+    console.log("Font size updated and saved to AsyncStorage");
   };
 
   const toggleDarkMode = async () => {
