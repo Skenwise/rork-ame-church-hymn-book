@@ -257,6 +257,277 @@ export const HYMNS: Hymn[] = [
       "Aba balebatishiwa\nYesu sobapokelele\nBapendelwe kuli iwe\nUbasunge ubawamye",
     ],
   },
+  {
+    id: "41",
+    number: 41,
+    title: "Wake, Awake, for Night Is Flying",
+    titleBemba: "Iminina afrika ufwaye katula",
+    category: "Mission",
+    verses: [
+      "Wake, awake, for night is flying,\nThe watchmen on the heights are crying;",
+    ],
+    versesBemba: [
+      "Iminina afrika ufwaye katula\nWendeshe fye bwangu-bwangu\nWashala ku numa",
+      "Fipose wanguke cetekela kristu\nAsende fyabipa fyonse\nKuti wangukilwe",
+      "Alipampaminwe acimfye fibanda\nUyu ekele pa mwinshi\nAfrika ingila",
+      "Lesa litumine ishiwi lyacine\nLyafika muno mu calo\nNe mpalume shakwe",
+      "Lesa ewacita no bufwayo bwakwe\nPokeleleni bukeni\nMwina afrika buka.",
+    ],
+  },
+  {
+    id: "42",
+    number: 42,
+    title: "We Praise You, O God",
+    titleBemba: "Natumutotele Yesu",
+    category: "Praise & Worship",
+    verses: [
+      "We praise You, O God, for the Son of Your love,\nFor Jesus who died and is now gone above.",
+    ],
+    versesBemba: [
+      "Natumutotele Yesu,\nPantu ewatufwila\nAtubelele uluse pakutufwila kwakwe\nTata wesu, tata wesu\nMutubelelyo luse.",
+      "Ifwe fwe bana ba mfifi,\nnifwe fye mwaishile\nTamwasalilyo mutundu, mwafwilile fwebabi\nTata wesu, Tata wesu\nMutubelelyo luse",
+      "Abafita naba buta,\nbalumbanye bonse fye\nNabomfwike konse konse, Balelumbanye mfumu.\nTata wesu, Tata wesu\nMutubelelyo luse",
+    ],
+  },
+  {
+    id: "43",
+    number: 43,
+    title: "Jesus, Son of David",
+    titleBemba: "Yesu we mwana David",
+    category: "Healing",
+    verses: [
+      "Jesus, Son of David, have mercy on me,\nOpen my eyes that I may see.",
+    ],
+    versesBemba: [
+      "Yesu we mwana David\nBwekeshenipo mu njelele,\nNangu ine nkucusha fye pe;\nBwekeshenipo munjelele.",
+      "Alisosele cibulu\nIlyo Yesu ailepitapo\nAlisosele atile;\nBwekeshenipo munjelele",
+      "Abasambi balimwipwishe;\nNanyu waonulo 'yu muntu?\nBushe ni nyina nangu wishi?\nBwekeshenipo munjelele",
+      "Yesu abaswike atile:\nTe nyina nangu wishi wine,\nNi mukuti bonse beshibe\nUkuti nine mwana Lesa.",
+      "Yesu ainamine panshi\nAkandile loba na mate,\nAsubile mu menso yakwe\nNa menso yakwe yaiswike.",
+      "Aba farisi ba mwipwishe:\n\"Nani uwa kwisula amenso?\"\nNao abaswike atile:\n\"Ni Yesu wa ku Nasareti,\"",
+    ],
+  },
+  {
+    id: "44",
+    number: 44,
+    title: "Love Divine, All Loves Excelling",
+    titleBemba: "Yangu kutemwa",
+    category: "Love of God",
+    verses: [
+      "Love divine, all loves excelling,\nJoy of heaven, to earth come down;",
+    ],
+    versesBemba: [
+      "Yangu kutemwa, mfumu katula\nMumulumbe ne mitulo\nMulubanye ciwamishe\nWaluse cine ca pe\nluse lwakwe ngo mumana\nKuli bonsho muyayaya\nKonasho muyayaya\nKonasho muyayaya\nKuli bonsho muyayaya",
+      "Kuboko kwakwe kwa maka\nLamba lyakwe lya mutende\nNa mu mfwa alapususha\nKutemwa kwakwe tufwaya",
+      "Nshiku fye shonse kutemwa\nNe cikuku ca ku mulu\nMyaka yonse shiwi lyakwe;\nLyena talipwa busuma",
+    ],
+  },
+  {
+    id: "46",
+    number: 46,
+    title: "Behold, He Stands at the Door",
+    titleBemba: "Mweni ali pa mwinshi",
+    category: "Invitation",
+    verses: [
+      "Behold, He stands at the door and knocks;\nHear how His voice sweetly calls.",
+    ],
+    versesBemba: [
+      "Mweni ali pa mwinshi;\nEngile! Yesu engile\nEpo ali na kale; Engile! Yesu engile\nMwingisheni talaya\nMwingisho wamushilo;\nYesu mwana wa mfumu;\nEngile! Yesu engile",
+      "Mumwiswile mitima; Engile!\nYesu engile\nNga mwakokola leya; Engile!\nYesu engile\nMwingisheni cibusa\nAbe ni nkwela yobe\nAkusunge pe na pe; Engile!\nYesu engile",
+      "Umfwe shiwi lyaluse; Engile!\nYesu engile\nUmusale fye eka; Engile!\nYesu engile\nEminine pa mwinshi\nAlakupele nsansa\nCindike shina lyakwe;\nEngile! Yesu engile",
+      "Sungo mweni wa m'mulu; Engile!\nYesu engile\nAkupele cimuno; Engile!\nYesu engile\nAkwelele fyabipa\nNge calo conse caya\nUkasendwa ku mulu; Engile!\nYesu engile",
+    ],
+  },
+  {
+    id: "47",
+    number: 47,
+    title: "O Lord, Look Down from Heaven",
+    titleBemba: "Mwebafumo kutuli ku bantu",
+    category: "Prayer & Devotion",
+    verses: [
+      "O Lord, look down from heaven, behold\nAnd let Thy pity waken;",
+    ],
+    versesBemba: [
+      "Mwebafumo kutali ku bantu\nMumfwo kulila kwa bafibashi\nYesu ati bese baposhiwe\nUmo abwelele no kutota\nPabula bena balikwi\nBushe te kumi bacipola",
+      "Abeni balelumbanye mfumu\nCo bapolele kwishiwi lyakwe\nApakulu pena nabapola\nYesu ati pabuli bali kwi",
+      "Mukweshiwa yesu tukumone\nMubumba yati, bushe ali kwi\nNi pacinshi lesa mfumu yandi\nYakulabo bunte pa milimo",
+      "Mu nasareti nshi uyu wine\nCine nga uli kristu twebeko\nBakonkele pa malangililo\nNo kumupapisha pa milimo.",
+    ],
+  },
+  {
+    id: "48",
+    number: 48,
+    title: "I Have a Savior in Heaven",
+    titleBemba: "Nshikwete mfumu ku mulu naimbi",
+    category: "Faith & Trust",
+    verses: [
+      "I have a Savior in heaven above,\nThere is no other like Him.",
+    ],
+    versesBemba: [
+      "Nshikwete mfumu ku mulu naimbi\nTakuli niwe fye\nNakulaimba pe ndeti: kristu wandi, kristu wandi\nNankamine myangashi new\nAlimpususha no mulopa\nAncita cibusa na lesa\nKristu wandi, kristu wandi",
+      "Nshikabila buseko bwa fyuma kristu wandi, kristu wandi\nNshikumbwa maluba ya calo, kristu wandi, kristu wandi\nBuseko bwa calo bwipi\nCitendwe ceka ecisangwamo\nine buseko bushipwa kristu wandi, kristu wandi",
+      "Nangu bupina busange kristu wandi, kristu wandi\nAlishiba nshipukapuka kristu wandi kristu wandi\nMyangashi mikunyu kuyemba\nMilimo ya olife yapwa\nNe mfwa nayo naicimba, kristu wandi kristu wandi",
+      "Nangu ine ndi mu bulwani kristu wandi, kristu wandi\nNangu nshingulukwe ne fibi kristu wandi kristu wandi\nBulepwo bulwi bwa calo\nNa balwani bansakamika\nNdetusha mu maboko yakwe kristu wandi kristu wandi",
+      "Lintwi nshiku shandi shapwa kristu wandi kristu wandi\nNkatusha mu maboko yakwe kristu wandi kristu wandi\nUbukali nga nabwansha\nNa maka ya buntunse yapwa\nMu cinshingwa ca mfwa nkemba kristu wandi kristu wandi",
+    ],
+  },
+  {
+    id: "49",
+    number: 49,
+    title: "Master, the Tempest Is Raging",
+    titleBemba: "Coba mone fyo bushiku bwalaca",
+    category: "Faith & Trust",
+    verses: [
+      "Master, the tempest is raging!\nThe billows are tossing high!",
+    ],
+    versesBemba: [
+      "Coba mone fyo bushiku bwalaca\nMfifi matamba nomba fyatalala\nUlwendo lwabipisha nomba lwapwa\nTwapusuka coba obela ku cabu\nTwala ku cabu coba twala ku cabu\nWisakamana matamba ikatisha\nUshipikishe coba tupusuke\nObela ku cabu bwato bwa busanso",
+      "Coba cetekelo bwato bwa mweo\nWisakamana matamba ne cipupu\nWitina makumbi nga yabuluma\nMono lutanda bwaca twala ku cabu\nTwala ku cabu coba twala ku cabu\nWisakamana matamba ikatisha\nUshipikishe coba tupusuke\nObela ku cabu bwato bwa busanso",
+      "Coba monefyo nomba nakubuta\nMfifi na matamba fyapwa nomba lulumbi\nCoba twapusuka imbapo ulwimbo\nLulumbi aleluya twala ku cabu\nTwala ku cabu coba twala ku cabu\nWisakamana matamba ikatisha\nUshipikishe coba tupusuke\nObela ku cabu bwato bwa busanso",
+    ],
+  },
+  {
+    id: "50",
+    number: 50,
+    title: "God Be With You Till We Meet Again",
+    titleBemba: "Lesa wesu ube nefwe",
+    category: "Benediction",
+    verses: [
+      "God be with you till we meet again;\nBy His counsels guide, uphold you,",
+    ],
+    versesBemba: [
+      "Lesa wesu ube nefwe\nUtulele utusunge\nTube ba mu lupwa lobe\nTukamonane ku mulu",
+    ],
+  },
+  {
+    id: "51",
+    number: 51,
+    title: "Walking with Jesus",
+    titleBemba: "Akwenda na yesu",
+    category: "Christian Life",
+    verses: [
+      "Walking with Jesus, when troubles assail,\nHe is my refuge, He will not fail.",
+    ],
+    versesBemba: [
+      "Akwenda na yesu ilyo wililwa\nNge nshila yafika umupalame\nIlyo abalwani bakufikila\nNga wenda na yesu tekutyu tine\nwende fye uwacincila\nulekya maka yese\npe fye wende na katula\nna wene alekulondola",
+      "Akwenda na yesu konse wangala\nNangu ni mu mfifi alekulanga\nUlubuto lwakwe lubushe nshila\nNe fiswebebe fikaba libala\nwende fye uwacincila\nulekya maka yese\npe fye wende na katula\nna wene alekulondola",
+      "Akwenda na yesu nangu 'lesunta\nConse akufunda ucisumine,\nWine nga akweba upoke amaka\nPo wende na yesu uli wacine\nwende fye uwacincila\nulekya maka yese\npe fye wende na katula\nna wene alekulondola",
+    ],
+  },
+  {
+    id: "53",
+    number: 53,
+    title: "I See the Glorious Sight",
+    titleBemba: "Nacimone cakupapa",
+    category: "Heaven",
+    verses: [
+      "I see the glorious sight appearing,\nFrom heaven's throne descending;",
+    ],
+    versesBemba: [
+      "Nacimone cakupapa\nCamushilwe ca m' mulu\nPakati ka kuculisha\nKu bamaka ya calo\nTwilatina!\nTupembelelo kufwa",
+      "Nacimone cakupapa\nCamushilwe ca m'mulu\nTwasende fipe fyafina\nTuya ku kulubulwa\nTwilatina!\nTupembelelo kufwa",
+      "Nacimone cakupapa\nCamushilwe ca m'mulu\nNga tulenino lupili\nTusendele fyafina\nTwilatina!\nTupembelelo kufwa",
+      "Nacimone cakupapa\nCamushilwe ca m'mulu\nTubilikisha mashiwi\nTutile, \"mubelele\"\nTwilatina!\nTupembelelo kufwa",
+      "Bapupuka abangeli\nBacimufukamina\nBapupukila kwa yesu\nAbateyanishiwa\nTwilatina!\nTupembelelo kufwa",
+      "Natukutikishe bonse\nKwishiwi lya bupalo\nLishilisha no kusamba\nLileti nomba capwa;\nSeni bonse!\nMulelolela bonse",
+    ],
+  },
+  {
+    id: "54",
+    number: 54,
+    title: "Abide with Us, O Lord",
+    titleBemba: "Mube nefwe mfumu yesu",
+    category: "Prayer & Devotion",
+    verses: [
+      "Abide with us, O Lord, for it is toward evening,\nAnd the day is far spent.",
+    ],
+    versesBemba: [
+      "Mube nefwe mfumu yesu\nTumonyo bupalo bwenu\nTatwakwata nangu kamo\nFwe tuli bapina benu",
+      "Mube nefwe mulubushi\nNe shiwi lyenu lisuma\nMutukoshe twinenuka\nKu mafunde yenu yonse",
+      "Mube nefwe mwe lubuto\nMwise mutusanikile\nTumfwe fyonse ifyacine\nTwakatishe twinenuka",
+      "Mube nefwe mwebashila\nNa maka ya kutuwamya\nMwebo ifwe tushamona\nMwe babuta bamushilo",
+      "Mube nefwe lesa wesu\nMututeke no bufumu\nTufumemo mu bulwani\nWe mfumu niwe utwafwe",
+    ],
+  },
+  {
+    id: "55",
+    number: 55,
+    title: "Be Not Dismayed",
+    titleBemba: "Mwilatina nangu cafye",
+    category: "Comfort",
+    verses: [
+      "Be not dismayed whate'er betide,\nGod will take care of you;",
+    ],
+    versesBemba: [
+      "Mwilatina nangu cafye\nLesa akulakwafwa\nUbe mu mapindo yakwe\nLesa kulakwafwa\nLesa 'kulakwafwa\nInshiku pe na mu lwendo\nAkulakwafwa pe\nLesa kulakwafwa",
+      "Mu nshiku isha macushi\nLesa akulakwafwa\nNga wapona mu busanso\nLesa kulakwafwa\nLesa 'kulakwafwa\nInshiku pe na mu lwendo\nAkulakwafwa pe\nLesa kulakwafwa",
+      "Alekupele fyo fwaya\nLesa akulakwafwa\nTakutane fyo lefwaya\nLesa kulakwafwa\nLesa 'kulakwafwa\nInshiku pe na mu lwendo\nAkulakwafwa pe\nLesa kulakwafwa",
+    ],
+  },
+  {
+    id: "56",
+    number: 56,
+    title: "Praise the Savior",
+    titleBemba: "Lumbanyeni Yesu",
+    category: "Praise & Worship",
+    verses: [
+      "Praise the Savior, ye who know Him!\nWho can tell how much we owe Him?",
+    ],
+    versesBemba: [
+      "Lumbanyeni Yesu, uwatulubula,\nImbisheni bonse ba pano nse;\nCeleleni Yesu mwebali mu mulu,\nShina lyakwe libe lya cindama.\nNga kakumba, Yesu abaka bana,\nMu maboko alabasenda pe.\nLumbanyeni, Mutashe bukulu bwakwe,\nMulemwimbile nyimbo pe na pe",
+      "Lumbanyeni Yesu, uwatulubula,\nAculile apelelwe, afwa;\nWene libwe lyesu ilye pusukilo,\nToteleni Yesu watanikwe.\nTemwisheni Yesu watufwilile\nLuse, congwe, no kutemwa kwa pe.\nLumbanyeni, Mutashe bukulu bwakwe,\nMulemwimbile nyimbo pe na pe",
+      "Lumbanyeni Yesu, uwatulubula,\nHosana na ku mulu ba mumfwe;\nYesu eo atwalililyo kuteka,\nLumbanyeni katula e mfumu,\nEukesa ku kwisa cimfya bonse,\nAkwata maka no bucindami\nLumbanyeni, Mutashe bukulu bwakwe,\nMulemwimbile nyimbo pe na pe",
+    ],
+  },
+  {
+    id: "57",
+    number: 57,
+    title: "How Sweet the Name of Jesus Sounds",
+    titleBemba: "Shina lya yesu busuma",
+    category: "Love of Jesus",
+    verses: [
+      "How sweet the name of Jesus sounds\nIn a believer's ear!",
+    ],
+    versesBemba: [
+      "Shina lya yesu busuma\nKu bamusumina\nLilafumyo bulanda\nNo kutamfyo mwenso",
+      "Lilaposha abalanda\nNabo abacula\nEfyakulya ku bansala\nNa ku banakisha",
+      "Elibwe iyo nakulapo\nNi nkwela ya maka\nCipao umo fishipwa\nFya cikuku cakwe",
+      "Yesu ni kakumba wandi\nNi mfumu katula\nMfumu yandi lupwa lwandi\nUmfwa amapepo",
+      "Mutima wandi wanaka\nNo luse lwacepa\nLelo nga namona iwe\nnakulakupepa",
+      "Nsuke nshimike fya luse\nNo mweo na maka\nNe nyimbo she shina lyobe\nShintekyo mutima.",
+    ],
+  },
+  {
+    id: "58",
+    number: 58,
+    title: "Onward, Christian Soldiers",
+    titleBemba: "Ni mwana lesa aleya",
+    category: "Christian Life",
+    verses: [
+      "Onward, Christian soldiers, marching as to war,\nWith the cross of Jesus going on before.",
+    ],
+    versesBemba: [
+      "Ni mwana lesa aleya\nKu kulwa na ciwa\nUluunga lulepupa\nNani ulekonka\nWinganwako ulukombo\nLwa kuculacula\nUwasenda ulupanda\nWena alekonka",
+      "Mpuka ya basalwa bonse\nBali no mupashi\nBaishiba shikulwimbo\nTababa na mwenso\nBakumenye umulwani\nNo kwanshe fyabipa\nBafika kumfwa balwa fye\nNani ulekonka",
+      "Abaume na baice\nNabafwikwa tutu\nBamayo na bakashana\nBaanga kwa Yesu\nBalemina ulupili\nLwa kuculacula\nMwe Lesa nefwe tukonke\nMu mulongo wabo.",
+    ],
+  },
+  {
+    id: "59",
+    number: 59,
+    title: "Blest Be the Tie That Binds",
+    titleBemba: "Cilonganino caba pali yesu kristu",
+    category: "Fellowship",
+    verses: [
+      "Blest be the tie that binds\nOur hearts in Christian love;",
+    ],
+    versesBemba: [
+      "Cilonganino caba pali yesu kristu\nCabe cilengo cipya ce shiwi na menshi\nAishile cifwaya ukuba nabwinga\nCashita no mulopa alicifwilile",
+      "Baitwa bena fyalo ku kufyalwa cipya\nBucetekelo bumo ne mfumu imo fye\nCitashe shina limo cilyo cimo cilya\nNe cisumino cimo eco cakwatisha",
+      "Mu bwafya no bulanda pamo na mu bulwi\nCilolelo mutende uwa ciyayaya\nLintu ifyalulumbi fikesamoneka\nElye cilonganino cikalatushisha",
+      "Calundana panonse na lesa patatu\nCilomfwana na balya abaletusho ko\nAngeni mwe bashila mwe mfumu tupeni\nPamo nabwa bafuka tukekale nemwe.",
+    ],
+  },
 ];
 
 export const PREVIEW_HYMNS = HYMNS.slice(0, 10);
