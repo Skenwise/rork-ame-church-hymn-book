@@ -1291,7 +1291,7 @@ export const HYMNS: Hymn[] = [
       "Muncite mbe akalwimbo\nKwafwa balecula\nAkakufumyo bulanda\nNo kusansamusha",
       "Muncite mbe umutambu\nKwafwa bashakosa\nElyo ku maka mwampela\nNdebabombela pa",
       "Mwalule umweo wandi\nUbe akalwimbo\nAkamalumbo yacine\nNa ka matotelo.\nAmen"
-    ]
+    ],
   },
   {
     id: "213",
@@ -1304,7 +1304,7 @@ export const HYMNS: Hymn[] = [
       "Ilya kesa ilya kesa\nKupende fisamo\nFyakwe fyonse ifyafina\nFintu atemwa\nNge ntanda mulu\nifwe tuli fisamo\nifikalabekesha\nmu ngala yakwe",
       "Yesu Kristu akalonganye\nFisamo kwisano\nIfyawama ifyabuta\nFintu atemwa\nNge ntanda mulu\nifwe tuli fisamo\nifikalabekesha\nmu ngala yakwe",
       "Bana bonse bana bonse\nAbatemwa Yesu\nE fisamo ifyafina\nFintu atemwa\nNge ntanda mulu\nifwe tuli fisamo\nifikalabekesha\nmu ngala yakwe\n\nAmen"
-    ]
+    ],
   },
   {
     id: "214",
@@ -1320,7 +1320,7 @@ export const HYMNS: Hymn[] = [
       "Kanshi cisuma kuleka\nIfipumo fya bukali\nTwilabikane fikansa\nKano kwasuko mutende",
       "Elyo mutende no luse\nFingekala muli ifwe\nTubafwe kuti bateke\nImitima muli Yesu",
       "Bonse bakwato lupanda\nLwakuti bamusendele\nNe milimo ya cikuku\nYa kucitila Yesu pe\n\nAmen"
-    ]
+    ],
   },
   {
     id: "215",
@@ -1332,7 +1332,7 @@ export const HYMNS: Hymn[] = [
     versesBemba: [
       "Mfula ileloka kunashe calo\nIlemeshe mbuto no kushiwamya\nTuli ne fyakulya ne fintu fyonse\nIcani cilemena ne ngo’mbe shilelya",
       "Loka loka loka loka\nTulesekela\nLoka loka loka loka\nTwakutotela\nLoka loka loka loka\nLesa natupa\nutwafwe tukutemwe we upela fyonse"
-    ]
+    ],
   },
   {
     id: "216",
@@ -1345,7 +1345,7 @@ export const HYMNS: Hymn[] = [
       "Mulumbe mwe baice bonse\nE kutemwa e kutemwa\nMulumbe mwe baice bonse\nE kutemwa e kutemwa",
       "Mutotele mwe baice bonse\nE kutemwa e kutemwa\nMutotele mwe baice bonse\nE kutemwa e kutemwa",
       "Mu mutemwa mwe baice bonse\nE kutemwa e kutemwa\nMu mutemwa mwe baice bonse\nE kutemwa e kutemwa.\n\nAmen"
-    ]
+    ],
   },
   {
     id: "217",
@@ -1360,7 +1360,7 @@ export const HYMNS: Hymn[] = [
       "Ici cupo camushilo, nimwe mucikumbinkanye,\nBasungwe nemwe ku mulu Kuti cibe ca nshiku pe",
       "Amapalo yenu yonse, yetulwilwe apo bali,\nBatemwane no kwafwana mu bwikalo Bwa mu calo",
       "Mulebapele fyakulya, mumweo wabo onse fye\nNe fya mweo wakumulu, mubapele fyonse pamo\n\nAmen"
-    ]
+    ],
   },
   {
     id: "218",
@@ -1376,7 +1376,7 @@ export const HYMNS: Hymn[] = [
       "Ilyo ndeenda, nango lubuto\nIlyo ndeenda, nango lubuto\nUlubuto, ulubuto\nUlubuto, ulubuto,\nulubuto",
       "Ine pakulya, nango lububuto\nIne pakulya, nango lububuto\nUlubuto, ulubuto\nUlubuto, ulubuto, ulubuto",
       "Nangu mwi lindi, ndi wa lubuto\nNangu mwi lindi, ndi wa lubuto\nUlubuto, ulubuto\nUlubuto, ulubuto,\nulubuto. - Amen"
-    ]
+    ],
   },
   {
     id: "219",
@@ -1390,7 +1390,7 @@ export const HYMNS: Hymn[] = [
       "Lesa alekusunga bwino!\nAlekukoselesha pe,\nAlecimfya abalwani,\nLesa alekusunga bwino\nTukasuka tukumana\nTukasuka tukumana,\nPa makasa yakwa Yesu\nTukasuka tukakumane.",
       "Lesa alekusunga bwino!\nNgawasangwa ne mipamba,\nAlekupelo kushipa,\nLesa alekusunga bwino\nTukasuka tukumana\nTukasuka tukumana,\nPa makasa yakwa Yesu\nTukasuka tukakumane.",
       "Lesa alekusunga bwino!\nAlekucimfisha imfwa,\nAlekupelo kutemwa,\nLesa alekusunga bwino\nTukasuka tukumana\nTukasuka tukumana,\nPa makasa yakwa Yesu\nTukasuka tukakumane.\n\nAmen"
-    ]
+    ],
   },
   {
     id: "220",
@@ -1407,7 +1407,7 @@ export const HYMNS: Hymn[] = [
       "Mumposhe na mu mutima\nNimwe mwikalemo\nMufumyemo bunani\nMpalane naimwe",
       "Mumfunye kuli Adamu\nMumbwe cipya-cipya\nMucityo mulu wa nseko\nMu mutima wandi",
       "Munsambe mbute fye tutu\nMpale mfumu yandi\nMukati ka mutima\nLesa ekalemo. Amen"
-    ]
+    ],
   },
   {
     id: "221",
@@ -1421,7 +1421,7 @@ export const HYMNS: Hymn[] = [
       "Mutupele mitima ipya\nYaba ngo mutima wenu\nUmutima wa kutemwa\nKukonka we mfumu yandi",
       "Umutima wa kutemwa\nUwa kumfwana na bambi\nUwa kutemwa bonse\nWaba ngo mutima obe",
       "Utupyo mutima Yesu\nTukalumbanye mu cine\Tulalekeshe ku mulu\nUko tukabelelela\n\nAmen"
-    ]
+    ],
   },
   {
     id: "222",
@@ -1436,7 +1436,7 @@ export const HYMNS: Hymn[] = [
       "Lesa nangeni kristu\nMwatile Enshila\nNdeisa nankwe kristu\nUko kuntu ekala",
       "Wene acifishe imfwa\nKuli Lesa wakwe\nAsalile ukusulwa\nPa kututemwisha",
       "Ndekumbwa uko kutemwa\nKu cifulo cakwe\nKu bututubuko Lesa\nUbo mwamupele.\nAmen"
-    ]
+    ],
   },
   {
     id: "223",
@@ -1451,7 +1451,7 @@ export const HYMNS: Hymn[] = [
       "NDI MWENI MUNO MU CALO NE FIKOLWE FYANDI\nIFYALI MUNO MU CALO\nMWALIFITA FYONSE",
       "NAINE TATA WASHILA\nSENI MU NSHILISHE\nMUPASHI WANDI UBUTE\nNKESE MONA IMWE",
       "ABASUMINA BONSE FYE\nBALINSHA FYE BONSE\nBAISA UKO KU MULU\nNAINE KO NKESA\n\nAmen"
-    ]
+    ],
   },
   {
     id: "224",
@@ -1466,7 +1466,7 @@ export const HYMNS: Hymn[] = [
       "Nga ndi no bulanda\nNdateko mutima\nYesu alumbaniwe\nNangu mbe fyo mupina\nKansose mu mutima\nYesu alumbaniwe",
       "Mu mulu mwa Lesa\nBangeli basosa ti\nLesa lumbaniwe\nPamo na bapanonshi\nNabo balemba bati\nYesu alumbaniwe",
       "Ulwimbo lwine ulu\nNdeimbila Yesu\nYesu alumbaniwe\nNo lu lwimbo lwa pe\nLwa myaka na myaka\nYesu alumbaniwe\n\nAmen"
-    ]
+    ],
   },
   {
     id: "225",
@@ -1481,7 +1481,7 @@ export const HYMNS: Hymn[] = [
       "Shikulu e mfumu wena\nE kapingula wacine\nNshila shakwe shacishinka\nAbantu kabamumwile",
       "Ateka mwe basambi mwe\nMwakulalumbanya shifwe\nNa Yesu waba mu mulu\nUwatanikwe ngo muntu",
       "Awe teti apumbile\nNo luse teti lucepe\nMwe bena mwakwe mwileka\nKwimbe fyo shifwe ateka. Amen"
-    ]
+    ],
   },
   {
     id: "226",
@@ -1494,7 +1494,7 @@ export const HYMNS: Hymn[] = [
       "Tacabala cimonwa\nulubuto ne nyimbo\nShaimbilwe mu mulu, kuli bamalaika\nNe ntanda shalalumbulumbanya\nNaisa uwa mutende\nKukwikala muli fwe\nNi yesu Kristu\nNi Yesu Imanyule",
       "Lulya lwimbo na nomba\nLwacumfwika ku maca\nElyo lwacilaimbwa, Lubuto lwamoneka\nBapano nse balumbule\nNaisa uwa mutende\nKukwikala muli fwe\nNi yesu Kristu\nNi Yesu Imanyule",
       "Isa we kasuba we,\nTulecindike mfumu\nNatwisa kukupepa, nokuilumbanisha\nCalo conse cilumbanye\nNaisa uwa mutende\nKukwikala muli fwe\nNi yesu Kristu\nNi Yesu Imanyule"
-    ]
+    ],
   },
   {
     id: "227",
@@ -1509,7 +1509,7 @@ export const HYMNS: Hymn[] = [
       "Yesu alishukuka\nUlya wine wamwilile\nNakulamubombela\nNo kumulumbanya pe fye\nAleluya",
       "Yesu alishukuka\nUmweo nangu fye ni mfwa\nTeti fitupatule\nKu temwa kwakwa Lesa\nAleluya",
       "Yesu alishukuka\nTeti ntine nelyo kamo\nImfwa nomba e mwinshi\nWakwingilila ku mweo\nAleluya. Amen"
-    ]
+    ],
   },
   {
     id: "228",
@@ -1525,7 +1525,7 @@ export const HYMNS: Hymn[] = [
       "Ifya luse lwenu\nFyalifulisha\nNo bupanda bwenu\nBwabo bwacine\nTakwaba bulanda\nNelyo cikonko\nNa bamalaika\nBamwimbila pe",
       "Nomba akasuba\nKaya ku kuwa\nKalesanikila\nPafyo twabomba\nYaswa ipwe nshita\nKucula kupwe\nElyo mwe katula tukayatusha",
       "Tuye lwa kuntanshi\nMu lwendo lwesu\nNga bashilishiwa\nAbakwa yesu\nTushe fya mu calo\nNatucincile\Twicebu ku numa\nTukafike fye. Amen"
-    ]
+    ],
   },
   {
     id: "229",
@@ -1539,7 +1539,7 @@ export const HYMNS: Hymn[] = [
       "Nelyo kamo nshikwete\nLupanda njikete fye\nMumfwike ndifyo bwamba\nMungafwe ne wanaka\nNomba njise ne mubi\nMuntule nikesafwa",
       "Milimo ya ku minwe\nTeti eyo intule\nNga nshile na mukosha\nNangu mponye filamba\nIfi teti fintule\nKano fye imwe mweka",
       "Lintu nkaleko mweo\nYakashibata menso\nNkamono ko mwikele\nPa cipuna ca cilye\nMwe cilibwe cakale\nKamfisame muli mwe.\nAmen"
-    ]
+    ],
   },
   {
     id: "230",
@@ -1553,7 +1553,7 @@ export const HYMNS: Hymn[] = [
       "Mu kasuba no bushiku\nMwakufisama ku nkunta\nTeti tutinya balwani\nMwakufisama ku nkunta\nNi Yesu e cilibwe muno lwendo Nga\ntwanaka nga twanaka Ni Yesu e\ncilibwe muno lwendo\nMwakufisama ku nkunta",
       "Nge fipupu fyatwimina\nMwakufisama ku nkunta\nTatwfume umo twaba\nMwakufisama ku nkunta\nNi Yesu e cilibwe muno lwendo Nga\ntwanaka nga twanaka Ni Yesu e\ncilibwe muno lwendo\nMwakufisama ku nkunta",
       "Mwe cilibwe mupusushi\nMwakufisama ku nkunta\nMutwafwe nshiku shonse pe\nMwakufisama ku nkunta\nNi Yesu e cilibwe muno lwendo Nga\ntwanaka nga twanaka Ni Yesu e\ncilibwe muno lwendo\nMwakufisama ku nkunta\n\nAmen"
-    ]
+    ],
   },
   {
     id: "231",
@@ -1567,7 +1567,7 @@ export const HYMNS: Hymn[] = [
       "Cipupu nga canjimina\nKuno uko ndi,\nMpisha pmulu wa ciko,\nNsumbwilwe kuli ‘we.\nMfisa, Mfisa\nWe mupusushi mfisa,\nWe mfumu ndama,\nMfisame muli ‘we.",
       "Mutima nga wa fininwa,\nKuku culisha,\nNga ndelila ntalalika,\nWe mwine ngasuka.\nMfisa, Mfisa\nWe mupusushi mfisa,\nWe mfumu ndama,\nMfisame muli ‘we.",
       "Mfisa mfumu na papata,\nNshikwete amaka,\nWe wa maka niwe weka,\nUli mulubulushi.\nMfisa, Mfisa\nWe mupusushi mfisa,\nWe mfumu ndama,\nMfisame muli ‘we.\n\nAmen"
-    ]
+    ],
   },
   {
     id: "232",
@@ -1583,7 +1583,7 @@ export const HYMNS: Hymn[] = [
       "Nga umo wa bana benu\nNaulungana ilelo\nBangilileni mumwafwe\nMwileka lale ne fibi",
       "Abalwele mubalinde\nNa balanda mubapale\nAbalelosha ilelo\nBalale bwino mutulo",
       "Mukatupalya kacelo\nTatulaenda mu calo\nTukasuke tukafike\nKu mulu muluse lwenu\n\nAmen"
-    ]
+    ],
   },
   {
     id: "233",
@@ -1598,7 +1598,7 @@ export const HYMNS: Hymn[] = [
       "Mu fyalo na mu fishi mwine\nBushiku bucele bwino\nShiwi lye pepo talileka\nNelyo ishiwi lya nyimbo",
       "Kasuba nga kawa kuno\nKalashibusha banensu\nEbalepokelelo lwimbo\nKutasha Lesa mukulu",
       "Ifyo fine cipuna cenu\nTekuti citenukepo\nBufumu bwenu bwa pe na pe\nBakasuke bakacimbe\n\nAmen"
-    ]
+    ],
   },
   {
     id: "234",
@@ -1614,7 +1614,7 @@ export const HYMNS: Hymn[] = [
       "Nga naisa nkesafwala\nAmapindo ya mushilo\nNkesafika ku cifulo\nUkwapele cimana",
       "Kuboko kwenu kwalyansha\nKwalincingila konse\nUkuboko kwa kulyo\nKukalansungulila pe",
       "Ilintu nkesa ntatila\nMfifi yalimfimbile\nKuno takwaba bushiku\nKwabuta fye nga kasuba\n\nAmen"
-    ]
+    ],
   },
   {
     id: "235",
@@ -1630,7 +1630,7 @@ export const HYMNS: Hymn[] = [
       "Mu menso ya busumino\nNkayamone ciyayaya\nKu calo ca basumina\nKwa Kristu waciyayaya",
       "Alenjita lencebula\nNi yesu katula wandi\nAleti mfume mu calo\nNje kuli katula wandi",
       "Bune mwebasumina\nBalepembela mu mulu\nNatucishe cino calo\nTacakwata icilambu\n\nAmen"
-    ]
+    ],
   },
   {
     id: "236",
@@ -1644,7 +1644,7 @@ export const HYMNS: Hymn[] = [
       "Tabakwata fyabipa\nAbakuli co calo\nBekala mu kutemwa\nE fita fya ku mulu",
       "Bafwale fyabutisha\nFyasambwa mu mulopa\nWa mpanga iyabuta\nIyatufwilile fwe",
       "Bushe naine nkesa\nKu mushi wa ku mulu\nBushe nkesa nyantako\nKu calo ca bashila\n\nAmen"
-    ]
+    ],
   },
   {
     id: "237",
@@ -1658,7 +1658,7 @@ export const HYMNS: Hymn[] = [
       "Ine nga nakutila\nBulanda mu mutima\nUbulentungulula\nKu bulapilo bwandi\nKwenda munshila yi\nNshila Iyaya ku bupapilo",
       "Nga kuti nasumina\nIfibi kuti fyapwa\nNkuminine ukwali\nKu wafwila pali ne\nNcetekele nshiku pe\nKuli katula wandi",
       "Ine nga ndi na maka\nAyafuma ku mfumu\nMpose fya calo\nFyonse ndolekeshe\nKu mulu mpaleni\nLesa wandi mfumemo\nMu fyabipa\n\nAmen"
-    ]
+    ],
   },
   {
     id: "238",
