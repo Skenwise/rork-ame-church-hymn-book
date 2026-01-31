@@ -1608,7 +1608,7 @@ export const HYMNS: Hymn[] = [
     category: "Guidance",
     verses: [],
     versesBemba: [
-      "Muntungulule mwe mfumu\nMu matontonkanyo yandi\Nyende mu bufwayo bwenu\nNelyo ni mutulo mwine",
+      "Muntungulule mwe mfumu\nMu matontonkanyo yandi\nNyende mu bufwayo bwenu\nNelyo ni mutulo mwine",
       "Busho ko ndelola ni kwi\nMupashi wenu aaka\nNga ni kwi ndebutukila\nUkutine cinso cenu",
       "Bushe ni kwi kuntu nkaya\nNi ku mulu kwine uko\nKampele fye njiteyanye\nNikesa ku bonaushi",
       "Nga naisa nkesafwala\nAmapindo ya mushilo\nNkesafika ku cifulo\nUkwapele cimana",
