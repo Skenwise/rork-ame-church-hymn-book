@@ -1670,7 +1670,7 @@ export const HYMNS: Hymn[] = [
     versesBemba: [
       "Katula wandi Yesu\nNdesengelelo koli\nMutima wandi onse\nNingupela kuli we",
       "Mulandu ukalamba\nNaumfinina nganshi\nMpokelela ndelila\nWe mulubushi wandi",
-      "Finofine ndi mubi\nMwauma pa cifuba\nUwali mu bucushi\ Kulolesha kwamwafwa",
+      "Finofine ndi mubi\nMwauma pa cifuba\nUwali mu bucushi\nKulolesha kwamwafwa",
       "Auma pa cifuba\nMulandu wa fyabipa\nNeine mo mbelele\nWe katula wa bonse.\nAmen"
     ]
   },
