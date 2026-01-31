@@ -1,12 +1,54 @@
 import { Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
+import { View, StyleSheet, Image, Animated } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { AppContext, useApp } from "@/contexts/app-context";
 import { AuthContext, useAuth } from "@/contexts/auth-context";
 
 SplashScreen.preventAutoHideAsync();
+
+function LoadingScreen() {
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  const scaleAnim = React.useRef(new Animated.Value(0.9)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scaleAnim, {
+        toValue: 1,
+        tension: 40,
+        friction: 7,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [fadeAnim, scaleAnim]);
+
+  return (
+    <View style={loadingStyles.container}>
+      <Animated.View 
+        style={[
+          loadingStyles.logoContainer,
+          {
+            opacity: fadeAnim,
+            transform: [{ scale: scaleAnim }],
+          },
+        ]}
+      >
+        <Image
+          source={require("../assets/images/icon.png")}
+          style={loadingStyles.logo}
+          resizeMode="contain"
+        />
+      </Animated.View>
+    </View>
+  );
+}
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
@@ -26,7 +68,7 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   }, [user, isLoading, segments, router]);
 
   if (isLoading) {
-    return null;
+    return <LoadingScreen />;
   }
 
   return <>{children}</>;
@@ -71,6 +113,35 @@ function RootLayoutNav() {
     </Stack>
   );
 }
+
+const loadingStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#F9F7F0",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logoContainer: {
+    width: 180,
+    height: 180,
+    borderRadius: 40,
+    backgroundColor: "#fff",
+    padding: 24,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 3,
+    borderColor: "#315482",
+    shadowColor: "#315482",
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.15,
+    shadowRadius: 16,
+    elevation: 8,
+  },
+  logo: {
+    width: "100%",
+    height: "100%",
+  },
+});
 
 export default function RootLayout() {
   useEffect(() => {
