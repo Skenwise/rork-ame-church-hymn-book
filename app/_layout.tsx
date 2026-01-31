@@ -1,7 +1,7 @@
 import { Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
-import { View, StyleSheet, Image, Animated, Platform } from "react-native";
+import { View, StyleSheet, Image, Animated, Platform, Text } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { AppContext, useApp } from "@/contexts/app-context";
@@ -33,18 +33,24 @@ function LoadingScreen() {
     <View style={loadingStyles.container}>
       <Animated.View 
         style={[
-          loadingStyles.logoContainer,
+          loadingStyles.content,
           {
             opacity: fadeAnim,
             transform: [{ scale: scaleAnim }],
           },
         ]}
       >
-        <Image
-          source={require("../assets/images/icon.png")}
-          style={loadingStyles.logo}
-          resizeMode="contain"
-        />
+        <View style={loadingStyles.logoContainer}>
+          <Image
+            source={require("../assets/images/icon.png")}
+            style={loadingStyles.logo}
+            resizeMode="contain"
+          />
+        </View>
+        <View style={loadingStyles.titleContainer}>
+          <Text style={loadingStyles.title}>AME Church</Text>
+          <Text style={loadingStyles.subtitle}>Hymn Book</Text>
+        </View>
       </Animated.View>
     </View>
   );
@@ -121,25 +127,48 @@ const loadingStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  content: {
+    alignItems: "center",
+  },
   logoContainer: {
-    width: 180,
-    height: 180,
-    borderRadius: 40,
+    width: 160,
+    height: 160,
+    borderRadius: 36,
     backgroundColor: "#fff",
-    padding: 24,
+    padding: 20,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 3,
+    borderWidth: 2.5,
     borderColor: "#315482",
-    shadowColor: "#315482",
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.15,
-    shadowRadius: 16,
-    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 6,
+    marginBottom: 24,
   },
   logo: {
     width: "100%",
     height: "100%",
+  },
+  titleContainer: {
+    alignItems: "center",
+    paddingHorizontal: 32,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "700",
+    color: "#315482",
+    letterSpacing: 0.5,
+    marginBottom: 4,
+    textAlign: "center",
+  },
+  subtitle: {
+    fontSize: 26,
+    fontWeight: "300",
+    color: "#5A7BA0",
+    letterSpacing: 2,
+    textAlign: "center",
   },
 });
 
