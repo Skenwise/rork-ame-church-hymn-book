@@ -135,27 +135,16 @@ const loadingStyles = StyleSheet.create({
     height: 180,
     borderRadius: 40,
     backgroundColor: "#ffffff",
-    padding: 24,
+    padding: 20,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 3,
     borderColor: "#315482",
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.15,
-        shadowRadius: 16,
-      },
-      android: {
-        elevation: 8,
-      },
-    }),
     marginBottom: 28,
   },
   logo: {
-    width: 132,
-    height: 132,
+    width: 140,
+    height: 140,
   },
   titleContainer: {
     alignItems: "center",
