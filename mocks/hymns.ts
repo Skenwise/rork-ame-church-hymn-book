@@ -1672,7 +1672,7 @@ export const HYMNS: Hymn[] = [
       "Mulandu ukalamba\nNaumfinina nganshi\nMpokelela ndelila\nWe mulubushi wandi",
       "Finofine ndi mubi\nMwauma pa cifuba\nUwali mu bucushi\nKulolesha kwamwafwa",
       "Auma pa cifuba\nMulandu wa fyabipa\nNeine mo mbelele\nWe katula wa bonse.\nAmen"
-    ]
+    ],
   },
 ];
 
