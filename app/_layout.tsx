@@ -1,7 +1,7 @@
 import { Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
-import { View, StyleSheet, Image, Animated } from "react-native";
+import { View, StyleSheet, Image, Animated, Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { AppContext, useApp } from "@/contexts/app-context";
@@ -146,6 +146,16 @@ const loadingStyles = StyleSheet.create({
 export default function RootLayout() {
   useEffect(() => {
     SplashScreen.hideAsync();
+    
+    if (Platform.OS === 'web') {
+      const originalConsoleError = console.error;
+      console.error = (...args) => {
+        if (typeof args[0] === 'string' && args[0].includes('Unable to activate keep awake')) {
+          return;
+        }
+        originalConsoleError(...args);
+      };
+    }
   }, []);
 
   return (
