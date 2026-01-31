@@ -1673,6 +1673,391 @@ export const HYMNS: Hymn[] = [
       "Auma pa cifuba\nMulandu wa fyabipa\nNeine mo mbelele\nWe katula wa bonse.\nAmen"
     ],
   },
+  {
+    id: "239",
+    number: 239,
+    title: "Akasuba kawa nomba bwaila",
+    titleBemba: "Akasuba kawa nomba bwaila",
+    category: "Evening",
+    verses: [],
+    versesBemba: [
+      "Akasuba kawa nomba bwaila\nMilimo naipwa bantu batusha\nNomba kuli mfifi\nntanda shabeka\nInama ne fyuni filesendama",
+      "Banaka bapelwo tulo tusuma\nTwalashibata no bupalo bwenu\nLekeni abana\nbamone imwe\nMwafweko bacoba\nbapacimana",
+      "Sungenya balwele\nbalekalipwa\nAbacite fibi\nmulebelela\nUbushiku buno\nbamalaika\nBatubakilile e batulinda",
+      "Nga bwaco lucelo mukanjimyeko\nNkaleenda nenu kwabulwo bubi\nTulumbanye Lesa\npamo na mwane\nPamo na mupashi\nshiku shonse pe.\nAmen"
+    ],
+  },
+  {
+    id: "241",
+    number: 241,
+    title: "Tell Me the Old, Old Story",
+    titleBemba: "Njebe fyebo fya kale",
+    category: "Gospel",
+    verses: [],
+    versesBemba: [
+      "Njebe fyebo fya kale Fya ku mulu kulya\nFya luse no lulumbi Fyakwa Yesu Kristu\nUnshimikile bwino Kwati ndi mwaice\nPantu nshakwata maka Ndi uwakowela",
+      "Njebe fyebo fya kale Njebe fyebo fya kale\nNjebe fyebo fya kale Fya Yesu no luse",
+      "Unjebe fyebo bwino Kuti ng’umfwikishe\nBupususho bukulu Yesu atile\nTwalililo kunjeba Pantu ndaba bwangu\nUmume wa kacelo Ukuntila fye bwangu",
+      "Njebe fyebo fya kale Njebe fyebo fya kale\nNjebe fyebo fya kale Fya Yesu no luse",
+      "Ntepeleshe fyebwe fi Ne shiwi lyanaka\nWibukishe ndi mubi Untu afwilile\nUlenshimikila fye pe Fye fimo fine\nIfya kunsansamusha Mu nshita sha bwafya",
+      "Njebe fyebo fya kale Njebe fyebo fya kale\nNjebe fyebo fya kale Fya Yesu no luse",
+      "Unjebe fi fine Nga wamono kuti\nIfintu fya mu calo Fyalaswa finanshe\nNelyo mulu wine Lesa kanjiswila\nUnjebe fi fyakale\nFyakunsansamusha",
+      "Njebe fyebo fya kale Njebe fyebo fya kale\nNjebe fyebo fya kale Fya Yesu no luse\nAmen"
+    ],
+  },
+  {
+    id: "242",
+    number: 242,
+    title: "There is a Fountain",
+    titleBemba: "Kafukauka kalipo",
+    category: "Salvation",
+    verses: [],
+    versesBemba: [
+      "Kafukauka kalipo,\n‘Mulopa wa Yesu,\nAbo abalesambwamo balebuta tutu.",
+      "Mupupu ‘wafwa temenwe\nPakafukauka,\nIne nacila ku bubi,\nNsambwe mumutima",
+      "Kubusumino namwene, ‘ Filaso fya Yesu,\nNalubulwa mu mfwa yakwe,\nNdetakisha nganshi.",
+      "Ndeimbo lwimbo lusuma,\nNico ampuswishe,\nNa mumulu nkalaimba\nIco antemwisha\nAmen"
+    ],
+  },
+  {
+    id: "243",
+    number: 243,
+    title: "Revive Thy Work",
+    titleBemba: "‘Milimo mukushe",
+    category: "Revival",
+    verses: [],
+    versesBemba: [
+      "‘Milimo mukushe, Mube nefwe bonse;\nKu maka yenu musose, bomfwe aba bantu.",
+      "‘Milimo mukushe\nIi tulebomba\nIkeni mwe mfumu mwike mwise mutupale.",
+      "‘Milimo mukushe,\nMulumbuke konse,\nLubingu lwenu lwakile Mu, mitima yesu.",
+      "‘Milimo mukushe\nIi tulebomba\nIkeni mwe mfumu mwike mwise mutupale.",
+      "‘Milimo mukushe,\nMupalya mashiwi\nYekale no busumino Mu mitima yesu.",
+      "Milimo mukushe\nIi tulebomba\nIkeni mwe mfumu mwike mwise mutupale.",
+      "‘Milimo mukushe, Balapilya bengi,\nShina lyenu lilumbuke\nMutupale bonse.",
+      "Milimo mukushe\nIi tulebomba\nIkeni mwe mfumu mwike mwise mutupale.\nAmen"
+    ],
+  },
+  {
+    id: "244",
+    number: 244,
+    title: "When the Roll is Called Up Yonder",
+    titleBemba: "Ilye penga lyakwa Lesa",
+    category: "Second Coming",
+    verses: [],
+    versesBemba: [
+      "Ilye penga lyakwa Lesa\nLikomfwika mu calo\nIlyo bukaco bwa lubuto tutu\nIlyo abasalwa bakaya longana pe shilya\nIlya keta amashina nkabeko",
+      "Ilyo keta amashina Ilyo keta amashina\nIlyo keta amashina Ilyo keta amashina\nnkabeko",
+      "Ubushiku bwa kutinya\nIlya bafwa bakema\nNo kumono bucindami bwa Kristu\nIlyo abasalwa bakalongana kwa Lesa\nIlya keta amashina nkabeko",
+      "Ilyo keta amashina Ilyo keta amashina\nIlyo keta amashina Ilyo keta amashina nkabeko",
+      "Aleni tulebombela\nShikulwifwe nshiku pe\nTuyelanda ku bantu ifwa mweo\nNge milimo yapwa nefwe twaya mu calo cilya\nIlya keta na mashina nkabeko",
+      "Ilyo keta amashina Ilyo keta amashina\nIlyo keta amashina Ilyo keta amashina\nnkabeko\nAmen"
+    ],
+  },
+  {
+    id: "245",
+    number: 245,
+    title: "Ilyo fubefube aya",
+    titleBemba: "Ilyo fubefube aya na kasuba katula",
+    category: "Hope",
+    verses: [],
+    versesBemba: [
+      "Ilyo fubefube aya na kasuba katula\nFyonse panshi fyabalika\nNo kunaka ku mfula\nNo lubuto lwakwa lesa\nMfifi yonse lwatamfya\nTukeshiba fyonse limbi\nIlyo fube apita",
+      "Tukayaishibana tukayaendelana Ilyo lwendo\npanshi lwapwa Na ku mulu batwita Tukeshiba\nfyonse bwino Ilyo fube apita",
+      "Ulwendo lwesu lwalyafya\nMu mitima mwafita\nTulabomba no kunaka\nTulalekana twaya\nLelo Yesu akatila\nIseni mwebapalwa\nTukeshiba fyonse bwino\nIlyo fube apita",
+      "Tukayaishibana tukayaendelana Ilyo lwendo\npanshi lwapwa Na ku mulu batwita Tukeshiba\nfyonse bwino Ilyo fube apita",
+      "Ifwe bonse tukacankwa\nIlyo tukalongana\nNa banensu ba kwisano\nElyo tukeshibana\nTukembila Yesu pamo\nPantu e watushita\nIlye mfifi yapwa yaya\nFubefube apita",
+      "Tukayaishibana tukayaendelana Ilyo lwendo\npanshi lwapwa Na ku mulu batwita Tukeshiba\nfyonse bwino Ilyo fube apita\nAmen"
+    ],
+  },
+  {
+    id: "246",
+    number: 246,
+    title: "Cibuta ni Lesa",
+    titleBemba: "Cibuta, Cibuta, Cibuta ni lesa",
+    category: "Holiness",
+    verses: [],
+    versesBemba: [
+      "Cibuta, Cibuta, Cibuta ni lesa, Aba mu lubuto lukalamba, Wene wakaele tumucindikishe, Ekala mwibumba ilikulu",
+      "Cibuta, Cibuta, Cibuta ni lesa, Alafukaminwa na mabumba,\nAbangeli bakwe alibatemwisha,\nBemba na mashiwi ya mupashi.",
+      "Cibuta, Cibuta, Cibuta ni lesa, Umulu ewakwe e wa panga,\nAbwa balefwaya ukuyafikako\nBalape baleke ukubifya.",
+      "Cibuta, Cibuta, Cibuta ni lesa, Ababipa tabakamumone,\nNgabamulolesha kuti batutuma\nNgalebepushe co babifishe.",
+      "Bakaele beka abo abasalwa,\nAbo abasambwa mumulopa,\nMulopa wa mwana uwabasumina,\nEbakayaninako ku mulu.\nAmen"
+    ],
+  },
+  {
+    id: "247",
+    number: 247,
+    title: "At Even Ere the Sun Was Set",
+    titleBemba: "Lyo kawile pa cungulo",
+    category: "Evening/Healing",
+    verses: [],
+    versesBemba: [
+      "Lyo kawile Pa cungulo\nBaishile abalwala\nBafuma baya ne nseko\nAbashile baleteta",
+      "Kabinge nombe cungulo\nNefwe twaisapalama\nNatwishibe fyo mulipo\nNangula tushimumwene",
+      "Tusansamuke, katula\nPantu twalwala, twapina;\nBamo tabalamutemwa\nBambi bamufutatila",
+      "Bamo basange fyo calo\nTacisekesho mutima\nKuli imwe tabesako\nKuti bapwishe cilaka",
+      "Tapalya batusha bwino\nPantu tababulwa fibi\nAbamufwaisha nabo\nBali ne fibi mukati",
+      "Mwe shikulu mwali muntu\nMwacushiwe no kweshiwa;\nTatwafise fibi fyesu\nMenso yenu yalemona",
+      "Kukunya kwenu kwakale\nKulipo nomba na maka;\nPa cungulo munshitei\nMuposhe bonse nakalya\nAmen"
+    ],
+  },
+  {
+    id: "248",
+    number: 248,
+    title: "What a Friend We Have in Jesus",
+    titleBemba: "Yesu e cibusa wesu",
+    category: "Prayer/Fellowship",
+    verses: [
+      "What a friend we have in Jesus\nAll our sins and grief to bear\nWhat a privilege to carry,\nEverything to God in Pray.",
+      "Oh what peace we often forfeit,\nOh what needless pain we bear,\nOh because we do not carry\neverything to God in pray",
+      "Have we trials and temptations?\nIs there trouble anywhere?\nWe should never be discouraged;\ntake it to the Lord in prayer.",
+      "Can we find a friend so faithful\nwho will all our sorrows share?\nJesus knows our every weakness;\ntake it to the Lord in prayer.",
+      "Are we weak and heavy laden,\ncumbered with a load of care?\nPrecious Savior, still our refuge;\ntake it to the Lord in prayer.",
+      "Do thy friends despise, forsake thee?\nTake it to the Lord in prayer!\nIn his arms he'll take and shield thee;\nthou wilt find a solace there."
+    ],
+    versesBemba: [
+      "Yesu e cibusa wesu, Fibi fyesu asenda,\nTwalingo kutwala fyonse,\nKwa Yesu mu mapepepo,",
+      "Nangu ifwe twingafilwa,\nTwikatisho kulomba\nNangu ifwe tulecula, tupepe mumitima",
+      "Bushe tuli mukweshiwa?\nBushe tulecula pe? Nalyo line twinenuka, Tulombe kuli Yesu,",
+      "Cibusa umbi takwaba,\nUwampomfu no luse!\nYesu atwishiba bonse,\nEcalenga tupepe",
+      "Bushe ifwe twafininwa,\nNokunaka twanaka? Yesu ekatula wesu ,\nTumwebele mwipepo.",
+      "Ifibusa ngafyatusha, Yesu takatushe 'yo. Atusunga mumaboko, Tukaya tusho 'kwali.\nAmen"
+    ],
+  },
+  {
+    id: "249",
+    number: 249,
+    title: "Nshita sha kacelo celo",
+    titleBemba: "Nshita sha kacelo celo",
+    category: "Morning/Praise",
+    verses: [],
+    versesBemba: [
+      "Nshita shaka celo celo\nFyonse filumbanya imwe\nUmweo waba kuli imwe\nNefwe nimwe mutusunga",
+      "Akasuba nga tula\nKenda mu nshila yakako\nNako kalamulumbanya\nKaleti we mfumu yandi",
+      "Akasuba nga katula,\nkaba no lubuto lwakwe\nMona! Nako kalelumba\nKaleti niwe wa mpanga",
+      "Makumbi yashinguluka\nNayo yaleshimikila\nYalesabankanya konso\nYaliti ni we watukosha",
+      "Mitundu ya nama yonse\nNimwe mushipelo kulya\nNefwe tulelombe filyo\nKuli mweba tulengele"
+    ],
+  },
+  {
+    id: "250",
+    number: 250,
+    title: "Batata na bamayo",
+    titleBemba: "Batata na bamayo",
+    category: "Giving/Offering",
+    verses: [],
+    versesBemba: [
+      "Batata na bamayo\nMwilacushe mitima\nTe muntu mulepela\nEbupe bwakwa Lesa",
+      "Bupe nomba bwaisa, Bupe nomba bwaisa\nPela konse ako kwete\nBashikulwifwe kale\nPakutume mipashi\nBalepela ne lambo\nKuli lesa mukulu",
+      "Bupe nomba bwaisa, Bupe nomba bwaisa\nPela konse ako kwete",
+      "Bambi na nomba line\nBacili mu bupofu\nIcakufwala cabo\nNi mfifi no bupuba",
+      "Mwebapela no kwanga\nMukapelwe cilambu\nMulepela ne nsansa",
+      "Mwe mwilailishanya\nLesa tailishanya\nPa kumupele fintu\nMwilabala mwapenda",
+      "Elyo mwapela Lesa\nPantu Lesa tapenda\nPakutupela fyonse",
+      "Conse co ulepela\nLesa lekubwesesha\nAlekupele fingi\nNefyo ushilombele.\nAmen"
+    ],
+  },
+  {
+    id: "251",
+    number: 251,
+    title: "Rescue the Perishing",
+    titleBemba: "Mufwailishe abalubile",
+    category: "Evangelism",
+    verses: [],
+    versesBemba: [
+      "Mufwailishe abalubile\nMubapapate luse-luse\nYesu aleti mwise kuli ne\nNe lelo line alebeta",
+      "Kabiyeni mu tumishi tonse Mubalete abaluba\nMubalete ku mwine kakumba Yesu Kristu uwabafwila",
+      "Tubafishe kuli yesu mwine\nAbanaka na balecula\nNo kubalanga ipusukilo\nBeshibyo mwakumweno mweo",
+      "Kabiyeni mu tumishi tonse Mubalete abaluba\nMubalete ku mwine kakumba Yesu Kristu uwabafwila",
+      "Tulefwayo kube nkombe shakwe\nKukonka Kristu nshiku shonse\nTwafwe abawa na banakisha\nBaluba tubalange yesu",
+      "Kabiyeni mu tumishi tonse Mubalete abaluba\nMubalete ku mwine kakumba Yesu Kristu uwabafwila",
+      "Kwena inshita yena ikesa\nYesu akabwela mu lulumbi\nNatwikatishe uyu mulimo\nUkuti tupususha bengi",
+      "Kabiyeni mu tumishi tonse Mubalete abaluba\nMubalete ku mwine kakumba Yesu Kristu uwabafwila\nAmen"
+    ],
+  },
+  {
+    id: "252",
+    number: 252,
+    title: "Mwise kwa Yesu",
+    titleBemba: "Mwise kwa yesu mwikokola",
+    category: "Invitation",
+    verses: [],
+    versesBemba: [
+      "Mwise kwa yesu mwikokola\nMu fyalembwa atulange nshila\nAli pakati kesu nomba\nIseni mwicelwa",
+      "Kulongana no kusekela Ne mitima iyakaele\nYesu tukalongana nenu Ku mwesu ku mulu",
+      "Yesu sosele ati lekeni\nAbana bese kuli ine\nNomba saleni mfumu niyi\nMwikokola mwise",
+      "Kulongana no kusekela Ne mitima iyakaele\nYesu tukalongana nenu Ku mwesu ku mulu",
+      "Tontonkanyeni ali pano\nUmfweniko imbila yakwe\nMashiwi yaleshimikilwa\nMwikokola mwise.",
+      "Kulongana no kusekela Ne mitima iyakaele\nYesu tukalongana nenu Ku mwesu ku mulu\nAmen"
+    ],
+  },
+  {
+    id: "253",
+    number: 253,
+    title: "Yona shibuka tupepe",
+    titleBemba: "Yona shibuka tupepe",
+    category: "Scripture Narrative",
+    verses: [],
+    versesBemba: [
+      "Yona shibuka tupepe\nYona shibuka tupepe\nYona shibuka tupepe\nYona shibuka tupepe",
+      "Mone cipupu twasanswa\nNo bwato bwalaibila\nTwalafwa tatwapuseke\nNatupepe kuli Lesa",
+      "Ine ne Yona nakana\nNshapepe ku mfumu Lesa\nPantu eo nafyukile\nKanshi abe calo conse",
+      "Mposeni fye muli bemba\nNga mupusuke fye bonse\nNdi wa milandu ku mfumu\nEilesunkanyo bwato",
+      "Nga kuno naisa ni kwi\nYangu ni kulya nakene\nKu musumba wa Ninive\nLesa tewakwangalako.\nAmen"
+    ],
+  },
+  {
+    id: "254",
+    number: 254,
+    title: "E wa maka mulopa wa Yesu",
+    titleBemba: "E wa maka mulopa wa Yesu",
+    category: "Power of Blood",
+    verses: [],
+    versesBemba: [
+      "E wa maka mulopa wa Yesu\nE wa maka e wa maka\nE wa maka mulopa wa yesu\nEusambe fyabipa"
+    ],
+  },
+  {
+    id: "255",
+    number: 255,
+    title: "Bushe nkaya kwi penga",
+    titleBemba: "Bushe nkaya kwi penga nga lyalila",
+    category: "Judgment/Eternity",
+    verses: [],
+    versesBemba: [
+      "Bushe nkaya kwi penga nga lyalila\nBushe nkaya kwi nga lyalila ku mulu\nNga lyalila ku mulu liteita bafwa\nBushe nkaya kwi nga lyalila",
+      "Iwe ukuya kwi penga nga lyalila\nIwe ukuya kwi nga lyalila ku mulu\nNga lyalila ku mulu lileita bafwa\nIwe ukaya kwi nga lyalila",
+      "Imwe mukaya kwi bushe ni ku mweo\nBushe mukayako ku mweo uwa pe\nKu mweo uwa pe ku mfumu ya luse\nNga muli bakwe mukayako",
+      "Ifwe tukayako fwe bamusumina\nNangu cibe shani tukayamumina\nAkwatisho luse takayetuposa\nKu lesa lwakwe tukengila",
+      "Mwe bashasumina mwalishama\nAla sumineni mukelelwa\nImfwa tailaisa sumineni bwangu\nNga mwakana mukayaposwa. Amen"
+    ],
+  },
+  {
+    id: "256",
+    number: 256,
+    title: "Simoni mwana yona",
+    titleBemba: "Simoni mwana Yona",
+    category: "Commitment",
+    verses: [],
+    versesBemba: [
+      "Simoni mwana Yona\nBushe walintemwa\nSimoni mwana Yona\nBushe walintemwa\nSimoni mwana Yona\nBushe walintemwa\nCine we mfumu nalikutemwa",
+      "Nga walintemwa\nKumbe mpanga shandi\nNga walitemwa\nKumbe mpanga shandi\nKumbe mpanga shandi\nNkalaba nobe pe",
+      "We cilibwe ndekula poli\nWalishibo kuti nalikutemwa\nNe mpanga shobe nakulashikumba\nNo kwisashileta kwicinka lya mweo\nNasumina nakulakumba.\nAmen"
+    ],
+  },
+  {
+    id: "257",
+    number: 257,
+    title: "Sumina fye",
+    titleBemba: "Sumina fye uleke bakulembe",
+    category: "Exhortation",
+    verses: [],
+    versesBemba: [
+      "Sumina fye uleke bakulembe\nSumina fye uleke bakulembe\nBombesha fye uleke bakutashe\nBombesha fye uleke bakutashe",
+      "Uletemwa uleke bakutemwa\nUletemwa uleke bakutemwa\nCincila fye wileka bakusule\nCincila fye wileka bakusule",
+      "Wilanaka ikatisho kubomba\nNga wabomba bakaya kulambula.\nAmen"
+    ],
+  },
+  {
+    id: "258",
+    number: 258,
+    title: "Ilyo ndeisa ne mubi",
+    titleBemba: "Ilyo ndeisa ne mubi",
+    category: "Grace",
+    verses: [],
+    versesBemba: [
+      "Ilyo ndeisa ne mubi\nNdi mu kupelelwa\nPa mulandu wa fyabipa\nNga balendolesha",
+      "Isa we ciyayaya Nga ndi uwatemwikwa\nWe kutemwa kwa kupapa\nUkwakwa Lesa",
+      "Andubula ku milandu\nIyabipa nganshi\nIitwala ku kuluba\nMuli cino calo",
+      "Isa we ciyayaya Nga ndi uwatemwikwa\nWe kutemwa kwa kupapa\nUkwakwa Lesa",
+      "Amfwaile no kunsanga\nKu luse kwakwe fye\nAnsangile amoposeshe\nUmwine lesa",
+      "Isa we ciyayaya Nga ndi uwatemwikwa\nWe kutemwa kwa kupapa\nUkwakwa Lesa",
+      "Ilyo nali cendeende\nLesa li mpetwile\nMu kuluba na mu bwafya\nNdi pamo nankwe.",
+      "Isa we ciyayaya Nga ndi uwatemwikwa\nWe kutemwa kwa kupapa\nUkwakwa Lesa\nAmen"
+    ],
+  },
+  {
+    id: "259",
+    number: 259,
+    title: "Just As I Am",
+    titleBemba: "Shikulu Yesu Ndekuta",
+    category: "Repentance",
+    verses: [],
+    versesBemba: [
+      "Shikulu yesu ndekuta\nKano mwangafwa nalafwa\nPusukilo mundetele\nMumbule ifyo ndi",
+      "Mumbule ifyo ndi\nMumbule ifyo ndi\nYesu kristu mwamfwilile\nMumbule ifyo ndi",
+      "Nga nanaka, nabipilwa\nMwansumine umulopa\nMuncitile co mwatewa\nMumbule ifyo ndi",
+      "Mumbule ifyo ndi\nMumbule ifyo ndi\nYesu kristu mwamfwilile\nMumbule ifyo ndi",
+      "Mumone ine katula\nMuncitile co mwatemwa\nMutendeke no kupwisha\nMumbule ifyo ndi",
+      "Mumbule ifyo ndi\nMumbule ifyo ndi\nYesu kristu mwamfwilile\nMumbule ifyo ndi",
+      "Nshikwete maka kucita\nCintu cimo kuitula\nMuntule pe imwe mweka\nMumbule ifyo ndi",
+      "Mumbule ifyo ndi\nMumbule ifyo ndi\nYesu kristu mwamfwilile\nMumbule ifyo ndi\nAmen"
+    ],
+  },
+  {
+    id: "260",
+    number: 260,
+    title: "Ala mwilatwishika",
+    titleBemba: "Ala mwilatwishika mwebalemusumina",
+    category: "Faith/Ezekiel",
+    verses: [],
+    versesBemba: [
+      "Ala mwilatwishika mwebalemusumina\nBonse mukesa pusushiwa\nBushe aya mafupa, yengalaba no mweo\nLesa wandi walishiba",
+      "Ezekeyo bamwebele kuli lesa wa mweo\nBilikisha ku mafupa yakale\nAya yonse wamona mumukonko washika\nYena yalaba no mweo",
+      "Ilyo alesesema, kwaishile icongo\nIfupa pe fupa libiye\nNenkanda yafimbapo, nafyonse fifwaikwa\nYena yalaba no mweo",
+      "Lesa akafungula nshishi shabafwa kale\nAbo balemusumina muli wene\nBakafuma munshishi, nokuya kubutusho\nAtemwa kumuyayaya\nAmen"
+    ],
+  },
+  {
+    id: "261",
+    number: 261,
+    title: "Bringing in the Sheaves",
+    titleBemba: "Tande nshiku shonse mbuto sha busuma",
+    category: "Harvest/Service",
+    verses: [],
+    versesBemba: [
+      "Tande nshiku shonse mbuto sha busuma\nTanda ku lucelo, na po kawa fye\nTulolela mwela nshita yakusepa\nNga twaya tutila tukasamwa pe",
+      "Tukasamwa pe, tukasamwa pe nga twaya tutila, tukasambwa pe\nTukasamwa pe, tukasambwa pe\nNga twaya tutila, tusamwa pe",
+      "Tanda ku kasuba na ku cintelelwe\nWilatina mfula, nangu bulwani\nTulecula nomba, limbi tukasepa\nNga twaya tutila tukasamwa pe",
+      "Tukasamwa pe, tukasamwa pe nga twaya tutila, tukasambwa pe\nTukasamwa pe, tukasambwa pe\nNga twaya tutila, tusamwa pe",
+      "Kanshi fye balila, kanshi fwe banaka\nTuletande mbuto sha mfumu ine\nNgo mulimo wapwa ikesa tupoka\nNga twaya tutila tukasamwa pe.",
+      "Tukasamwa pe, tukasamwa pe nga twaya tutila, tukasambwa pe\nTukasamwa pe, tukasambwa pe\nNga twaya tutila, tusamwa pe\nAmen"
+    ],
+  },
+  {
+    id: "262",
+    number: 262,
+    title: "Nomba kwishiba naishiba",
+    titleBemba: "Nomba kwishiba naishiba",
+    category: "Joy",
+    verses: [],
+    versesBemba: [
+      "Nomba kwishiba naishiba\nYesu antula no kumposha\nAmfumya mumfifi na ku mfwa\nMu mutima ankoselesha",
+      "Ndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi\nndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi",
+      "Ndi ne cimwemwe, ndeangila\nFyacindama fya kwa lesa\nMu mutima e mwamoneka\nMaka ya mfumu no kutemwa",
+      "Ndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi\nndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi",
+      "Nomba mutima watalala\nYesu na ine bucibusa\nNdelindilila ndelolesha\nYesu umwine akabwela",
+      "Ndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi\nndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi\nAmen"
+    ],
+  },
+  {
+    id: "265",
+    number: 265,
+    title: "Send the Light",
+    titleBemba: "KULYU BWITE BULEFUMA",
+    category: "Missions",
+    verses: [],
+    versesBemba: [
+      "Kulyu bwite bulefuma kwi shilya, ‘leteni ulubuto,’\nKulya bantu ba kuya pokolola,’leteni ulubuto,’’",
+      "Ulubuto lwa mbila nsuma lubalikile konse\nUlubuto lwa mbila nsuma lubalike pe na pe.",
+      "Ili shiwi lya ku makenoniaya; ‘leteni ulubuto,’\nFya bupe fyesu twakulatambika,’leteni ulubuto,’",
+      "Ulubuto lwa mbila nsuma lubalikile konse\nUlubuto lwa mbila nsuma lubalike pe na pe.",
+      "Icikuku cakwa yesu cise pe,\nTutume ulubuto.\nNe mibele yakwa yesu twishibe, Tutume ulubuto.",
+      "Ulubuto lwa mbila nsuma lubalikile konse\nUlubuto lwa mbila nsuma lubalike pe na pe.",
+      "Twinenuka mu kubombe milimo, tutume ulubuto,\nTulongaya ba kwingila kwa yesu,tutume ulubuto.",
+      "Ulubuto lwa mbila nsuma lubalikile konse\nUlubuto lwa mbila nsuma lubalike pe na pe.\nAmen"
+    ],
+  },
 ];
 
 export const PREVIEW_HYMNS = HYMNS.slice(0, 10);
