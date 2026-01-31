@@ -63,7 +63,7 @@ export default function SignInScreen() {
                   isDark ? styles.inputDark : styles.inputLight,
                 ]}
                 placeholder="your.email@example.com"
-                placeholderTextColor={isDark ? "#666" : "#999"}
+                placeholderTextColor={isDark ? "#666" : "#9CA3AF"}
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -82,7 +82,7 @@ export default function SignInScreen() {
                   isDark ? styles.inputDark : styles.inputLight,
                 ]}
                 placeholder="Enter your password"
-                placeholderTextColor={isDark ? "#666" : "#999"}
+                placeholderTextColor={isDark ? "#666" : "#9CA3AF"}
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#F9F7F0",
+    backgroundColor: "#FAFAFA",
   },
   containerDark: {
     backgroundColor: "#1a1a1a",
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   subtitleLight: {
-    color: "#6D7278",
+    color: "#6B7280",
   },
   subtitleDark: {
     color: "#aaa",
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   labelLight: {
-    color: "#315482",
+    color: "#212121",
   },
   labelDark: {
     color: "#fff",
@@ -214,8 +214,8 @@ const styles = StyleSheet.create({
   },
   inputLight: {
     backgroundColor: "#fff",
-    borderColor: "#D1D5DB",
-    color: "#315482",
+    borderColor: "#E5E7EB",
+    color: "#212121",
   },
   inputDark: {
     backgroundColor: "#2a2a2a",
@@ -230,7 +230,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   primaryButton: {
-    backgroundColor: "#315482",
+    backgroundColor: "#1A237E",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 3,
   },
   buttonDisabled: {
     opacity: 0.6,
@@ -243,7 +248,12 @@ const styles = StyleSheet.create({
   googleButtonLight: {
     backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: "#D1D5DB",
+    borderColor: "#E5E7EB",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
   },
   googleButtonDark: {
     backgroundColor: "#2a2a2a",
@@ -264,7 +274,7 @@ const styles = StyleSheet.create({
     height: 1,
   },
   dividerLight: {
-    backgroundColor: "#D1D5DB",
+    backgroundColor: "#E5E7EB",
   },
   dividerDark: {
     backgroundColor: "#444",
@@ -285,16 +295,16 @@ const styles = StyleSheet.create({
   linkText: {
     fontSize: 14,
     fontWeight: "600" as const,
-    color: "#4A90E2",
+    color: "#1A237E",
   },
   textLight: {
-    color: "#315482",
+    color: "#212121",
   },
   textDark: {
     color: "#fff",
   },
   errorText: {
-    color: "#e74c3c",
+    color: "#DC2626",
     fontSize: 14,
     marginBottom: 16,
     textAlign: "center",

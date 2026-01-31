@@ -61,7 +61,7 @@ export default function HomeScreen() {
           </View>
           {!hasAccess && (
             <View style={styles.lockBadge}>
-              <Crown size={16} color="#f39c12" />
+              <Crown size={16} color="#F59E0B" />
             </View>
           )}
         </View>
@@ -96,7 +96,7 @@ export default function HomeScreen() {
             style={styles.languageButton}
             onPress={toggleLanguage}
           >
-            <Languages size={20} color={isDark ? "#fff" : "#315482"} />
+            <Languages size={20} color={isDark ? "#fff" : "#1A237E"} />
             <Text style={[styles.languageButtonText, isDark ? styles.textDark : styles.textLight]}>
               {language === "english" ? "EN" : "BE"}
             </Text>
@@ -111,18 +111,18 @@ export default function HomeScreen() {
             style={styles.settingsButton}
             onPress={() => router.push("/settings")}
           >
-            <Settings size={24} color={isDark ? "#fff" : "#315482"} />
+            <Settings size={24} color={isDark ? "#fff" : "#1A237E"} />
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={styles.searchContainer}>
         <View style={[styles.searchBox, isDark ? styles.searchBoxDark : styles.searchBoxLight]}>
-          <Search size={20} color={isDark ? "#666" : "#999"} />
+          <Search size={20} color={isDark ? "#666" : "#6B7280"} />
           <TextInput
             style={[styles.searchInput, isDark ? styles.searchInputDark : styles.searchInputLight]}
             placeholder="Search hymns..."
-            placeholderTextColor={isDark ? "#666" : "#999"}
+            placeholderTextColor={isDark ? "#666" : "#9CA3AF"}
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#F9F7F0",
+    backgroundColor: "#FAFAFA",
   },
   containerDark: {
     backgroundColor: "#1a1a1a",
@@ -225,11 +225,16 @@ const styles = StyleSheet.create({
   unlockButton: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#f39c12",
+    backgroundColor: "#F59E0B",
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
     gap: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 3,
   },
   unlockButtonText: {
     color: "#fff",
@@ -250,6 +255,13 @@ const styles = StyleSheet.create({
   },
   searchBoxLight: {
     backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
   },
   searchBoxDark: {
     backgroundColor: "#2a2a2a",
@@ -265,7 +277,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   previewBanner: {
-    backgroundColor: "#4A90E2",
+    backgroundColor: "#3B82F6",
     paddingVertical: 12,
     paddingHorizontal: 20,
     marginBottom: 8,
@@ -287,6 +299,13 @@ const styles = StyleSheet.create({
   },
   hymnCardLight: {
     backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
   },
   hymnCardDark: {
     backgroundColor: "#2a2a2a",
@@ -324,7 +343,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   textLight: {
-    color: "#1F2937",
+    color: "#212121",
   },
   textDark: {
     color: "#fff",

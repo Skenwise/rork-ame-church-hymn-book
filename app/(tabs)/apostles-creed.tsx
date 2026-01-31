@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#F9F7F0",
+    backgroundColor: "#FAFAFA",
   },
   containerDark: {
     backgroundColor: "#1a1a1a",
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   languageButtonLight: {
-    borderColor: "#D1D5DB",
+    borderColor: "#E5E7EB",
     backgroundColor: "#fff",
   },
   languageButtonDark: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   textLight: {
-    color: "#1F2937",
+    color: "#212121",
   },
   textDark: {
     color: "#fff",

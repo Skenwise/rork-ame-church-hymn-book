@@ -58,7 +58,7 @@ export default function HymnDetailScreen() {
           style={styles.backButton}
           onPress={() => router.back()}
         >
-          <ArrowLeft size={24} color={isDark ? "#fff" : "#315482"} />
+          <ArrowLeft size={24} color={isDark ? "#fff" : "#1A237E"} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.favoriteButton}
@@ -66,8 +66,8 @@ export default function HymnDetailScreen() {
         >
           <Heart
             size={24}
-            color={isFavorite ? "#e74c3c" : isDark ? "#fff" : "#315482"}
-            fill={isFavorite ? "#e74c3c" : "none"}
+            color={isFavorite ? "#DC2626" : isDark ? "#fff" : "#1A237E"}
+            fill={isFavorite ? "#DC2626" : "none"}
           />
         </TouchableOpacity>
       </View>
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#F9F7F0",
+    backgroundColor: "#FAFAFA",
   },
   containerDark: {
     backgroundColor: "#1a1a1a",
@@ -278,10 +278,15 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   unlockButtonLarge: {
-    backgroundColor: "#f39c12",
+    backgroundColor: "#F59E0B",
     paddingHorizontal: 32,
     paddingVertical: 16,
     borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   unlockButtonLargeText: {
     color: "#fff",
@@ -294,13 +299,13 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   textLight: {
-    color: "#315482",
+    color: "#212121",
   },
   textDark: {
     color: "#fff",
   },
   subtextLight: {
-    color: "#6D7278",
+    color: "#6B7280",
   },
   subtextDark: {
     color: "#aaa",
@@ -319,7 +324,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   languageButtonLight: {
-    borderColor: "#D1D5DB",
+    borderColor: "#E5E7EB",
     backgroundColor: "#fff",
   },
   languageButtonDark: {

@@ -77,9 +77,9 @@ export default function SettingsScreen() {
             <View style={styles.settingRow}>
               <View style={styles.settingLeft}>
                 {isDarkMode ? (
-                  <Moon size={20} color={isDark ? "#fff" : "#315482"} />
+                  <Moon size={20} color={isDark ? "#fff" : "#1A237E"} />
                 ) : (
-                  <Sun size={20} color={isDark ? "#fff" : "#315482"} />
+                  <Sun size={20} color={isDark ? "#fff" : "#1A237E"} />
                 )}
                 <Text style={[styles.settingLabel, isDark ? styles.textDark : styles.textLight]}>
                   Dark Mode
@@ -88,7 +88,7 @@ export default function SettingsScreen() {
               <Switch
                 value={isDarkMode}
                 onValueChange={toggleDarkMode}
-                trackColor={{ false: "#767577", true: "#4A90E2" }}
+                trackColor={{ false: "#D1D5DB", true: "#3B82F6" }}
                 thumbColor="#fff"
               />
             </View>
@@ -97,7 +97,7 @@ export default function SettingsScreen() {
           <View style={[styles.card, isDark ? styles.cardDark : styles.cardLight, styles.cardMargin]}>
             <View style={styles.settingColumn}>
               <View style={styles.settingLeft}>
-                <Type size={20} color={isDark ? "#fff" : "#315482"} />
+                <Type size={20} color={isDark ? "#fff" : "#1A237E"} />
                 <Text style={[styles.settingLabel, isDark ? styles.textDark : styles.textLight]}>
                   Font Size
                 </Text>
@@ -138,7 +138,7 @@ export default function SettingsScreen() {
             ]}
             onPress={signOut}
           >
-            <LogOut size={20} color="#e74c3c" />
+            <LogOut size={20} color="#DC2626" />
             <Text style={styles.signOutText}>Sign Out</Text>
           </TouchableOpacity>
         </View>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#F9F7F0",
+    backgroundColor: "#FAFAFA",
   },
   containerDark: {
     backgroundColor: "#1a1a1a",
@@ -186,6 +186,13 @@ const styles = StyleSheet.create({
   },
   cardLight: {
     backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
   },
   cardDark: {
     backgroundColor: "#2a2a2a",
@@ -259,8 +266,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   fontSizeButtonLight: {
-    borderColor: "#D1D5DB",
-    backgroundColor: "#F9F7F0",
+    borderColor: "#E5E7EB",
+    backgroundColor: "#FAFAFA",
   },
   fontSizeButtonDark: {
     borderColor: "#444",
@@ -273,7 +280,7 @@ const styles = StyleSheet.create({
   fontSizeButtonText: {
     fontSize: 14,
     fontWeight: "500" as const,
-    color: "#315482",
+    color: "#6B7280",
   },
   fontSizeButtonTextDark: {
     color: "#fff",
@@ -295,7 +302,7 @@ const styles = StyleSheet.create({
   signOutText: {
     fontSize: 16,
     fontWeight: "600" as const,
-    color: "#e74c3c",
+    color: "#DC2626",
   },
   footer: {
     alignItems: "center",
@@ -305,13 +312,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   textLight: {
-    color: "#315482",
+    color: "#212121",
   },
   textDark: {
     color: "#fff",
   },
   subtextLight: {
-    color: "#6D7278",
+    color: "#6B7280",
   },
   subtextDark: {
     color: "#aaa",

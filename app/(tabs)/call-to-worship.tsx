@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#F9F7F0",
+    backgroundColor: "#FAFAFA",
   },
   containerDark: {
     backgroundColor: "#1a1a1a",
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   languageButtonLight: {
-    borderColor: "#D1D5DB",
+    borderColor: "#E5E7EB",
     backgroundColor: "#fff",
   },
   languageButtonDark: {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   roleLight: {
-    color: "#2563EB",
+    color: "#1A237E",
   },
   roleDark: {
     color: "#4A90E2",
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
   },
   textLight: {
-    color: "#1F2937",
+    color: "#212121",
   },
   textDark: {
     color: "#fff",

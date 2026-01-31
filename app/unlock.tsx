@@ -58,7 +58,7 @@ export default function UnlockScreen() {
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.hero}>
           <View style={styles.iconContainer}>
-            <Crown size={48} color="#f39c12" />
+            <Crown size={48} color="#F59E0B" />
           </View>
           <Text style={[styles.title, isDark ? styles.textDark : styles.textLight]}>
             Unlock Full Access
@@ -92,7 +92,7 @@ export default function UnlockScreen() {
         </View>
 
         <View style={[styles.infoCard, isDark ? styles.infoCardDark : styles.infoCardLight]}>
-          <ShieldAlert size={20} color={isDark ? "#f39c12" : "#e67e22"} />
+          <ShieldAlert size={20} color={isDark ? "#F59E0B" : "#F59E0B"} />
           <Text style={[styles.infoText, isDark ? styles.textDark : styles.textLight]}>
             This purchase is locked to your device to prevent unauthorized sharing.
           </Text>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#F9F7F0",
+    backgroundColor: "#FAFAFA",
   },
   containerDark: {
     backgroundColor: "#1a1a1a",
@@ -176,6 +176,13 @@ const styles = StyleSheet.create({
   },
   priceCardLight: {
     backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 3,
   },
   priceCardDark: {
     backgroundColor: "#2a2a2a",
@@ -183,7 +190,7 @@ const styles = StyleSheet.create({
   priceAmount: {
     fontSize: 48,
     fontWeight: "700" as const,
-    color: "#f39c12",
+    color: "#F59E0B",
     marginBottom: 8,
   },
   priceLabel: {
@@ -207,7 +214,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: "#27ae60",
+    backgroundColor: "#10B981",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -235,13 +242,18 @@ const styles = StyleSheet.create({
   },
   unlockButton: {
     flexDirection: "row",
-    backgroundColor: "#f39c12",
+    backgroundColor: "#F59E0B",
     height: 56,
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
     gap: 8,
     marginBottom: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   unlockButtonDisabled: {
     opacity: 0.6,
@@ -267,13 +279,13 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   textLight: {
-    color: "#315482",
+    color: "#212121",
   },
   textDark: {
     color: "#fff",
   },
   subtextLight: {
-    color: "#6D7278",
+    color: "#6B7280",
   },
   subtextDark: {
     color: "#aaa",
