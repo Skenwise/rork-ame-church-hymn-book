@@ -23,7 +23,7 @@ export default {
     border: "#E5E7EB",
     hover: "#1A237E",
     tint: "#4A90E2",
-    tabIconDefault: "#9CA3AF",
+    tabIconDefault: "#1A237E",
     tabIconSelected: "#1A237E",
   },
   
