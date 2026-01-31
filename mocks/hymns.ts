@@ -1277,7 +1277,6 @@ export const HYMNS: Hymn[] = [
     "Yesu mfumu antemwa ali pepi mu nshila\nNganamucetekela akamfisha ku mulu\nAmen"
   ],
 },
-  [
   {
     id: "212",
     number: 212,
