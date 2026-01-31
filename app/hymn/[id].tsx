@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 import { HYMNS } from "@/mocks/hymns";
 
@@ -58,7 +59,7 @@ export default function HymnDetailScreen() {
           style={styles.backButton}
           onPress={() => router.back()}
         >
-          <ArrowLeft size={24} color={isDark ? "#fff" : "#1A237E"} />
+          <ArrowLeft size={24} color={isDark ? colors.dark.text : colors.light.primary} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.favoriteButton}
@@ -66,8 +67,8 @@ export default function HymnDetailScreen() {
         >
           <Heart
             size={24}
-            color={isFavorite ? "#DC2626" : isDark ? "#fff" : "#1A237E"}
-            fill={isFavorite ? "#DC2626" : "none"}
+            color={isFavorite ? colors.error : isDark ? colors.dark.text : colors.light.primary}
+            fill={isFavorite ? colors.error : "none"}
           />
         </TouchableOpacity>
       </View>
@@ -115,7 +116,7 @@ export default function HymnDetailScreen() {
 
       {!hasAccess ? (
         <View style={styles.lockedContainer}>
-          <Lock size={64} color={isDark ? "#444" : "#ddd"} />
+          <Lock size={64} color={isDark ? "#444" : colors.borderGray} />
           <Text style={[styles.lockedTitle, isDark ? styles.textDark : styles.textLight]}>
             Premium Content
           </Text>
@@ -183,10 +184,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: colors.light.background,
   },
   containerDark: {
-    backgroundColor: "#1a1a1a",
+    backgroundColor: colors.dark.background,
   },
   header: {
     flexDirection: "row",
@@ -216,7 +217,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   hymnNumberBadge: {
-    backgroundColor: "#5281BD",
+    backgroundColor: colors.churchBlue,
     paddingHorizontal: 16,
     paddingVertical: 6,
     borderRadius: 16,
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
   hymnNumberBadgeText: {
     fontSize: 14,
     fontWeight: "600" as const,
-    color: "#fff",
+    color: colors.white,
   },
   hymnTitle: {
     fontSize: 28,
@@ -238,13 +239,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   categoryBadge: {
-    backgroundColor: "#4A90E2",
+    backgroundColor: colors.professionalBlue,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
   },
   categoryBadgeText: {
-    color: "#fff",
+    color: colors.white,
     fontSize: 12,
     fontWeight: "600" as const,
   },
@@ -278,7 +279,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   unlockButtonLarge: {
-    backgroundColor: "#F59E0B",
+    backgroundColor: colors.warning,
     paddingHorizontal: 32,
     paddingVertical: 16,
     borderRadius: 12,
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   unlockButtonLargeText: {
-    color: "#fff",
+    color: colors.white,
     fontSize: 16,
     fontWeight: "600" as const,
   },
@@ -299,16 +300,16 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   textLight: {
-    color: "#212121",
+    color: colors.light.text,
   },
   textDark: {
-    color: "#fff",
+    color: colors.dark.text,
   },
   subtextLight: {
-    color: "#6B7280",
+    color: colors.light.textSecondary,
   },
   subtextDark: {
-    color: "#aaa",
+    color: colors.dark.textSecondary,
   },
   languageToggleContainer: {
     flexDirection: "row",
@@ -324,26 +325,26 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   languageButtonLight: {
-    borderColor: "#E5E7EB",
-    backgroundColor: "#fff",
+    borderColor: colors.light.border,
+    backgroundColor: colors.light.surface,
   },
   languageButtonDark: {
-    borderColor: "#444",
-    backgroundColor: "#2a2a2a",
+    borderColor: colors.dark.border,
+    backgroundColor: colors.dark.surface,
   },
   languageButtonActive: {
-    backgroundColor: "#5281BD",
-    borderColor: "#5281BD",
+    backgroundColor: colors.churchBlue,
+    borderColor: colors.churchBlue,
   },
   languageButtonText: {
     fontSize: 16,
     fontWeight: "600" as const,
-    color: "#6B7280",
+    color: colors.mediumGray,
   },
   languageButtonTextDark: {
-    color: "#D1D5DB",
+    color: colors.dark.textSecondary,
   },
   languageButtonTextActive: {
-    color: "#fff",
+    color: colors.white,
   },
 });

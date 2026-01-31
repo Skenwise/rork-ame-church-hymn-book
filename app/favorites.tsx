@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 
 export default function FavoritesScreen() {
@@ -37,7 +38,7 @@ export default function FavoritesScreen() {
               </Text>
             )}
           </View>
-          <Heart size={20} color="#DC2626" fill="#DC2626" />
+          <Heart size={20} color={colors.error} fill={colors.error} />
         </View>
       </TouchableOpacity>
     );
@@ -58,7 +59,7 @@ export default function FavoritesScreen() {
 
       {favoriteHymns.length === 0 ? (
         <View style={styles.emptyContainer}>
-          <Heart size={64} color={isDark ? "#444" : "#ddd"} />
+          <Heart size={64} color={isDark ? "#444" : colors.borderGray} />
           <Text style={[styles.emptyTitle, isDark ? styles.textDark : styles.textLight]}>
             No Favorites Yet
           </Text>
@@ -84,10 +85,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: colors.light.background,
   },
   containerDark: {
-    backgroundColor: "#1a1a1a",
+    backgroundColor: colors.dark.background,
   },
   header: {
     paddingHorizontal: 20,
@@ -107,9 +108,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   hymnCardLight: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.light.surface,
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: colors.light.border,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   hymnCardDark: {
-    backgroundColor: "#2a2a2a",
+    backgroundColor: colors.dark.surface,
   },
   hymnCardContent: {
     flexDirection: "row",
@@ -128,14 +129,14 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: "#5281BD",
+    backgroundColor: colors.churchBlue,
     alignItems: "center",
     justifyContent: "center",
   },
   hymnNumberText: {
     fontSize: 18,
     fontWeight: "700" as const,
-    color: "#fff",
+    color: colors.white,
   },
   hymnInfo: {
     flex: 1,
@@ -165,15 +166,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   textLight: {
-    color: "#212121",
+    color: colors.light.text,
   },
   textDark: {
-    color: "#fff",
+    color: colors.dark.text,
   },
   subtextLight: {
-    color: "#6B7280",
+    color: colors.light.textSecondary,
   },
   subtextDark: {
-    color: "#aaa",
+    color: colors.dark.textSecondary,
   },
 });

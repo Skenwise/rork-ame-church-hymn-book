@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 import { useAuth } from "@/contexts/auth-context";
 import { FontSize } from "@/types/hymn";
@@ -49,7 +50,7 @@ export default function SettingsScreen() {
           <View style={[styles.card, isDark ? styles.cardDark : styles.cardLight]}>
             <View style={styles.accountInfo}>
               <View style={styles.avatar}>
-                <User size={24} color="#fff" />
+                <User size={24} color={colors.white} />
               </View>
               <View style={styles.accountDetails}>
                 <Text style={[styles.accountName, isDark ? styles.textDark : styles.textLight]}>
@@ -77,9 +78,9 @@ export default function SettingsScreen() {
             <View style={styles.settingRow}>
               <View style={styles.settingLeft}>
                 {isDarkMode ? (
-                  <Moon size={20} color={isDark ? "#fff" : "#1A237E"} />
+                  <Moon size={20} color={isDark ? colors.dark.text : colors.light.primary} />
                 ) : (
-                  <Sun size={20} color={isDark ? "#fff" : "#1A237E"} />
+                  <Sun size={20} color={isDark ? colors.dark.text : colors.light.primary} />
                 )}
                 <Text style={[styles.settingLabel, isDark ? styles.textDark : styles.textLight]}>
                   Dark Mode
@@ -88,8 +89,8 @@ export default function SettingsScreen() {
               <Switch
                 value={isDarkMode}
                 onValueChange={toggleDarkMode}
-                trackColor={{ false: "#D1D5DB", true: "#3B82F6" }}
-                thumbColor="#fff"
+                trackColor={{ false: colors.borderGray, true: colors.actionBlue }}
+                thumbColor={colors.white}
               />
             </View>
           </View>
@@ -97,7 +98,7 @@ export default function SettingsScreen() {
           <View style={[styles.card, isDark ? styles.cardDark : styles.cardLight, styles.cardMargin]}>
             <View style={styles.settingColumn}>
               <View style={styles.settingLeft}>
-                <Type size={20} color={isDark ? "#fff" : "#1A237E"} />
+                <Type size={20} color={isDark ? colors.dark.text : colors.light.primary} />
                 <Text style={[styles.settingLabel, isDark ? styles.textDark : styles.textLight]}>
                   Font Size
                 </Text>
@@ -138,7 +139,7 @@ export default function SettingsScreen() {
             ]}
             onPress={signOut}
           >
-            <LogOut size={20} color="#DC2626" />
+            <LogOut size={20} color={colors.error} />
             <Text style={styles.signOutText}>Sign Out</Text>
           </TouchableOpacity>
         </View>
@@ -158,10 +159,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: colors.light.background,
   },
   containerDark: {
-    backgroundColor: "#1a1a1a",
+    backgroundColor: colors.dark.background,
   },
   header: {
     paddingHorizontal: 20,
@@ -185,9 +186,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   cardLight: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.light.surface,
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: colors.light.border,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   cardDark: {
-    backgroundColor: "#2a2a2a",
+    backgroundColor: colors.dark.surface,
   },
   cardMargin: {
     marginTop: 12,
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#5281BD",
+    backgroundColor: colors.churchBlue,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -227,13 +228,13 @@ const styles = StyleSheet.create({
   },
   statusBadge: {
     alignSelf: "flex-start",
-    backgroundColor: "#4A90E2",
+    backgroundColor: colors.professionalBlue,
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 12,
   },
   statusText: {
-    color: "#fff",
+    color: colors.white,
     fontSize: 12,
     fontWeight: "600" as const,
   },
@@ -266,27 +267,27 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   fontSizeButtonLight: {
-    borderColor: "#E5E7EB",
-    backgroundColor: "#FAFAFA",
+    borderColor: colors.light.border,
+    backgroundColor: colors.light.background,
   },
   fontSizeButtonDark: {
-    borderColor: "#444",
-    backgroundColor: "#1a1a1a",
+    borderColor: colors.dark.border,
+    backgroundColor: colors.dark.background,
   },
   fontSizeButtonActive: {
-    backgroundColor: "#4A90E2",
-    borderColor: "#4A90E2",
+    backgroundColor: colors.professionalBlue,
+    borderColor: colors.professionalBlue,
   },
   fontSizeButtonText: {
     fontSize: 14,
     fontWeight: "500" as const,
-    color: "#6B7280",
+    color: colors.mediumGray,
   },
   fontSizeButtonTextDark: {
-    color: "#fff",
+    color: colors.dark.text,
   },
   fontSizeButtonTextActive: {
-    color: "#fff",
+    color: colors.white,
   },
   signOutCard: {
     flexDirection: "row",
@@ -302,7 +303,7 @@ const styles = StyleSheet.create({
   signOutText: {
     fontSize: 16,
     fontWeight: "600" as const,
-    color: "#DC2626",
+    color: colors.error,
   },
   footer: {
     alignItems: "center",
@@ -312,15 +313,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   textLight: {
-    color: "#212121",
+    color: colors.light.text,
   },
   textDark: {
-    color: "#fff",
+    color: colors.dark.text,
   },
   subtextLight: {
-    color: "#6B7280",
+    color: colors.light.textSecondary,
   },
   subtextDark: {
-    color: "#aaa",
+    color: colors.dark.textSecondary,
   },
 });

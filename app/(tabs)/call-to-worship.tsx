@@ -13,6 +13,7 @@ import {
   CALL_TO_WORSHIP_ENGLISH,
   CALL_TO_WORSHIP_BEMBA,
 } from "@/constants/call-to-worship";
+import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 
 type Language = "english" | "bemba";
@@ -98,10 +99,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: colors.light.background,
   },
   containerDark: {
-    backgroundColor: "#1a1a1a",
+    backgroundColor: colors.dark.background,
   },
   header: {
     paddingHorizontal: 20,
@@ -125,27 +126,27 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   languageButtonLight: {
-    borderColor: "#E5E7EB",
-    backgroundColor: "#fff",
+    borderColor: colors.light.border,
+    backgroundColor: colors.light.surface,
   },
   languageButtonDark: {
-    borderColor: "#444",
-    backgroundColor: "#2a2a2a",
+    borderColor: colors.dark.border,
+    backgroundColor: colors.dark.surface,
   },
   languageButtonActive: {
-    backgroundColor: "#5281BD",
-    borderColor: "#5281BD",
+    backgroundColor: colors.churchBlue,
+    borderColor: colors.churchBlue,
   },
   languageButtonText: {
     fontSize: 16,
     fontWeight: "600" as const,
-    color: "#6B7280",
+    color: colors.mediumGray,
   },
   languageButtonTextDark: {
-    color: "#D1D5DB",
+    color: colors.dark.textSecondary,
   },
   languageButtonTextActive: {
-    color: "#fff",
+    color: colors.white,
   },
   content: {
     flex: 1,
@@ -160,20 +161,20 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   roleLight: {
-    color: "#1A237E",
+    color: colors.light.primary,
   },
   roleDark: {
-    color: "#4A90E2",
+    color: colors.professionalBlue,
   },
   text: {
     fontSize: 17,
     lineHeight: 28,
   },
   textLight: {
-    color: "#212121",
+    color: colors.light.text,
   },
   textDark: {
-    color: "#fff",
+    color: colors.dark.text,
   },
   bottomPadding: {
     height: 40,

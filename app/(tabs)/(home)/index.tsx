@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 import { HYMNS } from "@/mocks/hymns";
 
@@ -61,7 +62,7 @@ export default function HomeScreen() {
           </View>
           {!hasAccess && (
             <View style={styles.lockBadge}>
-              <Crown size={16} color="#F59E0B" />
+              <Crown size={16} color={colors.warning} />
             </View>
           )}
         </View>
@@ -80,7 +81,7 @@ export default function HomeScreen() {
       <View style={styles.header}>
         <View style={styles.appNameContainer}>
           <View style={styles.appIconBadge}>
-            <Church size={24} color="#fff" />
+            <Church size={24} color={colors.white} />
           </View>
           <View style={styles.appNameTextContainer}>
             <Text style={[styles.appNameMain, isDark ? styles.textDark : styles.textLight]}>
@@ -96,14 +97,14 @@ export default function HomeScreen() {
             style={styles.languageButton}
             onPress={toggleLanguage}
           >
-            <Languages size={20} color={isDark ? "#fff" : "#1A237E"} />
+            <Languages size={20} color={isDark ? colors.dark.text : colors.light.primary} />
             <Text style={[styles.languageButtonText, isDark ? styles.textDark : styles.textLight]}>
               {language === "english" ? "EN" : "BE"}
             </Text>
           </TouchableOpacity>
           {!isPaid && (
             <TouchableOpacity style={styles.unlockButton} onPress={() => router.push("/unlock")}>
-              <Crown size={18} color="#fff" />
+              <Crown size={18} color={colors.white} />
               <Text style={styles.unlockButtonText}>Unlock</Text>
             </TouchableOpacity>
           )}
@@ -111,18 +112,18 @@ export default function HomeScreen() {
             style={styles.settingsButton}
             onPress={() => router.push("/settings")}
           >
-            <Settings size={24} color={isDark ? "#fff" : "#1A237E"} />
+            <Settings size={24} color={isDark ? colors.dark.text : colors.light.primary} />
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={styles.searchContainer}>
         <View style={[styles.searchBox, isDark ? styles.searchBoxDark : styles.searchBoxLight]}>
-          <Search size={20} color={isDark ? "#666" : "#6B7280"} />
+          <Search size={20} color={isDark ? "#666" : colors.mediumGray} />
           <TextInput
             style={[styles.searchInput, isDark ? styles.searchInputDark : styles.searchInputLight]}
             placeholder="Search hymns..."
-            placeholderTextColor={isDark ? "#666" : "#9CA3AF"}
+            placeholderTextColor={isDark ? "#666" : colors.light.tabIconDefault}
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
@@ -153,10 +154,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: colors.light.background,
   },
   containerDark: {
-    backgroundColor: "#1a1a1a",
+    backgroundColor: colors.dark.background,
   },
   header: {
     flexDirection: "row",
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 12,
-    backgroundColor: "#5281BD",
+    backgroundColor: colors.churchBlue,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
@@ -197,10 +198,10 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
   appNameSubLight: {
-    color: "#5281BD",
+    color: colors.churchBlue,
   },
   appNameSubDark: {
-    color: "#4A90E2",
+    color: colors.professionalBlue,
   },
   headerActions: {
     flexDirection: "row",
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
   unlockButton: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#F59E0B",
+    backgroundColor: colors.warning,
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
@@ -237,7 +238,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   unlockButtonText: {
-    color: "#fff",
+    color: colors.white,
     fontSize: 14,
     fontWeight: "600" as const,
   },
@@ -254,9 +255,9 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   searchBoxLight: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.light.surface,
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: colors.light.border,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
@@ -264,26 +265,26 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   searchBoxDark: {
-    backgroundColor: "#2a2a2a",
+    backgroundColor: colors.dark.surface,
   },
   searchInput: {
     flex: 1,
     fontSize: 16,
   },
   searchInputLight: {
-    color: "#000",
+    color: colors.light.text,
   },
   searchInputDark: {
-    color: "#fff",
+    color: colors.dark.text,
   },
   previewBanner: {
-    backgroundColor: "#3B82F6",
+    backgroundColor: colors.actionBlue,
     paddingVertical: 12,
     paddingHorizontal: 20,
     marginBottom: 8,
   },
   previewBannerText: {
-    color: "#fff",
+    color: colors.white,
     fontSize: 14,
     textAlign: "center",
     fontWeight: "500" as const,
@@ -298,9 +299,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   hymnCardLight: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.light.surface,
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: colors.light.border,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
@@ -308,7 +309,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   hymnCardDark: {
-    backgroundColor: "#2a2a2a",
+    backgroundColor: colors.dark.surface,
   },
   hymnCardContent: {
     flexDirection: "row",
@@ -319,14 +320,14 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: "#5281BD",
+    backgroundColor: colors.churchBlue,
     alignItems: "center",
     justifyContent: "center",
   },
   hymnNumberText: {
     fontSize: 18,
     fontWeight: "700" as const,
-    color: "#fff",
+    color: colors.white,
   },
   hymnInfo: {
     flex: 1,
@@ -343,15 +344,15 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   textLight: {
-    color: "#212121",
+    color: colors.light.text,
   },
   textDark: {
-    color: "#fff",
+    color: colors.dark.text,
   },
   subtextLight: {
-    color: "#6B7280",
+    color: colors.light.textSecondary,
   },
   subtextDark: {
-    color: "#aaa",
+    color: colors.dark.textSecondary,
   },
 });
