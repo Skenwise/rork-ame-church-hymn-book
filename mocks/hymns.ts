@@ -1165,6 +1165,118 @@ export const HYMNS: Hymn[] = [
       "Ndetotela nganshi\nKuli Lesa patatu\nNi tata na mwana na mupashi\nUlulumbi ulo pokeleleni\nMwebakaele twamutotela.",
     ],
   },
+  {
+  id: "134",
+  number: 134,
+  title: "Sekela mu mfumu, ne cikuku cakwe",
+  titleBemba: "Sekela mu mfumu, ne cikuku cakwe",
+  category: "Praise",
+  verses: [],
+  versesBemba: [
+    "Sekela mu mfumu ne cikuku cakwe\nPantu eutukakula;\nNo mulopa wakwe cinshi tuletina\nYesu wesu muli fyonse",
+    "Nga Lesa ‘li wesu\nNga Lesa ‘li wesu\nNga Lesa ‘li wesu\nNani engatucimfya? Nanyu ko?\nNani engatucimfya ifwe?",
+    "Kosela mu mfumu\nNa mu maka yakwe\nUbe wacine nshiku pe,\nCiwa nga kwimina\nUbe uwashipa\nLesa e maka yesu pe",
+    "Cetekele shiwi lyakwe no bulayo\nMuli kristu cine ca pe\nNangwi calo ciye, fyena fikashala\nFyanshiku shonse pe nape",
+    "Ikala mu mfumu na mwifunde lyakwe\nE mweo waciyayaya\nAbantu bonse mu kubokokwakwe\nTakuli wakubapoka\nAmen"
+  ],
+},
+{
+  id: "135",
+  number: 135,
+  title: "Natutashe Lesa tutotele yesu",
+  titleBemba: "Natutashe Lesa tutotele yesu",
+  category: "Thanksgiving",
+  verses: [],
+  versesBemba: [
+    "Natutashe Lesa tutotele yesu\nInshita ne nshita ne nshiku fye shonse\nAleluya, Aleluya,\nAleluya A……Amen"
+  ],
+},
+{
+  id: "136",
+  number: 136,
+  title: "Abafwa bashuka nga bali kwa yesu",
+  titleBemba: "Abafwa bashuka nga bali kwa yesu",
+  category: "Comfort",
+  verses: [],
+  versesBemba: [
+    "Abafwa bashuka nga bali kwa yesu\nBalalike mitwe pa chifuba cakwe\nKulya kwawamisha mfifi tailiko\nNi yesu bamona bamumwa uko",
+    "Ifyabachushishe fyamuno mu calo\nNomba fyapwa fyonse tafibachusha\nKachema musuma atungula ko\nKushili bulanda Kuli fye inseko",
+    "Twalile filamba fwebashiwapano\nTwabaloshe chibi tulebafuluka\nIshiwi ne nseko nokutemwa kwakwe\nFew bonse bashala nomba teti tumfwe",
+    "Munensu we waya twalikutemwisha\nTwakulila nomba yesu alilile\nBwangu bukesa ca ishiwi tukomfwa\nKulifwe akati “Bukeni ageni”\nAmen"
+  ],
+},
+{
+  id: "137",
+  number: 137,
+  title: "Praise My Soul, the King of Heaven",
+  titleBemba: "We mutima ulumbanye",
+  category: "Praise",
+  verses: [],
+  versesBemba: [
+    "We mutima ulumbanye\nMfumu yesu ya mulu\nWalubulwa waelelwa\nNani wingembilo’ lu?\nUlumbanye\nLumbanye mfumu ya pe",
+    "Mulumbanishe pa bupe\nUbwapele bashifwe\nMu busanso umo bali\nAlibapokolwele\nUlumbanye, ulumbanye\nLumbanye mfumu ya pe",
+    "Atuteke ngo mufyashi\nAlishibe fyo twaba\nTwaba mu maboko yakwe\nEutupokololako\nUlumbanye, ulumbanye\nLumbanye mfumu ya pe",
+    "Bonse mu mulu mutwafwe\nKuti tutote bwino\nMwashuka ukuba nankwe\nMumumona pa menso\nUlumbanye, ulumbanye\nLumbanye mfumu ya pe\nAmen"
+  ],
+},
+{
+  id: "138",
+  number: 138,
+  title: "O for a Thousand Tongues to Sing",
+  titleBemba: "Indimi shingi ndefwaya",
+  category: "Praise",
+  verses: [],
+  versesBemba: [
+    "Indimi shingi ndefwaya\nShakwimbile mfumu\nUlulumbi lwakwa lesa\nLuse ne cikuku",
+    "Mwe mfumu lesa mukulu\nUkwimba mungafwe\nUkuti ndeshimikila\nIfye shina lyenu",
+    "Yesu e shina lisuma\nLitamfye cikonko\nElyawama ku babipa\nBumi no mutende",
+    "Acimfya maka ya bubi\nAkakulo mubi\nAmusamba no mulopa\nNaine nsambwemo",
+    "Nga sosa waumfwe shiwi\nAbafwa baima\nMwebalanda mwange bonse\nAbapinda bange",
+    "Umfwe we wakoma matwi\nCibulu mulumbe\nWe mpofu mone mfumu yi\nCilema ciluka",
+    "Mwe bena fyalo moneni\nKuli lesa wenu\nMuloleshe mupusuke\nMube ne cikuku.\nAmen"
+  ],
+},
+{
+  id: "140",
+  number: 140,
+  title: "Yesu nyensha niluba",
+  titleBemba: "Yesu nyensha niluba",
+  category: "Guidance",
+  verses: [],
+  versesBemba: [
+    "Yesu nyensha niluba\nNyenda bwino mu nshila\nNdi bwino nga mulipo\nNjikale muli imwe\nnyensha nyensha yesu nyansha niluba\nnyensha bwino mu nshila nshiku shonse ne nshila",
+    "Uli cubo kuli ne\nNga matunko yaisa\nNdifye ngoli mupepi\nNcetekela muli we\nnyensha nyensha yesu nyansha niluba\nnyensha bwino mu nshila nshiku shonse ne nshila",
+    "Yesu lenyensha bwino\nNkafike na ku mpela\nNsuke mfike kwishilya\nUkushaba bulanda\nnyensha nyensha yesu nyansha niluba\nnyensha bwino mu nshila nshiku shonse ne nshila\nAmen"
+  ],
+},
+{
+  id: "155",
+  number: 155,
+  title: "It is Well With My Soul",
+  titleBemba: "Ilintu mutende",
+  category: "Peace",
+  verses: [],
+  versesBemba: [
+    "Ilinntu mutende uli pali ine,\nNangwa malanda yansange;\nNimwe mwamfundisho kuti njishibe\n‘mutenda, mutende kuli ‘ne.\nMutende, mutende\nKuli ne’ Kuli ne’\nMutende, mutende, kuli ne’",
+    "Nangu satana ancushe na matunko,\nIne njishibe Landwe ‘li;\nAlimfwilile, Kristu nandubula,\nMutende, mutende kuli ‘ne.",
+    "Impulumushi isho nacitacita,\nTe shimo fye, ni shonse fye,\nShalipampaminwa pa musalaba\nMutende , mutende kuli ‘ne.",
+    "Naine ndefwayo kuba wakwa Kristu;\nNga yakamfimba matamba,\nTekuti ntine mu mfwa na mu bumi,\nMutende , mutende kuli ‘ne.",
+    "Mwe Mfumu ndepembelelo kwisa kwenu,\nKu cilindi te ku mwesu;\n‘Penga lya Mungeli, shiwi lya Mfumu,\nMutende , mutende kuli ‘ne.\nAMEN"
+  ],
+},
+{
+  id: "211",
+  number: 211,
+  title: "Jesus Loves Me",
+  titleBemba: "Yesu mfumu antemwa",
+  category: "Children",
+  verses: [],
+  versesBemba: [
+    "Yesu mfumu antemwa\nIfi nalifishiba\nBana bonse e bakwe\nBanaka, wena kosa\nyesu antemwa, cine antemwa, yesu antemwa\nCipangano canjeba Yesu antemwa",
+    "Yesu Mfumu antemwa mulu anjiswila\nAlansambe fyabipa nokuleka nyingile",
+    "Yesu mfumu antemwa ali pepi mu nshila\nNganamucetekela akamfisha ku mulu\nAmen"
+  ],
+},
 ];
 
 export const PREVIEW_HYMNS = HYMNS.slice(0, 10);
