@@ -1825,8 +1825,8 @@ export const HYMNS: Hymn[] = [
     ],
   },
   {
-    id: "249",
-    number: 249,
+    id: "149",
+    number: 149,
     title: "Nshita sha kacelo celo",
     titleBemba: "Nshita sha kacelo celo",
     category: "Morning/Praise",
