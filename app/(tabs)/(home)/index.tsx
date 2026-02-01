@@ -1,5 +1,5 @@
 import { router, Stack } from "expo-router";
-import { Search, Crown, Settings, Church, Languages } from "lucide-react-native";
+import { Search, Crown, Settings, Church, Languages, ArrowUpAZ, Hash } from "lucide-react-native";
 import React, { useState, useMemo } from "react";
 import {
   View,
@@ -16,23 +16,40 @@ import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 import { HYMNS } from "@/mocks/hymns";
 
+type SortType = "numerical" | "alphabetical";
+
 export default function HomeScreen() {
   const { isPaid, canAccessHymn, isDarkMode: isDark, language, toggleLanguage } = useApp();
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortType, setSortType] = useState<SortType>("numerical");
 
   const filteredHymns = useMemo(() => {
-    if (!searchQuery.trim()) return HYMNS;
+    let hymns = [...HYMNS];
 
-    const query = searchQuery.toLowerCase();
-    return HYMNS.filter(
-      (hymn) =>
-        hymn.title.toLowerCase().includes(query) ||
-        (hymn.titleBemba && hymn.titleBemba.toLowerCase().includes(query)) ||
-        hymn.number.toString().includes(query) ||
-        (hymn.lyrics && hymn.lyrics.toLowerCase().includes(query)) ||
-        (hymn.lyricsBemba && hymn.lyricsBemba.toLowerCase().includes(query))
-    );
-  }, [searchQuery]);
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      hymns = hymns.filter(
+        (hymn) =>
+          hymn.title.toLowerCase().includes(query) ||
+          (hymn.titleBemba && hymn.titleBemba.toLowerCase().includes(query)) ||
+          hymn.number.toString().includes(query) ||
+          (hymn.lyrics && hymn.lyrics.toLowerCase().includes(query)) ||
+          (hymn.lyricsBemba && hymn.lyricsBemba.toLowerCase().includes(query))
+      );
+    }
+
+    if (sortType === "alphabetical") {
+      hymns.sort((a, b) => {
+        const titleA = language === "bemba" && a.titleBemba ? a.titleBemba : a.title;
+        const titleB = language === "bemba" && b.titleBemba ? b.titleBemba : b.title;
+        return titleA.localeCompare(titleB);
+      });
+    } else {
+      hymns.sort((a, b) => a.number - b.number);
+    }
+
+    return hymns;
+  }, [searchQuery, sortType, language]);
 
   const renderHymnItem = ({ item }: { item: typeof HYMNS[0] }) => {
     const hasAccess = canAccessHymn(item.number);
@@ -127,6 +144,46 @@ export default function HomeScreen() {
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
+        </View>
+        
+        <View style={styles.sortContainer}>
+          <TouchableOpacity
+            style={[
+              styles.sortButton,
+              sortType === "numerical" && styles.sortButtonActive,
+              isDark ? styles.sortButtonDark : styles.sortButtonLight,
+            ]}
+            onPress={() => setSortType("numerical")}
+          >
+            <Hash size={16} color={sortType === "numerical" ? colors.white : (isDark ? colors.dark.text : colors.light.text)} />
+            <Text style={[
+              styles.sortButtonText,
+              sortType === "numerical" && styles.sortButtonTextActive,
+              isDark && sortType !== "numerical" && styles.textDark,
+              !isDark && sortType !== "numerical" && styles.textLight,
+            ]}>
+              Numerical
+            </Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            style={[
+              styles.sortButton,
+              sortType === "alphabetical" && styles.sortButtonActive,
+              isDark ? styles.sortButtonDark : styles.sortButtonLight,
+            ]}
+            onPress={() => setSortType("alphabetical")}
+          >
+            <ArrowUpAZ size={16} color={sortType === "alphabetical" ? colors.white : (isDark ? colors.dark.text : colors.light.text)} />
+            <Text style={[
+              styles.sortButtonText,
+              sortType === "alphabetical" && styles.sortButtonTextActive,
+              isDark && sortType !== "alphabetical" && styles.textDark,
+              !isDark && sortType !== "alphabetical" && styles.textLight,
+            ]}>
+              Alphabetical
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -245,6 +302,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     paddingHorizontal: 20,
     marginBottom: 16,
+    gap: 12,
   },
   searchBox: {
     flexDirection: "row",
@@ -354,5 +412,40 @@ const styles = StyleSheet.create({
   },
   subtextDark: {
     color: colors.dark.textSecondary,
+  },
+  sortContainer: {
+    flexDirection: "row",
+    gap: 8,
+  },
+  sortButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 10,
+    gap: 6,
+  },
+  sortButtonLight: {
+    backgroundColor: colors.light.surface,
+    borderWidth: 1,
+    borderColor: colors.light.border,
+  },
+  sortButtonDark: {
+    backgroundColor: colors.dark.surface,
+    borderWidth: 1,
+    borderColor: "transparent",
+  },
+  sortButtonActive: {
+    backgroundColor: colors.churchBlue,
+    borderColor: colors.churchBlue,
+  },
+  sortButtonText: {
+    fontSize: 14,
+    fontWeight: "600" as const,
+  },
+  sortButtonTextActive: {
+    color: colors.white,
   },
 });
