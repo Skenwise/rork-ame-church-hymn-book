@@ -134,6 +134,23 @@ export default function HomeScreen() {
         </View>
       </View>
 
+      <TouchableOpacity
+        style={[
+          styles.sortFloatingButton,
+          isDark ? styles.sortFloatingButtonDark : styles.sortFloatingButtonLight,
+        ]}
+        onPress={() => setSortType(sortType === "numerical" ? "alphabetical" : "numerical")}
+      >
+        {sortType === "numerical" ? (
+          <Hash size={20} color={isDark ? colors.dark.text : colors.light.primary} />
+        ) : (
+          <ArrowUpAZ size={20} color={isDark ? colors.dark.text : colors.light.primary} />
+        )}
+        <Text style={[styles.sortFloatingText, isDark ? styles.textDark : styles.textLight]}>
+          {sortType === "numerical" ? "123" : "A-Z"}
+        </Text>
+      </TouchableOpacity>
+
       <View style={styles.searchContainer}>
         <View style={[styles.searchBox, isDark ? styles.searchBoxDark : styles.searchBoxLight]}>
           <Search size={20} color={isDark ? "#666" : colors.mediumGray} />
@@ -144,46 +161,6 @@ export default function HomeScreen() {
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
-        </View>
-        
-        <View style={styles.sortContainer}>
-          <TouchableOpacity
-            style={[
-              styles.sortButton,
-              sortType === "numerical" && styles.sortButtonActive,
-              isDark ? styles.sortButtonDark : styles.sortButtonLight,
-            ]}
-            onPress={() => setSortType("numerical")}
-          >
-            <Hash size={16} color={sortType === "numerical" ? colors.white : (isDark ? colors.dark.text : colors.light.text)} />
-            <Text style={[
-              styles.sortButtonText,
-              sortType === "numerical" && styles.sortButtonTextActive,
-              isDark && sortType !== "numerical" && styles.textDark,
-              !isDark && sortType !== "numerical" && styles.textLight,
-            ]}>
-              Numerical
-            </Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity
-            style={[
-              styles.sortButton,
-              sortType === "alphabetical" && styles.sortButtonActive,
-              isDark ? styles.sortButtonDark : styles.sortButtonLight,
-            ]}
-            onPress={() => setSortType("alphabetical")}
-          >
-            <ArrowUpAZ size={16} color={sortType === "alphabetical" ? colors.white : (isDark ? colors.dark.text : colors.light.text)} />
-            <Text style={[
-              styles.sortButtonText,
-              sortType === "alphabetical" && styles.sortButtonTextActive,
-              isDark && sortType !== "alphabetical" && styles.textDark,
-              !isDark && sortType !== "alphabetical" && styles.textLight,
-            ]}>
-              Alphabetical
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
 
@@ -413,39 +390,35 @@ const styles = StyleSheet.create({
   subtextDark: {
     color: colors.dark.textSecondary,
   },
-  sortContainer: {
-    flexDirection: "row",
-    gap: 8,
-  },
-  sortButton: {
-    flex: 1,
+  sortFloatingButton: {
+    position: "absolute" as const,
+    top: 100,
+    right: 20,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 10,
     gap: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 4,
+    zIndex: 10,
   },
-  sortButtonLight: {
+  sortFloatingButtonLight: {
     backgroundColor: colors.light.surface,
     borderWidth: 1,
     borderColor: colors.light.border,
   },
-  sortButtonDark: {
+  sortFloatingButtonDark: {
     backgroundColor: colors.dark.surface,
     borderWidth: 1,
-    borderColor: "transparent",
+    borderColor: "rgba(255, 255, 255, 0.1)",
   },
-  sortButtonActive: {
-    backgroundColor: colors.churchBlue,
-    borderColor: colors.churchBlue,
-  },
-  sortButtonText: {
-    fontSize: 14,
-    fontWeight: "600" as const,
-  },
-  sortButtonTextActive: {
-    color: colors.white,
+  sortFloatingText: {
+    fontSize: 12,
+    fontWeight: "700" as const,
   },
 });
