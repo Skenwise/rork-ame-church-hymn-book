@@ -1770,8 +1770,8 @@ export const HYMNS: Hymn[] = [
     ],
   },
   {
-    id: "246",
-    number: 246,
+    id: "1",
+    number: 1,
     title: "Cibuta ni Lesa",
     titleBemba: "Cibuta, Cibuta, Cibuta ni lesa",
     category: "Holiness",
