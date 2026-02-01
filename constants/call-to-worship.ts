@@ -10,7 +10,7 @@ export const CALL_TO_WORSHIP_ENGLISH: CallToWorshipLine[] = [
   },
   {
     role: "People",
-    text: "For a day in our courts is better than a thousand elsewhere. I would rather be a doorkeeper in the house of my God than to live in the tents of wickedness.",
+    text: "For a day in thy courts is better than a thousand elsewhere. I would rather be a doorkeeper in the house of my God than to live in the tents of wickedness.",
   },
   {
     role: "Minister",
