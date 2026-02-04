@@ -3,13 +3,14 @@ import createContextHook from "@nkzw/create-context-hook";
 import { useEffect, useState, useMemo } from "react";
 
 import { HYMNS, FREE_PREVIEW_COUNT } from "@/mocks/hymns";
-import { FontSize, Hymn } from "@/types/hymn";
+import { FontSize } from "@/types/hymn";
 
 import { useAuth } from "./auth-context";
+import { usePurchases } from "./purchases-context";
 
 export const [AppContext, useApp] = createContextHook(() => {
   const { user, deviceId } = useAuth();
-  const [isPaid, setIsPaid] = useState(false);
+  const { isPremium: isRCPremium, isLoadingCustomerInfo } = usePurchases();
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [fontSize, setFontSize] = useState<FontSize>("medium");
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -22,11 +23,10 @@ export const [AppContext, useApp] = createContextHook(() => {
 
   const loadAppState = async () => {
     try {
-      const [favoritesStr, fontSizeStr, darkModeStr, paidStr, languageStr] = await Promise.all([
+      const [favoritesStr, fontSizeStr, darkModeStr, languageStr] = await Promise.all([
         AsyncStorage.getItem("favorites"),
         AsyncStorage.getItem("fontSize"),
         AsyncStorage.getItem("isDarkMode"),
-        AsyncStorage.getItem("isPaid"),
         AsyncStorage.getItem("language"),
       ]);
 
@@ -38,9 +38,6 @@ export const [AppContext, useApp] = createContextHook(() => {
       }
       if (darkModeStr) {
         setIsDarkMode(darkModeStr === "true");
-      }
-      if (paidStr) {
-        setIsPaid(paidStr === "true");
       }
       if (languageStr) {
         setLanguage(languageStr as "english" | "bemba");
@@ -82,10 +79,7 @@ export const [AppContext, useApp] = createContextHook(() => {
     await AsyncStorage.setItem("language", newValue);
   };
 
-  const unlockApp = async () => {
-    setIsPaid(true);
-    await AsyncStorage.setItem("isPaid", "true");
-  };
+  const isPaid = isRCPremium;
 
   const availableHymns = useMemo(() => {
     if (isPaid) {
@@ -108,7 +102,7 @@ export const [AppContext, useApp] = createContextHook(() => {
     fontSize,
     isDarkMode,
     language,
-    isLoadingAppState,
+    isLoadingAppState: isLoadingAppState || isLoadingCustomerInfo,
     deviceId,
     availableHymns,
     favoriteHymns,
@@ -117,6 +111,5 @@ export const [AppContext, useApp] = createContextHook(() => {
     updateFontSize,
     toggleDarkMode,
     toggleLanguage,
-    unlockApp,
   };
 });

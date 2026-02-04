@@ -1,6 +1,6 @@
 import { router, Stack } from "expo-router";
-import { Crown, Check, ShieldAlert } from "lucide-react-native";
-import React, { useState } from "react";
+import { Crown, Check, ShieldAlert, RefreshCw } from "lucide-react-native";
+import React from "react";
 import {
   View,
   Text,
@@ -13,15 +13,26 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useApp } from "@/contexts/app-context";
+import { usePurchases } from "@/contexts/purchases-context";
 
 export default function UnlockScreen() {
-  const { unlockApp, isDarkMode: isDark } = useApp();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const { isDarkMode: isDark } = useApp();
+  const {
+    lifetimePackage,
+    isLoadingOfferings,
+    isPurchasing,
+    isRestoring,
+    purchaseLifetime,
+    restorePurchases,
+  } = usePurchases();
+
+  const isProcessing = isPurchasing || isRestoring;
+
+  const priceString = lifetimePackage?.product?.priceString || "$3.00";
 
   const handleUnlock = async () => {
-    setIsProcessing(true);
     try {
-      await unlockApp();
+      await purchaseLifetime();
       Alert.alert(
         "Success!",
         "You now have full access to all hymns.",
@@ -32,11 +43,29 @@ export default function UnlockScreen() {
           },
         ]
       );
-    } catch (error) {
+    } catch (error: any) {
       console.error("Unlock error:", error);
-      Alert.alert("Error", "Failed to unlock. Please try again.");
-    } finally {
-      setIsProcessing(false);
+      if (!error.userCancelled) {
+        Alert.alert("Error", "Failed to complete purchase. Please try again.");
+      }
+    }
+  };
+
+  const handleRestore = async () => {
+    try {
+      const info = await restorePurchases();
+      if (info?.entitlements.active["premium"]?.isActive) {
+        Alert.alert(
+          "Restored!",
+          "Your purchase has been restored. You now have full access.",
+          [{ text: "OK", onPress: () => router.back() }]
+        );
+      } else {
+        Alert.alert("No Purchase Found", "We couldn't find a previous purchase to restore.");
+      }
+    } catch (error) {
+      console.error("Restore error:", error);
+      Alert.alert("Error", "Failed to restore purchases. Please try again.");
     }
   };
 
@@ -69,10 +98,16 @@ export default function UnlockScreen() {
         </View>
 
         <View style={[styles.priceCard, isDark ? styles.priceCardDark : styles.priceCardLight]}>
-          <Text style={styles.priceAmount}>$4.99</Text>
-          <Text style={[styles.priceLabel, isDark ? styles.subtextDark : styles.subtextLight]}>
-            One-time payment • Lifetime access
-          </Text>
+          {isLoadingOfferings ? (
+            <ActivityIndicator size="small" color="#F59E0B" />
+          ) : (
+            <>
+              <Text style={styles.priceAmount}>{priceString}</Text>
+              <Text style={[styles.priceLabel, isDark ? styles.subtextDark : styles.subtextLight]}>
+                One-time payment • Lifetime access
+              </Text>
+            </>
+          )}
         </View>
 
         <View style={styles.featuresContainer}>
@@ -109,6 +144,23 @@ export default function UnlockScreen() {
             <>
               <Crown size={20} color="#fff" />
               <Text style={styles.unlockButtonText}>Unlock Now</Text>
+            </>
+          )}
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.restoreButton}
+          onPress={handleRestore}
+          disabled={isProcessing}
+        >
+          {isRestoring ? (
+            <ActivityIndicator size="small" color={isDark ? "#aaa" : "#6B7280"} />
+          ) : (
+            <>
+              <RefreshCw size={16} color={isDark ? "#aaa" : "#6B7280"} />
+              <Text style={[styles.restoreButtonText, isDark ? styles.subtextDark : styles.subtextLight]}>
+                Restore Purchase
+              </Text>
             </>
           )}
         </TouchableOpacity>
@@ -263,14 +315,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600" as const,
   },
-  cancelButton: {
+  restoreButton: {
+    flexDirection: "row",
     height: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    marginBottom: 8,
+  },
+  restoreButtonText: {
+    fontSize: 15,
+    fontWeight: "500" as const,
+  },
+  cancelButton: {
+    height: 40,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 24,
   },
   cancelButtonText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "500" as const,
   },
   disclaimer: {
