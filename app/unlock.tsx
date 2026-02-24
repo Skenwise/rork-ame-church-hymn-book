@@ -1,5 +1,5 @@
 import { router, Stack } from "expo-router";
-import { Crown, Check, ShieldAlert, RefreshCw } from "lucide-react-native";
+import { Crown, Check, ExternalLink } from "lucide-react-native";
 import React from "react";
 import {
   View,
@@ -8,64 +8,24 @@ import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
+  Linking,
   Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { useApp } from "@/contexts/app-context";
 import { usePurchases } from "@/contexts/purchases-context";
 
+const PAYMENT_URL = "https://districtrayac.web.app/payment";
+
 export default function UnlockScreen() {
   const { isDarkMode: isDark } = useApp();
-  const {
-    lifetimePackage,
-    isLoadingOfferings,
-    isPurchasing,
-    isRestoring,
-    purchaseLifetime,
-    restorePurchases,
-  } = usePurchases();
-
-  const isProcessing = isPurchasing || isRestoring;
-
-  const priceString = lifetimePackage?.product?.priceString || "$3.00";
+  const { isPremium, isPurchasing } = usePurchases();
 
   const handleUnlock = async () => {
     try {
-      await purchaseLifetime();
-      Alert.alert(
-        "Success!",
-        "You now have full access to all hymns.",
-        [
-          {
-            text: "OK",
-            onPress: () => router.back(),
-          },
-        ]
-      );
-    } catch (error: any) {
-      console.error("Unlock error:", error);
-      if (!error.userCancelled) {
-        Alert.alert("Error", "Failed to complete purchase. Please try again.");
-      }
-    }
-  };
-
-  const handleRestore = async () => {
-    try {
-      const info = await restorePurchases();
-      if (info?.entitlements.active["premium"]?.isActive) {
-        Alert.alert(
-          "Restored!",
-          "Your purchase has been restored. You now have full access.",
-          [{ text: "OK", onPress: () => router.back() }]
-        );
-      } else {
-        Alert.alert("No Purchase Found", "We couldn't find a previous purchase to restore.");
-      }
+      await Linking.openURL(PAYMENT_URL);
     } catch (error) {
-      console.error("Restore error:", error);
-      Alert.alert("Error", "Failed to restore purchases. Please try again.");
+      Alert.alert("Error", "Could not open page. Please try again.");
     }
   };
 
@@ -75,8 +35,31 @@ export default function UnlockScreen() {
     "Save unlimited favorites",
     "Adjustable font sizes",
     "Dark mode support",
-    "One-time purchase, lifetime access",
+    "Lifetime access",
   ];
+
+  if (isPremium) {
+    return (
+      <SafeAreaView
+        style={[styles.container, isDark ? styles.containerDark : styles.containerLight]}
+        edges={["top"]}
+      >
+        <Stack.Screen options={{ headerShown: false }} />
+        <View style={styles.premiumContainer}>
+          <Crown size={64} color="#F59E0B" />
+          <Text style={[styles.title, isDark ? styles.textDark : styles.textLight]}>
+            You have Full Access!
+          </Text>
+          <Text style={[styles.subtitle, isDark ? styles.subtextDark : styles.subtextLight]}>
+            Enjoy all hymns in the collection.
+          </Text>
+          <TouchableOpacity style={styles.unlockButton} onPress={() => router.back()}>
+            <Text style={styles.unlockButtonText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView
@@ -97,22 +80,9 @@ export default function UnlockScreen() {
           </Text>
         </View>
 
-        <View style={[styles.priceCard, isDark ? styles.priceCardDark : styles.priceCardLight]}>
-          {isLoadingOfferings ? (
-            <ActivityIndicator size="small" color="#F59E0B" />
-          ) : (
-            <>
-              <Text style={styles.priceAmount}>{priceString}</Text>
-              <Text style={[styles.priceLabel, isDark ? styles.subtextDark : styles.subtextLight]}>
-                One-time payment • Lifetime access
-              </Text>
-            </>
-          )}
-        </View>
-
         <View style={styles.featuresContainer}>
           <Text style={[styles.featuresTitle, isDark ? styles.textDark : styles.textLight]}>
-            What&apos;s Included
+            What's Included
           </Text>
           {features.map((feature, index) => (
             <View key={index} style={styles.featureRow}>
@@ -127,80 +97,56 @@ export default function UnlockScreen() {
         </View>
 
         <View style={[styles.infoCard, isDark ? styles.infoCardDark : styles.infoCardLight]}>
-          <ShieldAlert size={20} color={isDark ? "#F59E0B" : "#F59E0B"} />
           <Text style={[styles.infoText, isDark ? styles.textDark : styles.textLight]}>
-            This purchase is locked to your device to prevent unauthorized sharing.
+            Full access is available on our website. Once activated, your app will unlock automatically.
           </Text>
         </View>
 
         <TouchableOpacity
-          style={[styles.unlockButton, isProcessing && styles.unlockButtonDisabled]}
+          style={[styles.unlockButton, isPurchasing && styles.unlockButtonDisabled]}
           onPress={handleUnlock}
-          disabled={isProcessing}
+          disabled={isPurchasing}
         >
-          {isProcessing ? (
+          {isPurchasing ? (
             <ActivityIndicator color="#fff" />
           ) : (
             <>
-              <Crown size={20} color="#fff" />
-              <Text style={styles.unlockButtonText}>Unlock Now</Text>
+              <ExternalLink size={20} color="#fff" />
+              <Text style={styles.unlockButtonText}>Get Full Access</Text>
             </>
           )}
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.restoreButton}
-          onPress={handleRestore}
-          disabled={isProcessing}
-        >
-          {isRestoring ? (
-            <ActivityIndicator size="small" color={isDark ? "#aaa" : "#6B7280"} />
-          ) : (
-            <>
-              <RefreshCw size={16} color={isDark ? "#aaa" : "#6B7280"} />
-              <Text style={[styles.restoreButtonText, isDark ? styles.subtextDark : styles.subtextLight]}>
-                Restore Purchase
-              </Text>
-            </>
-          )}
-        </TouchableOpacity>
+        <Text style={[styles.note, isDark ? styles.subtextDark : styles.subtextLight]}>
+          You'll be taken to our website to activate full access. Return to the app once done — it will unlock automatically.
+        </Text>
 
         <TouchableOpacity
           style={styles.cancelButton}
           onPress={() => router.back()}
-          disabled={isProcessing}
         >
           <Text style={[styles.cancelButtonText, isDark ? styles.subtextDark : styles.subtextLight]}>
             Maybe Later
           </Text>
         </TouchableOpacity>
-
-        <Text style={[styles.disclaimer, isDark ? styles.subtextDark : styles.subtextLight]}>
-          By purchasing, you agree to our Terms of Service and Privacy Policy.
-          No subscriptions or recurring charges.
-        </Text>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: { flex: 1 },
+  containerLight: { backgroundColor: "#FAFAFA" },
+  containerDark: { backgroundColor: "#1a1a1a" },
+  content: { padding: 24 },
+  premiumContainer: {
     flex: 1,
-  },
-  containerLight: {
-    backgroundColor: "#FAFAFA",
-  },
-  containerDark: {
-    backgroundColor: "#1a1a1a",
-  },
-  content: {
-    padding: 24,
-  },
-  hero: {
     alignItems: "center",
-    marginBottom: 32,
+    justifyContent: "center",
+    padding: 24,
+    gap: 16,
   },
+  hero: { alignItems: "center", marginBottom: 32 },
   iconContainer: {
     width: 96,
     height: 96,
@@ -210,58 +156,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 24,
   },
-  title: {
-    fontSize: 28,
-    fontWeight: "700" as const,
-    marginBottom: 8,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 16,
-    textAlign: "center",
-  },
-  priceCard: {
-    borderRadius: 16,
-    padding: 24,
-    alignItems: "center",
-    marginBottom: 32,
-  },
-  priceCardLight: {
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: "#E5E7EB",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  priceCardDark: {
-    backgroundColor: "#2a2a2a",
-  },
-  priceAmount: {
-    fontSize: 48,
-    fontWeight: "700" as const,
-    color: "#F59E0B",
-    marginBottom: 8,
-  },
-  priceLabel: {
-    fontSize: 14,
-  },
-  featuresContainer: {
-    marginBottom: 24,
-  },
-  featuresTitle: {
-    fontSize: 18,
-    fontWeight: "600" as const,
-    marginBottom: 16,
-  },
-  featureRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    marginBottom: 12,
-  },
+  title: { fontSize: 28, fontWeight: "700" as const, marginBottom: 8, textAlign: "center" },
+  subtitle: { fontSize: 16, textAlign: "center" },
+  featuresContainer: { marginBottom: 24 },
+  featuresTitle: { fontSize: 18, fontWeight: "600" as const, marginBottom: 16 },
+  featureRow: { flexDirection: "row", alignItems: "center", gap: 12, marginBottom: 12 },
   checkIcon: {
     width: 24,
     height: 24,
@@ -270,28 +169,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  featureText: {
-    fontSize: 16,
-    flex: 1,
-  },
+  featureText: { fontSize: 16, flex: 1 },
   infoCard: {
-    flexDirection: "row",
-    gap: 12,
-    padding: 16,
     borderRadius: 12,
+    padding: 16,
     marginBottom: 24,
   },
-  infoCardLight: {
-    backgroundColor: "#fff3cd",
-  },
-  infoCardDark: {
-    backgroundColor: "#3d3416",
-  },
-  infoText: {
-    flex: 1,
-    fontSize: 14,
-    lineHeight: 20,
-  },
+  infoCardLight: { backgroundColor: "#EFF6FF" },
+  infoCardDark: { backgroundColor: "#1e3a5f" },
+  infoText: { fontSize: 14, lineHeight: 22, textAlign: "center" },
   unlockButton: {
     flexDirection: "row",
     backgroundColor: "#F59E0B",
@@ -301,57 +187,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 8,
     marginBottom: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
-  unlockButtonDisabled: {
-    opacity: 0.6,
-  },
-  unlockButtonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "600" as const,
-  },
-  restoreButton: {
-    flexDirection: "row",
-    height: 48,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-    marginBottom: 8,
-  },
-  restoreButtonText: {
-    fontSize: 15,
-    fontWeight: "500" as const,
-  },
-  cancelButton: {
-    height: 40,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 24,
-  },
-  cancelButtonText: {
-    fontSize: 14,
-    fontWeight: "500" as const,
-  },
-  disclaimer: {
-    fontSize: 12,
-    textAlign: "center",
-    lineHeight: 18,
-  },
-  textLight: {
-    color: "#212121",
-  },
-  textDark: {
-    color: "#fff",
-  },
-  subtextLight: {
-    color: "#6B7280",
-  },
-  subtextDark: {
-    color: "#aaa",
-  },
+  unlockButtonDisabled: { opacity: 0.6 },
+  unlockButtonText: { color: "#fff", fontSize: 18, fontWeight: "600" as const },
+  note: { fontSize: 13, textAlign: "center", lineHeight: 20, marginBottom: 24 },
+  cancelButton: { height: 40, alignItems: "center", justifyContent: "center" },
+  cancelButtonText: { fontSize: 14 },
+  textLight: { color: "#212121" },
+  textDark: { color: "#fff" },
+  subtextLight: { color: "#6B7280" },
+  subtextDark: { color: "#aaa" },
 });

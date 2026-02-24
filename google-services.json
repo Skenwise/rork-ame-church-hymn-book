@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "914772441441",
+    "project_id": "districtrayac",
+    "storage_bucket": "districtrayac.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914772441441:android:ce08872a019b022c762d20",
+        "android_client_info": {
+          "package_name": "app.rork.ame_church_hymn_book"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_SESl6lQ0O7wCtu150382Q14dwiEyWGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

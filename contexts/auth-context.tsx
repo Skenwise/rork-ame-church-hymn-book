@@ -1,21 +1,23 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Crypto from "expo-crypto";
 import { router } from "expo-router";
 import createContextHook from "@nkzw/create-context-hook";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut,
+  onAuthStateChanged,
+  updateProfile,
+  User,
+} from "firebase/auth";
+import { doc, setDoc, getDoc, onSnapshot, deleteDoc } from "firebase/firestore";
+import { auth, db } from "@/lib/firebase";
 
 interface AuthUser {
   userId: string;
   email: string;
   displayName: string;
-}
-
-interface StoredUser {
-  email: string;
-  password: string;
-  displayName: string;
-  userId: string;
+  premiumUnlocked: boolean;
 }
 
 export const [AuthContext, useAuth] = createContextHook(() => {
@@ -23,75 +25,64 @@ export const [AuthContext, useAuth] = createContextHook(() => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
-  const [deviceId, setDeviceId] = useState<string>("");
 
   useEffect(() => {
-    loadAuth();
-    loadOrCreateDeviceId();
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser: User | null) => {
+      if (firebaseUser) {
+        const userRef = doc(db, "users", firebaseUser.uid);
+        const unsubscribeDoc = onSnapshot(userRef, (snap) => {
+          const data = snap.data();
+          setUser({
+            userId: firebaseUser.uid,
+            email: firebaseUser.email || "",
+            displayName: firebaseUser.displayName || "",
+            premiumUnlocked: data?.premiumUnlocked || false,
+          });
+          setIsLoading(false);
+        });
+        return () => unsubscribeDoc();
+      } else {
+        setUser(null);
+        setIsLoading(false);
+      }
+    });
+    return () => unsubscribe();
   }, []);
 
-  const loadAuth = async () => {
+  // Check if a pending unlock exists for this email
+  const checkPendingUnlock = async (email: string, userId: string) => {
     try {
-      const stored = await AsyncStorage.getItem("auth_user");
-      if (stored) {
-        setUser(JSON.parse(stored));
+      const pendingRef = doc(db, "pendingUnlocks", email);
+      const pendingDoc = await getDoc(pendingRef);
+
+      if (pendingDoc.exists()) {
+        // User paid before signing up — unlock them now
+        await setDoc(doc(db, "users", userId), {
+          premiumUnlocked: true,
+          paymentDate: pendingDoc.data().unlockedAt,
+          paymentRef: pendingDoc.data().transactionRef,
+        }, { merge: true });
+
+        // Remove pending unlock
+        await deleteDoc(pendingRef);
+
+        console.log("Pending unlock applied for:", email);
       }
     } catch (error) {
-      console.error("Failed to load auth:", error);
-    } finally {
-      setIsLoading(false);
+      console.error("Failed to check pending unlock:", error);
     }
-  };
-
-  const loadOrCreateDeviceId = async () => {
-    try {
-      let id = await AsyncStorage.getItem("device_id");
-      if (!id) {
-        id = Crypto.randomUUID();
-        await AsyncStorage.setItem("device_id", id);
-      }
-      setDeviceId(id);
-    } catch (error) {
-      console.error("Failed to load device ID:", error);
-    }
-  };
-
-  const signOut = async () => {
-    setUser(null);
-    await AsyncStorage.removeItem("auth_user");
-    router.replace("/sign-in");
   };
 
   const signIn = async (email: string, password: string) => {
     setIsSigningIn(true);
     try {
-      const usersData = await AsyncStorage.getItem("users_db");
-      const users: StoredUser[] = usersData ? JSON.parse(usersData) : [];
-      
-      const foundUser = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-      
-      if (!foundUser) {
-        Alert.alert("Error", "No account found with this email. Please sign up first.");
-        return;
-      }
-      
-      if (foundUser.password !== password) {
-        Alert.alert("Error", "Incorrect password. Please try again.");
-        return;
-      }
-      
-      const authUser: AuthUser = {
-        userId: foundUser.userId,
-        email: foundUser.email,
-        displayName: foundUser.displayName,
-      };
-      
-      setUser(authUser);
-      await AsyncStorage.setItem("auth_user", JSON.stringify(authUser));
+      const { user: firebaseUser } = await signInWithEmailAndPassword(auth, email, password);
+      // Check pending unlock on every sign in too
+      await checkPendingUnlock(email, firebaseUser.uid);
       router.replace("/");
-    } catch (error) {
-      console.error('[Auth] Sign in failed:', error);
-      Alert.alert("Error", "Failed to sign in. Please try again.");
+    } catch (error: any) {
+      console.error("[Auth] Sign in failed:", error);
+      Alert.alert("Error", "Invalid email or password. Please try again.");
     } finally {
       setIsSigningIn(false);
     }
@@ -100,54 +91,53 @@ export const [AuthContext, useAuth] = createContextHook(() => {
   const signUp = async (email: string, password: string, displayName: string) => {
     setIsSigningUp(true);
     try {
-      const usersData = await AsyncStorage.getItem("users_db");
-      const users: StoredUser[] = usersData ? JSON.parse(usersData) : [];
-      
-      const existingUser = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-      if (existingUser) {
-        Alert.alert("Error", "An account with this email already exists. Please sign in instead.");
-        return;
-      }
-      
-      const newUser: StoredUser = {
+      const { user: firebaseUser } = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(firebaseUser, { displayName });
+
+      await setDoc(doc(db, "users", firebaseUser.uid), {
         email,
-        password,
         displayName,
-        userId: Crypto.randomUUID(),
-      };
-      
-      users.push(newUser);
-      await AsyncStorage.setItem("users_db", JSON.stringify(users));
-      
-      const authUser: AuthUser = {
-        userId: newUser.userId,
-        email: newUser.email,
-        displayName: newUser.displayName,
-      };
-      
-      setUser(authUser);
-      await AsyncStorage.setItem("auth_user", JSON.stringify(authUser));
+        premiumUnlocked: false,
+        createdAt: new Date(),
+      });
+
+      // Check if they paid on website before signing up
+      await checkPendingUnlock(email, firebaseUser.uid);
+
       router.replace("/");
-    } catch (error) {
-      console.error('[Auth] Sign up failed:', error);
-      Alert.alert("Error", "Failed to create account. Please try again.");
+    } catch (error: any) {
+      console.error("[Auth] Sign up failed:", error);
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          Alert.alert("Account Exists", "This email is already registered. Please sign in instead.");
+          router.push("/sign-in");
+          break;
+        case "auth/weak-password":
+          Alert.alert("Weak Password", "Password must be at least 6 characters.");
+          break;
+        case "auth/invalid-email":
+          Alert.alert("Invalid Email", "Please enter a valid email address.");
+          break;
+        default:
+          Alert.alert("Error", "Failed to create account. Please try again.");
+      }
     } finally {
       setIsSigningUp(false);
     }
   };
 
+  const signOut = async () => {
+    await firebaseSignOut(auth);
+    router.replace("/sign-in");
+  };
+
   const signInWithGoogle = async () => {
-    Alert.alert(
-      "Google Sign-In",
-      "Google authentication is available. To enable it, you'll need to configure OAuth credentials in the Google Cloud Console. For now, please use email and password to sign in.",
-      [{ text: "OK" }]
-    );
+    Alert.alert("Coming Soon", "Google sign-in will be available soon.");
   };
 
   return {
     user,
     isLoading,
-    deviceId,
     signIn,
     signUp,
     signInWithGoogle,
