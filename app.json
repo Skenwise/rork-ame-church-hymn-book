@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "rork-app",
+    "scheme": "rayac-hymn",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
@@ -15,14 +15,14 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "app.rork.ame-church-hymn-book"
+      "bundleIdentifier": "com.districtrayac.hymnbook"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "app.rork.ame_church_hymn_book",
+      "package": "com.districtrayac.hymnbook",
       "googleServicesFile": "./google-services.json"
     },
     "web": {
@@ -32,7 +32,7 @@
       [
         "expo-router",
         {
-          "origin": "https://rork.com/"
+          "origin": "https://districtrayac.web.app/"
         }
       ],
       "expo-font",
@@ -40,15 +40,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": "https://rork.com/"
-      },
-      "eas": {
-        "projectId": "8eb788b4-89c5-4574-a049-7a687e663456"
-      }
-    },
-    "owner": "gilbertmwanza"
+    }
   }
 }
