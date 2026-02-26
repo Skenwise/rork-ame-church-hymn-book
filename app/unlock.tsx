@@ -15,7 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useApp } from "@/contexts/app-context";
 import { usePurchases } from "@/contexts/purchases-context";
 
-const PAYMENT_URL = "https://districtrayac.web.app/payment";
+const PAYMENT_URL = "https://districtrayac.web.app/hymn-book";
 
 export default function UnlockScreen() {
   const { isDarkMode: isDark } = useApp();
