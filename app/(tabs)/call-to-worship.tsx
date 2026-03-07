@@ -19,7 +19,7 @@ import { useApp } from "@/contexts/app-context";
 type Language = "english" | "bemba";
 
 export default function CallToWorshipScreen() {
-  const { isDarkMode: isDark } = useApp();
+  const { isDarkMode: isDark, textScale } = useApp();
   const [language, setLanguage] = useState<Language>("english");
 
   const content =
@@ -42,34 +42,35 @@ export default function CallToWorshipScreen() {
         <TouchableOpacity
           style={[
             styles.languageButton,
-            language === "english" && styles.languageButtonActive,
             isDark ? styles.languageButtonDark : styles.languageButtonLight,
+            language === "english" && styles.languageButtonActive,
           ]}
           onPress={() => setLanguage("english")}
         >
           <Text
             style={[
               styles.languageButtonText,
+              isDark ? styles.languageButtonTextDark : styles.languageButtonTextLight,
               language === "english" && styles.languageButtonTextActive,
-              isDark && language !== "english" && styles.languageButtonTextDark,
             ]}
           >
             English
           </Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={[
             styles.languageButton,
-            language === "bemba" && styles.languageButtonActive,
             isDark ? styles.languageButtonDark : styles.languageButtonLight,
+            language === "bemba" && styles.languageButtonActive,
           ]}
           onPress={() => setLanguage("bemba")}
         >
           <Text
             style={[
               styles.languageButtonText,
+              isDark ? styles.languageButtonTextDark : styles.languageButtonTextLight,
               language === "bemba" && styles.languageButtonTextActive,
-              isDark && language !== "bemba" && styles.languageButtonTextDark,
             ]}
           >
             Bemba
@@ -80,10 +81,26 @@ export default function CallToWorshipScreen() {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {content.map((line, index) => (
           <View key={index} style={styles.lineContainer}>
-            <Text style={[styles.role, isDark ? styles.roleDark : styles.roleLight]}>
+            <Text
+              style={[
+                styles.role,
+                isDark ? styles.roleDark : styles.roleLight,
+                { fontSize: Math.round(16 * textScale) },
+              ]}
+            >
               {line.role}
             </Text>
-            <Text style={[styles.text, isDark ? styles.textDark : styles.textLight]}>
+
+            <Text
+              style={[
+                styles.text,
+                isDark ? styles.textDark : styles.textLight,
+                {
+                  fontSize: Math.round(17 * textScale),
+                  lineHeight: Math.round(28 * textScale),
+                },
+              ]}
+            >
               {line.text}
             </Text>
           </View>
@@ -99,7 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerLight: {
-    backgroundColor: colors.light.background,
+    backgroundColor: colors.linen,
   },
   containerDark: {
     backgroundColor: colors.dark.background,
@@ -126,27 +143,35 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   languageButtonLight: {
-    borderColor: colors.light.border,
+    borderColor: "transparent",
     backgroundColor: colors.light.surface,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 6,
+    elevation: 1,
   },
   languageButtonDark: {
     borderColor: colors.dark.border,
     backgroundColor: colors.dark.surface,
   },
   languageButtonActive: {
-    backgroundColor: colors.churchBlue,
-    borderColor: colors.churchBlue,
+    backgroundColor: "#E31B23",
+    borderColor: "#E31B23",
   },
   languageButtonText: {
     fontSize: 16,
     fontWeight: "600" as const,
-    color: colors.mediumGray,
+  },
+  languageButtonTextLight: {
+    color: "#1A1A1A",
   },
   languageButtonTextDark: {
     color: colors.dark.textSecondary,
   },
   languageButtonTextActive: {
-    color: colors.white,
+    color: "#FFFFFF",
+    fontWeight: "700" as const,
   },
   content: {
     flex: 1,
@@ -161,17 +186,17 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   roleLight: {
-    color: colors.light.primary,
+    color: colors.crimson,
   },
   roleDark: {
-    color: colors.professionalBlue,
+    color: colors.crimson,
   },
   text: {
     fontSize: 17,
     lineHeight: 28,
   },
   textLight: {
-    color: colors.light.text,
+    color: "#1A1A1A",
   },
   textDark: {
     color: colors.dark.text,

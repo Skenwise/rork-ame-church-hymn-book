@@ -40,6 +40,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": "https://districtrayac.web.app/"
+      },
+      "eas": {
+        "projectId": "8eb788b4-89c5-4574-a049-7a687e663456"
+      }
+    },
+    "owner": "gilbertmwanza"
   }
 }

@@ -19,7 +19,7 @@ import { useApp } from "@/contexts/app-context";
 type Language = "english" | "bemba";
 
 export default function ApostlesCreedScreen() {
-  const { isDarkMode: isDark } = useApp();
+  const { isDarkMode: isDark, textScale } = useApp();
   const [language, setLanguage] = useState<Language>("english");
 
   const content =
@@ -27,13 +27,21 @@ export default function ApostlesCreedScreen() {
 
   return (
     <SafeAreaView
-      style={[styles.container, isDark ? styles.containerDark : styles.containerLight]}
+      style={[
+        styles.container,
+        isDark ? styles.containerDark : styles.containerLight,
+      ]}
       edges={["top"]}
     >
       <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.header}>
-        <Text style={[styles.headerTitle, isDark ? styles.textDark : styles.textLight]}>
+        <Text
+          style={[
+            styles.headerTitle,
+            isDark ? styles.textDark : styles.textLight,
+          ]}
+        >
           Apostles&apos; Creed
         </Text>
       </View>
@@ -42,34 +50,39 @@ export default function ApostlesCreedScreen() {
         <TouchableOpacity
           style={[
             styles.languageButton,
-            language === "english" && styles.languageButtonActive,
             isDark ? styles.languageButtonDark : styles.languageButtonLight,
+            language === "english" && styles.languageButtonActive,
           ]}
           onPress={() => setLanguage("english")}
         >
           <Text
             style={[
               styles.languageButtonText,
+              isDark
+                ? styles.languageButtonTextDark
+                : styles.languageButtonTextLight,
               language === "english" && styles.languageButtonTextActive,
-              isDark && language !== "english" && styles.languageButtonTextDark,
             ]}
           >
             English
           </Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={[
             styles.languageButton,
-            language === "bemba" && styles.languageButtonActive,
             isDark ? styles.languageButtonDark : styles.languageButtonLight,
+            language === "bemba" && styles.languageButtonActive,
           ]}
           onPress={() => setLanguage("bemba")}
         >
           <Text
             style={[
               styles.languageButtonText,
+              isDark
+                ? styles.languageButtonTextDark
+                : styles.languageButtonTextLight,
               language === "bemba" && styles.languageButtonTextActive,
-              isDark && language !== "bemba" && styles.languageButtonTextDark,
             ]}
           >
             Bemba
@@ -79,7 +92,16 @@ export default function ApostlesCreedScreen() {
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.creedCard}>
-          <Text style={[styles.creedText, isDark ? styles.textDark : styles.textLight]}>
+          <Text
+            style={[
+              styles.creedText,
+              isDark ? styles.textDark : styles.textLight,
+              {
+                fontSize: Math.round(19 * textScale),
+                lineHeight: Math.round(34 * textScale),
+              },
+            ]}
+          >
             {content}
           </Text>
         </View>
@@ -135,13 +157,16 @@ const styles = StyleSheet.create({
   languageButtonText: {
     fontSize: 16,
     fontWeight: "600" as const,
-    color: colors.mediumGray,
+  },
+  languageButtonTextLight: {
+    color: colors.light.text,
   },
   languageButtonTextDark: {
     color: colors.dark.textSecondary,
   },
   languageButtonTextActive: {
     color: colors.white,
+    fontWeight: "700" as const,
   },
   content: {
     flex: 1,

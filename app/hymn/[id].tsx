@@ -1,12 +1,13 @@
 import { useLocalSearchParams, router, Stack } from "expo-router";
-import { Heart, ArrowLeft, Lock } from "lucide-react-native";
-import React, { useState } from "react";
+import { Heart, ArrowLeft, Lock, LogIn } from "lucide-react-native";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -18,10 +19,14 @@ type Language = "english" | "bemba";
 
 export default function HymnDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { fontSize, favorites, toggleFavorite, canAccessHymn, isDarkMode: isDark } = useApp();
+  const { fontSize, textScale, favorites, toggleFavorite, canAccessHymn, isDarkMode: isDark, addRecentlyViewed } = useApp();
   const [language, setLanguage] = useState<Language>("english");
 
   const hymn = HYMNS.find((h) => h.id === id);
+
+  useEffect(() => {
+    if (hymn && id) addRecentlyViewed(id);
+  }, [id, hymn, addRecentlyViewed]);
 
   if (!hymn) {
     return (
@@ -40,12 +45,8 @@ export default function HymnDetailScreen() {
   const hasAccess = canAccessHymn(hymn.number);
   const isFavorite = favorites.has(hymn.id);
 
-  const fontSizeValues = {
-    small: 14,
-    medium: 16,
-    large: 18,
-    xlarge: 20,
-  };
+  const scaledFontSize = Math.round(16 * textScale);
+  const scaledLineHeight = Math.round(28 * textScale);
 
   return (
     <SafeAreaView
@@ -55,22 +56,18 @@ export default function HymnDetailScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.back()}
-        >
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
           <ArrowLeft size={24} color={isDark ? colors.dark.text : colors.light.primary} />
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.favoriteButton}
-          onPress={() => toggleFavorite(hymn.id)}
-        >
-          <Heart
-            size={24}
-            color={isFavorite ? colors.error : isDark ? colors.dark.text : colors.light.primary}
-            fill={isFavorite ? colors.error : "none"}
-          />
-        </TouchableOpacity>
+        {hasAccess && (
+          <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite(hymn.id)}>
+            <Heart
+              size={24}
+              color={isFavorite ? colors.error : isDark ? colors.dark.text : colors.light.primary}
+              fill={isFavorite ? colors.error : "none"}
+            />
+          </TouchableOpacity>
+        )}
       </View>
 
       {hasBembaVersion && hasAccess && (
@@ -86,8 +83,8 @@ export default function HymnDetailScreen() {
             <Text
               style={[
                 styles.languageButtonText,
+                isDark ? styles.languageButtonTextDark : styles.languageButtonTextLight,
                 language === "english" && styles.languageButtonTextActive,
-                isDark && language !== "english" && styles.languageButtonTextDark,
               ]}
             >
               English
@@ -104,8 +101,8 @@ export default function HymnDetailScreen() {
             <Text
               style={[
                 styles.languageButtonText,
+                isDark ? styles.languageButtonTextDark : styles.languageButtonTextLight,
                 language === "bemba" && styles.languageButtonTextActive,
-                isDark && language !== "bemba" && styles.languageButtonTextDark,
               ]}
             >
               Bemba
@@ -116,18 +113,29 @@ export default function HymnDetailScreen() {
 
       {!hasAccess ? (
         <View style={styles.lockedContainer}>
-          <Lock size={64} color={isDark ? "#444" : colors.borderGray} />
+          <View style={styles.lockedIconContainer}>
+            <Lock size={48} color={colors.churchBlue} />
+          </View>
           <Text style={[styles.lockedTitle, isDark ? styles.textDark : styles.textLight]}>
-            Premium Content
+            Members Only
           </Text>
           <Text style={[styles.lockedText, isDark ? styles.subtextDark : styles.subtextLight]}>
-            This hymn is part of the full collection. Unlock to access all hymns.
+            The full hymn library is available to registered members.
           </Text>
           <TouchableOpacity
-            style={styles.unlockButtonLarge}
-            onPress={() => router.push("/unlock")}
+            style={styles.signInButtonLarge}
+            onPress={() => router.push("/sign-in" as any)}
           >
-            <Text style={styles.unlockButtonLargeText}>Unlock Full Access</Text>
+            <LogIn size={20} color={colors.white} />
+            <Text style={styles.signInButtonLargeText}>Sign In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.createAccountButton, isDark ? styles.createAccountButtonDark : styles.createAccountButtonLight]}
+            onPress={() => Linking.openURL("https://districtrayac.web.app/")}
+          >
+            <Text style={[styles.createAccountButtonText, isDark ? styles.textDark : styles.textLight]}>
+              Create Account
+            </Text>
           </TouchableOpacity>
         </View>
       ) : (
@@ -154,7 +162,7 @@ export default function HymnDetailScreen() {
 
           <View style={styles.lyricsContainer}>
             {currentVerses.map((verse, index) => {
-              const lines = verse.split('\n').filter(line => line.trim());
+              const lines = verse.split("\n").filter(line => line.trim());
               return (
                 <View key={index} style={styles.verse}>
                   {lines.map((line, lineIndex) => (
@@ -162,7 +170,7 @@ export default function HymnDetailScreen() {
                       key={lineIndex}
                       style={[
                         styles.verseText,
-                        { fontSize: fontSizeValues[fontSize] },
+                        { fontSize: scaledFontSize, lineHeight: scaledLineHeight },
                         isDark ? styles.textDark : styles.textLight,
                       ]}
                     >
@@ -180,171 +188,45 @@ export default function HymnDetailScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  containerLight: {
-    backgroundColor: colors.light.background,
-  },
-  containerDark: {
-    backgroundColor: colors.dark.background,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-  },
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  favoriteButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  content: {
-    padding: 20,
-  },
-  hymnHeader: {
-    alignItems: "center",
-    marginBottom: 32,
-  },
-  hymnNumberBadge: {
-    backgroundColor: colors.churchBlue,
-    paddingHorizontal: 16,
-    paddingVertical: 6,
-    borderRadius: 16,
-    marginBottom: 16,
-  },
-  hymnNumberBadgeText: {
-    fontSize: 14,
-    fontWeight: "600" as const,
-    color: colors.white,
-  },
-  hymnTitle: {
-    fontSize: 28,
-    fontWeight: "700" as const,
-    textAlign: "center",
-    marginBottom: 8,
-  },
-  hymnAuthor: {
-    fontSize: 16,
-    marginBottom: 12,
-  },
-  categoryBadge: {
-    backgroundColor: colors.professionalBlue,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
-  },
-  categoryBadgeText: {
-    color: colors.white,
-    fontSize: 12,
-    fontWeight: "600" as const,
-  },
-  lyricsContainer: {
-    gap: 24,
-    alignItems: "center",
-  },
-  verse: {
-    paddingHorizontal: 8,
-    width: "100%",
-  },
-  verseText: {
-    lineHeight: 28,
-    textAlign: "center",
-  },
-  lockedContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 40,
-  },
-  lockedTitle: {
-    fontSize: 24,
-    fontWeight: "700" as const,
-    marginTop: 24,
-    marginBottom: 12,
-  },
-  lockedText: {
-    fontSize: 16,
-    textAlign: "center",
-    marginBottom: 32,
-  },
-  unlockButtonLarge: {
-    backgroundColor: colors.warning,
-    paddingHorizontal: 32,
-    paddingVertical: 16,
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  unlockButtonLargeText: {
-    color: colors.white,
-    fontSize: 16,
-    fontWeight: "600" as const,
-  },
-  errorText: {
-    fontSize: 18,
-    textAlign: "center",
-    marginTop: 40,
-  },
-  textLight: {
-    color: colors.light.text,
-  },
-  textDark: {
-    color: colors.dark.text,
-  },
-  subtextLight: {
-    color: colors.light.textSecondary,
-  },
-  subtextDark: {
-    color: colors.dark.textSecondary,
-  },
-  languageToggleContainer: {
-    flexDirection: "row",
-    paddingHorizontal: 20,
-    marginBottom: 20,
-    gap: 12,
-  },
-  languageButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: "center",
-    borderWidth: 1,
-  },
-  languageButtonLight: {
-    borderColor: colors.light.border,
-    backgroundColor: colors.light.surface,
-  },
-  languageButtonDark: {
-    borderColor: colors.dark.border,
-    backgroundColor: colors.dark.surface,
-  },
-  languageButtonActive: {
-    backgroundColor: colors.churchBlue,
-    borderColor: colors.churchBlue,
-  },
-  languageButtonText: {
-    fontSize: 16,
-    fontWeight: "600" as const,
-    color: colors.mediumGray,
-  },
-  languageButtonTextDark: {
-    color: colors.dark.textSecondary,
-  },
-  languageButtonTextActive: {
-    color: colors.white,
-  },
+  container: { flex: 1 },
+  containerLight: { backgroundColor: colors.linen },
+  containerDark: { backgroundColor: colors.dark.background },
+  header: { flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 20, paddingVertical: 16 },
+  backButton: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center" },
+  favoriteButton: { width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center" },
+  content: { padding: 20 },
+  hymnHeader: { alignItems: "center", marginBottom: 32 },
+  hymnNumberBadge: { backgroundColor: colors.crimson, paddingHorizontal: 16, paddingVertical: 6, borderRadius: 16, marginBottom: 16 },
+  hymnNumberBadgeText: { fontSize: 14, fontWeight: "600" as const, color: colors.white },
+  hymnTitle: { fontSize: 28, fontWeight: "700" as const, textAlign: "center", marginBottom: 8 },
+  hymnAuthor: { fontSize: 16, marginBottom: 12 },
+  categoryBadge: { backgroundColor: colors.amber, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12 },
+  categoryBadgeText: { color: colors.white, fontSize: 12, fontWeight: "600" as const },
+  lyricsContainer: { gap: 24, alignItems: "center" },
+  verse: { paddingHorizontal: 8, width: "100%" },
+  verseText: { lineHeight: 28, textAlign: "center" },
+  lockedContainer: { flex: 1, justifyContent: "center", alignItems: "center", padding: 40 },
+  lockedIconContainer: { width: 88, height: 88, borderRadius: 44, backgroundColor: "rgba(227, 27, 35, 0.15)", alignItems: "center", justifyContent: "center", marginBottom: 24 },
+  lockedTitle: { fontSize: 24, fontWeight: "700" as const, marginBottom: 12 },
+  lockedText: { fontSize: 16, textAlign: "center", marginBottom: 32 },
+  signInButtonLarge: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: colors.crimson, paddingHorizontal: 32, paddingVertical: 16, borderRadius: 14, width: "100%", maxWidth: 280, marginBottom: 12, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4, elevation: 3 },
+  signInButtonLargeText: { color: colors.white, fontSize: 16, fontWeight: "600" as const },
+  createAccountButton: { paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, width: "100%", maxWidth: 280, alignItems: "center", borderWidth: 1 },
+  createAccountButtonLight: { borderColor: "#E4E4E7", backgroundColor: colors.light.surface },
+  createAccountButtonDark: { borderColor: "rgba(255, 255, 255, 0.25)", backgroundColor: "transparent" },
+  createAccountButtonText: { fontSize: 16, fontWeight: "600" as const },
+  errorText: { fontSize: 18, textAlign: "center", marginTop: 40 },
+  textLight: { color: "#1A1A1A" },
+  textDark: { color: colors.dark.text },
+  subtextLight: { color: "#1A1A1A" },
+  subtextDark: { color: colors.dark.textSecondary },
+  languageToggleContainer: { flexDirection: "row", paddingHorizontal: 20, marginBottom: 20, gap: 12 },
+  languageButton: { flex: 1, paddingVertical: 12, borderRadius: 10, alignItems: "center", borderWidth: 1 },
+  languageButtonLight: { borderColor: "transparent", backgroundColor: colors.light.surface, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.04, shadowRadius: 6, elevation: 1 },
+  languageButtonDark: { borderColor: colors.dark.border, backgroundColor: colors.dark.surface },
+  languageButtonActive: { backgroundColor: colors.crimson, borderColor: colors.crimson, opacity: 1 },
+  languageButtonText: { fontSize: 16, fontWeight: "600" as const },
+  languageButtonTextLight: { color: "#1A1A1A" },
+  languageButtonTextDark: { color: colors.dark.textSecondary },
+  languageButtonTextActive: { color: "#FFFFFF", fontWeight: "700" as const },
 });
