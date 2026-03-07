@@ -42,4 +42,5 @@ yarn-error.*
 
 .env
 rork-eslint.config.js
-core
+coregoogle-services.json
+lib/firebase.ts
