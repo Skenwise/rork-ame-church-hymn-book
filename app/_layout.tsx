@@ -79,7 +79,7 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
 
     if (!user && inAuthGroup) {
       router.replace("/sign-in");
-    } else if (user && !inAuthGroup && segments[0] !== "unlock" && segments[0] !== "hymn" && segments[0] !== "sign-in" && segments[0] !== "sign-up" && segments[0] !== "settings") {
+    } else if (user && !inAuthGroup && segments[0] !== "unlock" && segments[0] !== "hymn" && segments[0] !== "settings") {
       router.replace("/");
     }
   }, [user, isLoading, segments, router]);
