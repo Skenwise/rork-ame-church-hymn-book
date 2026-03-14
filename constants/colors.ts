@@ -1,43 +1,75 @@
 export default {
-  deepNavy: "#1A237E",
-  charcoal: "#212121",
-  darkGray: "#333333",
-  churchBlue: "#5281BD",
-  professionalBlue: "#4A90E2",
-  actionBlue: "#3B82F6",
-  mediumGray: "#6B7280",
-  borderGray: "#E5E7EB",
-  offWhite: "#FAFAFA",
+  // Primary/Brand
+  crimson: "#E31B23",
+  // Accent
+  amber: "#D97D20",
+  // Light background
+  linen: "#F9F7F2",
+  // Light surface (cards)
   white: "#FFFFFF",
+  // Light text
+  lightText: "#1A1A1A",
+  // Light text secondary
+  lightTextSecondary: "#71717A",
+  // Dark background
+  darkBackground: "#0A0A0B",
+  // Dark surface
+  darkSurface: "#151517",
+  // Dark text
+  darkText: "#FFFFFF",
+  // Dark text secondary
+  darkTextSecondary: "#D1D5DB",
+  // Dark border
+  darkBorder: "#2A2A2E",
+  // Muted gray
+  mutedGray: "#8E8E93",
+  // Error/SignOut red
   error: "#DC2626",
-  warning: "#F59E0B",
-  success: "#10B981",
-  
+  signOutRed: "#B91C1C",
+  // Church Blue
+  churchBlue: "#5281BD",
+  // Additional aliases and action colors
+  actionBlue: "#5281BD", // same as churchBlue for interactive elements
+  professionalBlue: "#5281BD", // alias for professional accents
+  warning: "#D97D20", // same as amber
+  mediumGray: "#8E8E93", // synonym for mutedGray
+  borderGray: "#E5E7EB", // light border color
+
   light: {
-    background: "#FAFAFA",
+    background: "#F9F7F2", // linen
     surface: "#FFFFFF",
-    text: "#212121",
-    textSecondary: "#6B7280",
-    primary: "#1A237E",
-    accent: "#5281BD",
+    text: "#1A1A1A",
+    textSecondary: "#71717A",
+    primary: "#E31B23", // crimson
+    accent: "#D97D20", // amber
     border: "#E5E7EB",
-    hover: "#1A237E",
-    tint: "#4A90E2",
-    tabIconDefault: "#1A237E",
-    tabIconSelected: "#1A237E",
+    hover: "#E31B23",
+    tint: "#5281BD", // churchBlue
+    tabIconDefault: "#71717A", // lightTextSecondary
+    tabIconSelected: "#E31B23", // crimson
+    action: "#5281BD", // alias for actionBlue
+    professional: "#5281BD",
+    warning: "#D97D20",
+    borderGray: "#E5E7EB",
+    mediumGray: "#8E8E93",
   },
-  
+
   dark: {
-    background: "#1A1A1A",
-    surface: "#2A2A2A",
+    background: "#0A0A0B",
+    surface: "#151517",
     text: "#FFFFFF",
-    textSecondary: "#9CA3AF",
-    primary: "#4A90E2",
-    accent: "#5281BD",
-    border: "#374151",
-    hover: "#60A5FA",
-    tint: "#4A90E2",
-    tabIconDefault: "#6B7280",
-    tabIconSelected: "#4A90E2",
+    textSecondary: "#D1D5DB",
+    primary: "#E31B23", // crimson
+    accent: "#D97D20", // amber
+    border: "#2A2A2E",
+    hover: "#E31B23",
+    tint: "#5281BD",
+    tabIconDefault: "#8E8E93", // mutedGray
+    tabIconSelected: "#E31B23",
+    action: "#5281BD",
+    professional: "#5281BD",
+    warning: "#D97D20",
+    borderGray: "#2A2A2E", // dark border
+    mediumGray: "#8E8E93",
   },
 };

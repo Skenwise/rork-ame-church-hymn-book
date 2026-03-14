@@ -11,4 +11,4 @@ export interface Hymn {
   author?: string;
 }
 
-export type FontSize = "small" | "medium" | "large" | "xlarge";
+export type TextScale = 0.85 | 1.0 | 1.2 | 1.4;

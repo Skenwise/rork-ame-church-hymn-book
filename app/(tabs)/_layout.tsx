@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { BookOpen, Church, ScrollText } from "lucide-react-native";
+import { BookOpen, Church, ScrollText, Home, Settings } from "lucide-react-native";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
@@ -60,9 +60,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="(home)"
         options={{
-          title: "Hymns",
+          title: "Home",
           tabBarIcon: ({ color, size }) => (
-            <BookOpen size={size - 2} color={color} strokeWidth={1.8} />
+            <Home size={size - 2} color={color} strokeWidth={1.8} />
           ),
         }}
       />
@@ -78,12 +78,46 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name="decalogue"
+        options={{
+          title: "Decalogue",
+          tabBarIcon: ({ color, size }) => (
+            <BookOpen size={size - 2} color={color} strokeWidth={1.8} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
         name="apostles-creed"
         options={{
           title: "Apostles' Creed",
           tabBarIcon: ({ color, size }) => (
             <ScrollText size={size - 2} color={color} strokeWidth={1.8} />
           ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <Settings size={size - 2} color={color} strokeWidth={1.8} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="search"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          href: null,
         }}
       />
     </Tabs>

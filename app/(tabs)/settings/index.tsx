@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Switch,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -43,9 +42,10 @@ export default function SettingsScreen() {
           </Text>
         </View>
 
+        {/* Account Section */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, isDark ? styles.textDark : styles.textLight]}>
-            Account
+          <Text style={[styles.sectionTitle, isDark ? styles.subtextDark : styles.subtextLight]}>
+            ACCOUNT
           </Text>
           <View style={[styles.card, isDark ? styles.cardDark : styles.cardLight]}>
             <View style={styles.accountInfo}>
@@ -54,14 +54,14 @@ export default function SettingsScreen() {
               </View>
               <View style={styles.accountDetails}>
                 <Text style={[styles.accountName, isDark ? styles.textDark : styles.textLight]}>
-                  {user?.displayName || "User"}
+                  {user?.displayName || "Guest"}
                 </Text>
                 <Text style={[styles.accountEmail, isDark ? styles.subtextDark : styles.subtextLight]}>
-                  {user?.email}
+                  {user?.email || "Not signed in"}
                 </Text>
-                <View style={styles.statusBadge}>
+                <View style={[styles.statusBadge, { backgroundColor: isPaid ? colors.professionalBlue : colors.crimson }]}>
                   <Text style={styles.statusText}>
-                    {isPaid ? "Premium" : "Free Preview"}
+                    {isPaid ? "✦ Premium" : "Free Preview"}
                   </Text>
                 </View>
               </View>
@@ -69,15 +69,17 @@ export default function SettingsScreen() {
           </View>
         </View>
 
+        {/* Appearance Section */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, isDark ? styles.textDark : styles.textLight]}>
-            Appearance
+          <Text style={[styles.sectionTitle, isDark ? styles.subtextDark : styles.subtextLight]}>
+            APPEARANCE
           </Text>
-          
+
+          {/* Dark Mode */}
           <View style={[styles.card, isDark ? styles.cardDark : styles.cardLight]}>
             <View style={styles.settingRow}>
               <View style={styles.settingLeft}>
-                {isDarkMode ? (
+                {isDark ? (
                   <Moon size={20} color={isDark ? colors.dark.text : colors.light.primary} />
                 ) : (
                   <Sun size={20} color={isDark ? colors.dark.text : colors.light.primary} />
@@ -86,15 +88,22 @@ export default function SettingsScreen() {
                   Dark Mode
                 </Text>
               </View>
-              <Switch
-                value={isDarkMode}
-                onValueChange={toggleDarkMode}
-                trackColor={{ false: colors.borderGray, true: colors.actionBlue }}
-                thumbColor={colors.white}
-              />
+              <TouchableOpacity
+                onPress={() => toggleDarkMode()}
+                style={[
+                  styles.toggle,
+                  { backgroundColor: isDark ? colors.actionBlue : colors.borderGray }
+                ]}
+              >
+                <View style={[
+                  styles.toggleThumb,
+                  { alignSelf: isDark ? "flex-end" : "flex-start" }
+                ]} />
+              </TouchableOpacity>
             </View>
           </View>
 
+          {/* Font Size */}
           <View style={[styles.card, isDark ? styles.cardDark : styles.cardLight, styles.cardMargin]}>
             <View style={styles.settingColumn}>
               <View style={styles.settingLeft}>
@@ -109,16 +118,16 @@ export default function SettingsScreen() {
                     key={scale}
                     style={[
                       styles.fontSizeButton,
-                      textScale === scale && styles.fontSizeButtonActive,
                       isDark ? styles.fontSizeButtonDark : styles.fontSizeButtonLight,
+                      textScale === scale && styles.fontSizeButtonActive,
                     ]}
                     onPress={() => updateTextScale(scale)}
                   >
                     <Text
                       style={[
                         styles.fontSizeButtonText,
-                        textScale === scale && styles.fontSizeButtonTextActive,
                         isDark && textScale !== scale && styles.fontSizeButtonTextDark,
+                        textScale === scale && styles.fontSizeButtonTextActive,
                       ]}
                     >
                       {textScaleLabels[scale]}
@@ -130,7 +139,11 @@ export default function SettingsScreen() {
           </View>
         </View>
 
+        {/* Sign Out */}
         <View style={styles.section}>
+          <Text style={[styles.sectionTitle, isDark ? styles.subtextDark : styles.subtextLight]}>
+            SESSION
+          </Text>
           <TouchableOpacity
             style={[
               styles.card,
@@ -155,36 +168,19 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  containerLight: {
-    backgroundColor: colors.light.background,
-  },
-  containerDark: {
-    backgroundColor: colors.dark.background,
-  },
-  header: {
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-  },
-  headerTitle: {
-    fontSize: 28,
-    fontWeight: "700" as const,
-  },
-  section: {
-    paddingHorizontal: 20,
-    marginBottom: 24,
-  },
+  container: { flex: 1 },
+  containerLight: { backgroundColor: colors.light.background },
+  containerDark: { backgroundColor: colors.dark.background },
+  header: { paddingHorizontal: 20, paddingVertical: 20 },
+  headerTitle: { fontSize: 28, fontWeight: "700" as const },
+  section: { paddingHorizontal: 20, marginBottom: 28 },
   sectionTitle: {
-    fontSize: 16,
-    fontWeight: "600" as const,
-    marginBottom: 12,
+    fontSize: 11,
+    fontWeight: "700" as const,
+    letterSpacing: 1.2,
+    marginBottom: 10,
   },
-  card: {
-    borderRadius: 12,
-    padding: 16,
-  },
+  card: { borderRadius: 14, padding: 16 },
   cardLight: {
     backgroundColor: colors.light.surface,
     borderWidth: 1,
@@ -195,71 +191,54 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 2,
   },
-  cardDark: {
-    backgroundColor: colors.dark.surface,
-  },
-  cardMargin: {
-    marginTop: 12,
-  },
-  accountInfo: {
-    flexDirection: "row",
-    gap: 16,
-  },
+  cardDark: { backgroundColor: colors.dark.surface },
+  cardMargin: { marginTop: 10 },
+  accountInfo: { flexDirection: "row", gap: 16, alignItems: "center" },
   avatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
     backgroundColor: colors.churchBlue,
     alignItems: "center",
     justifyContent: "center",
   },
-  accountDetails: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  accountName: {
-    fontSize: 18,
-    fontWeight: "600" as const,
-    marginBottom: 4,
-  },
-  accountEmail: {
-    fontSize: 14,
-    marginBottom: 8,
-  },
+  accountDetails: { flex: 1 },
+  accountName: { fontSize: 17, fontWeight: "600" as const, marginBottom: 3 },
+  accountEmail: { fontSize: 13, marginBottom: 8 },
   statusBadge: {
     alignSelf: "flex-start",
-    backgroundColor: colors.professionalBlue,
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    borderRadius: 10,
   },
-  statusText: {
-    color: colors.white,
-    fontSize: 12,
-    fontWeight: "600" as const,
-  },
+  statusText: { color: colors.white, fontSize: 12, fontWeight: "600" as const },
   settingRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  settingColumn: {
-    gap: 16,
+  settingColumn: { gap: 16 },
+  settingLeft: { flexDirection: "row", alignItems: "center", gap: 12 },
+  settingLabel: { fontSize: 16, fontWeight: "500" as const },
+  toggle: {
+    width: 51,
+    height: 31,
+    borderRadius: 16,
+    justifyContent: "center",
+    paddingHorizontal: 2,
   },
-  settingLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
+  toggleThumb: {
+    width: 27,
+    height: 27,
+    borderRadius: 14,
+    backgroundColor: colors.white,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
   },
-  settingLabel: {
-    fontSize: 16,
-    fontWeight: "500" as const,
-  },
-  fontSizeOptions: {
-    flexDirection: "row",
-    gap: 8,
-    flexWrap: "wrap",
-  },
+  fontSizeOptions: { flexDirection: "row", gap: 8, flexWrap: "wrap" },
   fontSizeButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
@@ -283,45 +262,16 @@ const styles = StyleSheet.create({
     fontWeight: "500" as const,
     color: colors.mediumGray,
   },
-  fontSizeButtonTextDark: {
-    color: colors.dark.text,
-  },
-  fontSizeButtonTextActive: {
-    color: colors.white,
-  },
-  signOutCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-  },
-  signOutCardLight: {
-    backgroundColor: "#fff1f0",
-  },
-  signOutCardDark: {
-    backgroundColor: "#2a1a1a",
-  },
-  signOutText: {
-    fontSize: 16,
-    fontWeight: "600" as const,
-    color: colors.error,
-  },
-  footer: {
-    alignItems: "center",
-    paddingVertical: 24,
-  },
-  footerText: {
-    fontSize: 14,
-  },
-  textLight: {
-    color: colors.light.text,
-  },
-  textDark: {
-    color: colors.dark.text,
-  },
-  subtextLight: {
-    color: colors.light.textSecondary,
-  },
-  subtextDark: {
-    color: colors.dark.textSecondary,
-  },
+  fontSizeButtonTextDark: { color: colors.dark.text },
+  fontSizeButtonTextActive: { color: colors.white, fontWeight: "600" as const },
+  signOutCard: { flexDirection: "row", alignItems: "center", gap: 12 },
+  signOutCardLight: { backgroundColor: "#fff1f0" },
+  signOutCardDark: { backgroundColor: "#2a1a1a" },
+  signOutText: { fontSize: 16, fontWeight: "600" as const, color: colors.error },
+  footer: { alignItems: "center", paddingVertical: 32 },
+  footerText: { fontSize: 13 },
+  textLight: { color: colors.light.text },
+  textDark: { color: colors.dark.text },
+  subtextLight: { color: colors.light.textSecondary },
+  subtextDark: { color: colors.dark.textSecondary },
 });

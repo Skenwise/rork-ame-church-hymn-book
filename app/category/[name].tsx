@@ -1,5 +1,5 @@
-import { Stack, router } from "expo-router";
-import { Heart, ChevronRight, Lock } from "lucide-react-native";
+import { Stack, useLocalSearchParams, router } from "expo-router";
+import { ArrowLeft, ChevronRight, Lock } from "lucide-react-native";
 import React from "react";
 import {
   View,
@@ -12,12 +12,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
+import { HYMNS } from "@/mocks/hymns";
+import { Hymn } from "@/types/hymn";
 
-export default function FavoritesScreen() {
-  const { favoriteHymns, isDarkMode: isDark, textScale } = useApp();
+export default function CategoryScreen() {
+  const { name: rawName } = useLocalSearchParams<{ name: string }>();
+  const name = rawName ? decodeURIComponent(rawName) : "";
+  const { isDarkMode: isDark, textScale, canAccessHymn } = useApp();
 
-  const renderHymnItem = ({ item }: { item: typeof favoriteHymns[0] }) => {
-    const isLocked = !item.isUnlocked;
+  const categoryHymns: typeof HYMNS = HYMNS.filter((hymn) => hymn.category === name);
+
+  const renderHymnItem = ({ item }: { item: Hymn }) => {
+    const hasAccess = canAccessHymn(item.number);
 
     return (
       <TouchableOpacity
@@ -38,23 +44,13 @@ export default function FavoritesScreen() {
             >
               {item.title}
             </Text>
-            <Text
-              style={[
-                styles.hymnCategory,
-                isDark ? styles.subtextDark : styles.subtextLight,
-                { fontSize: Math.round(14 * textScale) },
-              ]}
-            >
-              {item.category}
-            </Text>
           </View>
         </View>
         <View style={styles.hymnRight}>
-          <Heart size={16} color={colors.error} fill={colors.error} />
-          {isLocked ? (
-            <Lock size={16} color={isDark ? colors.dark.textSecondary : colors.light.textSecondary} />
-          ) : (
+          {hasAccess ? (
             <ChevronRight size={16} color={isDark ? colors.dark.textSecondary : colors.light.textSecondary} />
+          ) : (
+            <Lock size={16} color={isDark ? colors.dark.textSecondary : colors.light.textSecondary} />
           )}
         </View>
       </TouchableOpacity>
@@ -69,30 +65,29 @@ export default function FavoritesScreen() {
       <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.header}>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <ArrowLeft size={24} color={isDark ? colors.dark.text : colors.light.primary} />
+        </TouchableOpacity>
         <Text style={[styles.headerTitle, isDark ? styles.textDark : styles.textLight]}>
-          Favorites
+          {name}
         </Text>
         <Text style={[styles.headerSubtitle, isDark ? styles.subtextDark : styles.subtextLight]}>
-          {favoriteHymns.length} {favoriteHymns.length === 1 ? "hymn" : "hymns"}
+          {categoryHymns.length} {categoryHymns.length === 1 ? "hymn" : "hymns"}
         </Text>
       </View>
 
-      {favoriteHymns.length === 0 ? (
+      {categoryHymns.length === 0 ? (
         <View style={styles.emptyContainer}>
-          <Heart size={48} color={isDark ? colors.dark.textSecondary : colors.light.textSecondary} />
-          <Text style={[styles.emptyTitle, isDark ? styles.textDark : styles.textLight]}>
-            No favorites yet
-          </Text>
           <Text style={[styles.emptyText, isDark ? styles.subtextDark : styles.subtextLight]}>
-            Tap the heart icon on hymns to add them to your favorites
+            No hymns found in this category.
           </Text>
         </View>
       ) : (
         <FlatList
-          data={favoriteHymns}
+          data={categoryHymns}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={renderHymnItem}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.listContent}
+          contentContainerStyle={styles.listContainer}
           showsVerticalScrollIndicator={false}
         />
       )}
@@ -101,18 +96,21 @@ export default function FavoritesScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  containerLight: {
-    backgroundColor: colors.light.background,
-  },
-  containerDark: {
-    backgroundColor: colors.dark.background,
-  },
+  container: { flex: 1 },
+  containerLight: { backgroundColor: colors.light.background },
+  containerDark: { backgroundColor: colors.dark.background },
   header: {
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingTop: 16,
+    paddingBottom: 12,
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 8,
   },
   headerTitle: {
     fontSize: 28,
@@ -121,9 +119,9 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: colors.mediumGray,
+    color: colors.mutedGray,
   },
-  listContent: {
+  listContainer: {
     paddingHorizontal: 20,
     paddingBottom: 40,
   },
@@ -131,6 +129,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 16,
+    paddingHorizontal: 12,
     borderRadius: 12,
     marginBottom: 8,
   },
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 8,
-    backgroundColor: colors.professionalBlue,
+    backgroundColor: colors.crimson,
     alignItems: "center",
     justifyContent: "center",
     marginRight: 12,
@@ -161,16 +160,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700" as const,
   },
-  hymnInfo: {
-    flex: 1,
-  },
+  hymnInfo: { flex: 1 },
   hymnTitle: {
     fontSize: 16,
     fontWeight: "600" as const,
-    marginBottom: 4,
-  },
-  hymnCategory: {
-    fontSize: 14,
   },
   hymnRight: {
     flexDirection: "row",
@@ -183,26 +176,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 40,
   },
-  emptyTitle: {
-    fontSize: 20,
-    fontWeight: "600" as const,
-    marginTop: 16,
-    marginBottom: 8,
-  },
   emptyText: {
     fontSize: 16,
     textAlign: "center",
   },
-  textLight: {
-    color: colors.light.text,
-  },
-  textDark: {
-    color: colors.dark.text,
-  },
-  subtextLight: {
-    color: colors.light.textSecondary,
-  },
-  subtextDark: {
-    color: colors.dark.textSecondary,
-  },
+  textLight: { color: colors.light.text },
+  textDark: { color: colors.dark.text },
+  subtextLight: { color: colors.light.textSecondary },
+  subtextDark: { color: colors.dark.textSecondary },
 });

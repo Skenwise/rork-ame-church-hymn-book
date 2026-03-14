@@ -3,16 +3,16 @@ import createContextHook from "@nkzw/create-context-hook";
 import { useEffect, useState, useMemo } from "react";
 
 import { HYMNS, FREE_PREVIEW_COUNT } from "@/mocks/hymns";
-import { FontSize } from "@/types/hymn";
+import { TextScale } from "@/types/hymn";
 
 import { useAuth } from "./auth-context";
 import { usePurchases } from "./purchases-context";
 
 export const [AppContext, useApp] = createContextHook(() => {
-  const { user, deviceId } = useAuth();
+  const { user } = useAuth();
   const { isPremium: isRCPremium, isLoadingCustomerInfo } = usePurchases();
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
-  const [fontSize, setFontSize] = useState<FontSize>("medium");
+  const [textScale, setTextScale] = useState<TextScale>(1.0);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [language, setLanguage] = useState<"english" | "bemba">("english");
   const [isLoadingAppState, setIsLoadingAppState] = useState(true);
@@ -23,9 +23,9 @@ export const [AppContext, useApp] = createContextHook(() => {
 
   const loadAppState = async () => {
     try {
-      const [favoritesStr, fontSizeStr, darkModeStr, languageStr] = await Promise.all([
+      const [favoritesStr, textScaleStr, darkModeStr, languageStr] = await Promise.all([
         AsyncStorage.getItem("favorites"),
-        AsyncStorage.getItem("fontSize"),
+        AsyncStorage.getItem("textScale"),
         AsyncStorage.getItem("isDarkMode"),
         AsyncStorage.getItem("language"),
       ]);
@@ -33,8 +33,8 @@ export const [AppContext, useApp] = createContextHook(() => {
       if (favoritesStr) {
         setFavorites(new Set(JSON.parse(favoritesStr)));
       }
-      if (fontSizeStr) {
-        setFontSize(fontSizeStr as FontSize);
+      if (textScaleStr) {
+        setTextScale(parseFloat(textScaleStr) as TextScale);
       }
       if (darkModeStr) {
         setIsDarkMode(darkModeStr === "true");
@@ -60,11 +60,11 @@ export const [AppContext, useApp] = createContextHook(() => {
     await AsyncStorage.setItem("favorites", JSON.stringify([...newFavorites]));
   };
 
-  const updateFontSize = async (size: FontSize) => {
-    console.log("Updating font size to:", size);
-    setFontSize(size);
-    await AsyncStorage.setItem("fontSize", size);
-    console.log("Font size updated and saved to AsyncStorage");
+  const updateTextScale = async (scale: TextScale) => {
+    console.log("Updating text scale to:", scale);
+    setTextScale(scale);
+    await AsyncStorage.setItem("textScale", String(scale));
+    console.log("Text scale updated and saved to AsyncStorage");
   };
 
   const toggleDarkMode = async () => {
@@ -99,16 +99,15 @@ export const [AppContext, useApp] = createContextHook(() => {
   return {
     isPaid,
     favorites,
-    fontSize,
+    textScale,
     isDarkMode,
     language,
     isLoadingAppState: isLoadingAppState || isLoadingCustomerInfo,
-    deviceId,
     availableHymns,
     favoriteHymns,
     canAccessHymn,
     toggleFavorite,
-    updateFontSize,
+    updateTextScale,
     toggleDarkMode,
     toggleLanguage,
   };

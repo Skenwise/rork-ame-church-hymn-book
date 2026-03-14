@@ -12,20 +12,20 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 
 import {
-  CALL_TO_WORSHIP_ENGLISH,
-  CALL_TO_WORSHIP_BEMBA,
-} from "@/constants/call-to-worship";
+  DECALOGUE_ENGLISH,
+  DECALOGUE_BEMBA,
+} from "@/constants/decalogue";
 import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 
 type Language = "english" | "bemba";
 
-export default function CallToWorshipScreen() {
+export default function DecalogueScreen() {
   const { isDarkMode: isDark, textScale } = useApp();
   const [language, setLanguage] = useState<Language>("english");
 
   const content =
-    language === "english" ? CALL_TO_WORSHIP_ENGLISH : CALL_TO_WORSHIP_BEMBA;
+    language === "english" ? DECALOGUE_ENGLISH : DECALOGUE_BEMBA;
 
   return (
     <SafeAreaView
@@ -36,7 +36,7 @@ export default function CallToWorshipScreen() {
 
       <View style={styles.header}>
         <Text style={[styles.headerTitle, isDark ? styles.textDark : styles.textLight]}>
-          Call to Worship
+          Decalogue
         </Text>
       </View>
 
