@@ -18,6 +18,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
+import { useAuth } from "@/contexts/auth-context";
 import { HYMNS } from "@/mocks/hymns";
 
 type SortType = "numerical" | "alphabetical";
@@ -36,6 +37,7 @@ const categories: { name: string; icon: any; colors: [string, string] }[] = [
 
 export default function HomeScreen() {
   const { isPaid, canAccessHymn, isDarkMode: isDark, language, toggleLanguage } = useApp();
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState<SortType>("numerical");
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
@@ -192,8 +194,18 @@ export default function HomeScreen() {
           <TouchableOpacity style={styles.iconButton} onPress={() => router.push("/search" as any)}>
             <Search size={20} color={isDark ? colors.dark.text : colors.light.primary} />
           </TouchableOpacity>
-          {!isPaid && (
-            <TouchableOpacity style={styles.signInPill} onPress={() => Linking.openURL("https://17thdistrictrayac.org/sign-in")}>
+          {user ? (
+            <TouchableOpacity 
+              style={styles.userPill} 
+              onPress={() => router.push("/settings" as any)}
+            >
+              <Text style={styles.userPillText}>
+                {user.displayName?.split(' ')[0] || 'Profile'}
+              </Text>
+              <Crown size={14} color={isPaid ? colors.amber : colors.mutedGray} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.signInPill} onPress={() => Linking.openURL("https://17thdistrictrayac.org/sign-in?source=app")}>
               <LogIn size={16} color={colors.white} />
               <Text style={styles.signInPillText}>Sign In</Text>
             </TouchableOpacity>
@@ -363,6 +375,22 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 14,
     fontWeight: "700",
+  },
+  userPill: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(227,27,35,0.1)",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    gap: 6,
+    borderWidth: 1,
+    borderColor: "rgba(227,27,35,0.3)",
+  },
+  userPillText: {
+    color: colors.crimson,
+    fontSize: 14,
+    fontWeight: "600",
   },
   searchBarContainer: {
     overflow: "hidden",
@@ -632,4 +660,4 @@ const styles = StyleSheet.create({
   hymnRowCategory: {
     fontSize: 13,
   },
-});7
+});

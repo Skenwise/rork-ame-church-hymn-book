@@ -78,8 +78,10 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     const inAuthGroup = segments[0] === "(tabs)";
 
     if (!user && inAuthGroup) {
-      router.replace("/sign-in");
-    } else if (user && !inAuthGroup && segments[0] !== "unlock" && segments[0] !== "hymn" && segments[0] !== "settings") {
+      // No login page needed — user stays on home with free hymns
+      // The lock system will handle premium content restrictions
+      return;
+    } else if (user && !inAuthGroup && segments[0] !== "unlock" && segments[0] !== "hymn" && segments[0] !== "settings" && segments[0] !== "auth-callback") {
       router.replace("/");
     }
   }, [user, isLoading, segments, router]);
@@ -108,8 +110,10 @@ function RootLayoutNav() {
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="settings" options={{ headerShown: false }} />
+      {/* Root settings screen removed to avoid conflict with tabs/settings */}
+      {/* <Stack.Screen name="settings" options={{ headerShown: false }} /> */}
       <Stack.Screen name="hymn/[id]" options={{ headerShown: false }} />
+      <Stack.Screen name="auth-callback" options={{ headerShown: false }} />
       <Stack.Screen 
         name="unlock" 
         options={{ 

@@ -15,7 +15,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useApp } from "@/contexts/app-context";
 import { usePurchases } from "@/contexts/purchases-context";
 
-const PAYMENT_URL = "https://districtrayac.web.app/hymn-book";
+// Direct checkout URL with source=app parameter
+const PAYMENT_URL = "https://17thdistrictrayac.org/checkout?product=Hymn+Book&price=50&currency=ZMW&source=app";
 
 export default function UnlockScreen() {
   const { isDarkMode: isDark } = useApp();
