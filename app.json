@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.districtrayac.hymnbook",
+      "package": "app.rork.ame_church_hymn_book",
       "googleServicesFile": "./google-services.json"
     },
     "web": {
