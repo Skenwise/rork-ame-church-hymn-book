@@ -2,7 +2,7 @@
   "expo": {
     "name": "AME Church Hymn Book",
     "slug": "ame-church-hymn-book",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "rayac-hymn",
@@ -23,7 +23,8 @@
         "backgroundColor": "#ffffff"
       },
       "package": "app.rork.ame_church_hymn_book",
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
