@@ -1,12 +1,14 @@
 import { Stack } from "expo-router";
 import { Moon, Sun, Type, LogOut, User } from "lucide-react-native";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Alert,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -19,6 +21,7 @@ export default function SettingsScreen() {
   const { user, signOut } = useAuth();
   const { textScale, updateTextScale, isDarkMode, toggleDarkMode, isPaid } = useApp();
   const isDark = isDarkMode;
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   const textScales: TextScale[] = [0.85, 1.0, 1.2, 1.4];
 
@@ -27,6 +30,39 @@ export default function SettingsScreen() {
     1.0: "Medium",
     1.2: "Large",
     1.4: "Extra Large",
+  };
+
+  const handleSignOut = async () => {
+    Alert.alert(
+      "Sign Out",
+      "Are you sure you want to sign out? You will only have access to the first 10 hymns.",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Sign Out",
+          style: "destructive",
+          onPress: async () => {
+            setIsSigningOut(true);
+            try {
+              // Sign out from Firebase
+              await signOut();
+              
+              // Show confirmation
+              Alert.alert(
+                "Signed Out",
+                "You are now in free preview mode. Sign in again to unlock all hymns.",
+                [{ text: "OK" }]
+              );
+            } catch (error) {
+              console.error("Sign out failed:", error);
+              Alert.alert("Error", "Failed to sign out. Please try again.");
+            } finally {
+              setIsSigningOut(false);
+            }
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -149,11 +185,19 @@ export default function SettingsScreen() {
               styles.card,
               styles.signOutCard,
               isDark ? styles.signOutCardDark : styles.signOutCardLight,
+              isSigningOut && styles.signOutCardDisabled,
             ]}
-            onPress={signOut}
+            onPress={handleSignOut}
+            disabled={isSigningOut}
           >
-            <LogOut size={20} color={colors.error} />
-            <Text style={styles.signOutText}>Sign Out</Text>
+            {isSigningOut ? (
+              <ActivityIndicator size="small" color={colors.error} />
+            ) : (
+              <LogOut size={20} color={colors.error} />
+            )}
+            <Text style={styles.signOutText}>
+              {isSigningOut ? "Signing Out..." : "Sign Out"}
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -267,6 +311,7 @@ const styles = StyleSheet.create({
   signOutCard: { flexDirection: "row", alignItems: "center", gap: 12 },
   signOutCardLight: { backgroundColor: "#fff1f0" },
   signOutCardDark: { backgroundColor: "#2a1a1a" },
+  signOutCardDisabled: { opacity: 0.6 },
   signOutText: { fontSize: 16, fontWeight: "600" as const, color: colors.error },
   footer: { alignItems: "center", paddingVertical: 32 },
   footerText: { fontSize: 13 },

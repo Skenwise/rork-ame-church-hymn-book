@@ -14,9 +14,11 @@ export default function TabLayout() {
         tabBarActiveTintColor: "#E31B23",
         tabBarInactiveTintColor: isDark ? "#555" : "#A1A1AA",
         tabBarStyle: {
-          backgroundColor: isDark ? "#1a1a1a" : "#F9F7F0",
-          borderTopWidth: StyleSheet.hairlineWidth,
-          borderTopColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)",
+          backgroundColor: "transparent",
+          position: "absolute",
+          borderTopWidth: 0,
+          elevation: 0,
+          shadowOpacity: 0,
         },
         tabBarLabelStyle: {
           fontSize: 10,

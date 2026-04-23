@@ -35,6 +35,14 @@ const categories: { name: string; icon: any; colors: [string, string] }[] = [
   { name: "Salvation", icon: Cross, colors: [colors.churchBlue, colors.professionalBlue] },
 ];
 
+// NEW: Hymn of the Day function - changes daily based on day of year
+const getHymnOfTheDay = () => {
+  const today = new Date();
+  const startOfYear = new Date(today.getFullYear(), 0, 0);
+  const dayOfYear = Math.floor((today.getTime() - startOfYear.getTime()) / (1000 * 60 * 60 * 24));
+  return HYMNS[dayOfYear % HYMNS.length];
+};
+
 export default function HomeScreen() {
   const { isPaid, canAccessHymn, isDarkMode: isDark, language, toggleLanguage } = useApp();
   const { user } = useAuth();
@@ -42,6 +50,9 @@ export default function HomeScreen() {
   const [sortType, setSortType] = useState<SortType>("numerical");
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const searchHeightAnim = useRef(new Animated.Value(0)).current;
+
+  // NEW: Get hymn of the day
+  const hymnOfTheDay = getHymnOfTheDay();
 
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -239,9 +250,9 @@ export default function HomeScreen() {
             <Church size={24} color={colors.white} style={{ opacity: 0.5 }} />
           </View>
           <View style={styles.heroBottom}>
-            <Text style={styles.heroNumber}>{HYMNS[0].number}</Text>
-            <Text style={styles.heroTitle}>{HYMNS[0].title}</Text>
-            <Text style={styles.heroCategory}>{HYMNS[0].category}</Text>
+            <Text style={styles.heroNumber}>{hymnOfTheDay.number}</Text>
+            <Text style={styles.heroTitle}>{hymnOfTheDay.title}</Text>
+            <Text style={styles.heroCategory}>{hymnOfTheDay.category}</Text>
           </View>
         </LinearGradient>
       </View>
