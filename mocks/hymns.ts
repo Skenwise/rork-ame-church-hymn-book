@@ -3864,11 +3864,11 @@ export const HYMNS: Hymn[] = [
     category: "Giving/Offering",
     verses: [],
     versesBemba: [
-      "Conse ico Lesa kupela\nUmubwesesheko Kamo\nAlefwaya ubupe\nNgolemubelelo luse",
-      "Mona yesu alekulomba\nMupeko nangu kanono\nNao wine alekutasha\nNgolemubelelo luse",
+      "Conse ico Lesa kupela\nUmubwesesheko Kamo\nAlefwaya ubupe\mNgolemubelelo Luse",
+      "Mona yesu ailekulomba\nMupeko nangu kanono\nNao wine alekutasha\nNgolemubelelo luse",
       "Nombia iwe wimutana\nWansala nasapula\nIwe wiba na butani\nSokolola ako ukwete",
-      "Wimubepa uti shikwete\nIco kwete e wakupa\nAkupo mweo ne fyakulya\nBweshako kamo akwakupa\nNombia iwe wimutana\nWansala nasapula\nIwe wiba na butani\nSokolola ako ukwete",
-      "Nga cakwafya wibukishe\nInsala yakwe no bwamba\nNga wapola wibukishe\nUyo ucili mulwele\nNombia iwe wimutana\nWansala nasapula\nIwe wiba na butani\nSokolola ako ukwete\nAmen"
+      "Wimubepa uti shikwete\nIco kwete e wakupa\nAkupo mweo ne fyakulya\nBweshako kamo akwakupa",
+      "Nga cakwafya wibukishe\nInsala yakwe no bwamba\nNga wapola wibukishe\nUyo ucili mulwele\nAmen"
     ],
   },
   {
