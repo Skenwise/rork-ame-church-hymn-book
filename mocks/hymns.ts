@@ -1784,9 +1784,9 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Cibuta, Cibuta, Cibuta ni lesa, Aba mu lubuto lukalamba, Wene wakaele tumucindikishe, Ekala mwibumba ilikulu",
-      "Cibuta, Cibuta, Cibuta ni lesa, Alafukaminwa na mabumba,\nAbangeli bakwe alibatemwisha,\nBemba na mashiwi ya mupashi.",
-      "Cibuta, Cibuta, Cibuta ni lesa, Umulu ewakwe e wa panga,\nAbwa balefwaya ukuyafikako\nBalape baleke ukubifya.",
-      "Cibuta, Cibuta, Cibuta ni lesa, Ababipa tabakamumone,\nNgabamulolesha kuti batutuma\nNgalebepushe co babifishe.",
+      "Cibuta, Cibuta, Cibuta ni lesa, Alafukaminwa na mabumba, Abangeli bakwe alibatemwisha, Bemba na mashiwi ya mupashi.",
+      "Cibuta, Cibuta, Cibuta ni lesa, Umulu ewakwe e wa panga, Abwa balefwaya ukuyafikako\nBalape baleke ukubifya.",
+      "Cibuta, Cibuta, Cibuta ni lesa, Ababipa tabakamumone, Ngabamulolesha kuti batutuma\nNgalebepushe co babifishe.",
       "Bakaele beka abo abasalwa,\nAbo abasambwa mumulopa,\nMulopa wa mwana uwabasumina,\nEbakayaninako ku mulu.\nAmen"
     ],
   },
@@ -2072,7 +2072,7 @@ export const HYMNS: Hymn[] = [
     category: "Worship",
     verses: [],
     versesBemba: [
-      "Lesa kabumba wafyonse Ifyabako niwe weka,\nNiwe weka wafimike Fyakuwamine fye fyonse",
+      "Lesa kabumba wafyonse Ifyabako niwe weka \nNiwe weka wafimike Fyakuwamine fye fyonse",
       "Wabumbile fintu fyonse Takwali uko waipwishe\nWafilengele fye weka Takwali nowakwafile",
       "Maka yobe yabombele Amaka ayacila fyonse\nFyalibelela fyonse Na maka ya kupapisha",
       "Ifintu fyonse fikapwa Kukashala we wa maka\nFyonse fikapwili lika Iwe uli muyayaya\nAmen"
