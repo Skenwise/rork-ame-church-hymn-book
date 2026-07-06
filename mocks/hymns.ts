@@ -2156,12 +2156,12 @@ export const HYMNS: Hymn[] = [
     category: "Funeral",
     verses: [],
     versesBemba: [
-      "Bwafika bulya bushiku Ubo batweba fye bonse\nBwa malilo ne filamba Ku bantu na bena Iupwa",
-      "Nomba twaisa ku nshishi Ku kushiko mutemwikwa\nMwe balupwa na bafyashi Mwamulufya nomba aya",
-      "Iceleta ilya kumbo Nalifika lyamusenda\nAbamushilo batemwa Ifwe tuli mu bulanda",
-      "Umupashi wile kale Wile ukuya abafwa\nKu calo icakwe Lesa Icatekwa na katula",
-      "Uwasumina leanga Engile ku muyayaya\nNapoka ne ngala yakwe Ku mfumu yepusukilo",
-      "Wewishile kuno nshishi Bushe ukayafikako?\nIleo sumina Lesa waluse ukupusuka\nAmen"
+      "Bwafika bulya bushiku\nUbo batweba fye bonse\nBwa malilo ne filamba\nKu bantu na bena Iupwa",
+      "Nomba twaisa ku nshishi\nKu kushiko mutemwikwa\nMwe balupwa na bafyashi Mwamulufya nomba aya",
+      "Iceleta ilya kumbo\nNalifika lyamusenda\nAbamushilo batemwa\nIfwe tuli mu bulanda",
+      "Umupashi wile kale\nWile ukuya abafwa\nKu calo icakwe Lesa\nIcakwa na katula",
+      "Uwasumina leanga\nEngile ku muyayaya\nNapoka ne ngala yakwe\nKu mfumu yepusukilo",
+      "We wishile kuno nshishi\nBushe ukayafikako?\nIlelo sumina Lesa\nWaluse ukupusuka",
     ],
   },
   {
@@ -2172,15 +2172,12 @@ export const HYMNS: Hymn[] = [
     category: "Benediction",
     verses: [],
     versesBemba: [
-      "Lesa wesu atusunge Atucinge abe nefwe\nTube ba mwibumba lyakwe Tukasuke tumonane",
-      "Tumonane, tumonane pa makasa yakwe yesu\nTumonane, tumonane, tumonane, tumonane",
-      "Yesu wesu mube nefwe Mutufishe kuli Lesa\nMutupele kuli shinwe Tukasuka tumonane",
-      "Tumonane, tumonane pa makasa yakwe yesu\nTumonane, tumonane, tumonane, tumonane",
-      "Lesa wesu abe nefwe Amacushi yesu yonse\nYabe mu maboko yakwe Tukasuka tumonane",
-      "Tumonane, tumonane pa makasa yakwe yesu\nTumonane, tumonane, tumonane, tumonane",
-      "Lesa wesu abe nefwe Tusungwe no luse lwakwe\nTucimfye amaka ya mfwa Tukasuka tumonane",
-      "Tumonane, tumonane pa makasa yakwe yesu\nTumonane, tumonane, tumonane, tumonane",
-      "Shalenipo no mutende Poseni fyonse fya calo\nFilekeni mukeseko Ku calo ica kuntanshi.\nAmen"
+      "Lesa wesu atusunge\nAtucinge abe nefwe\nTube ba mwibumba lyakwe\nTukasuke tumonane",
+      "Tumonane, tumonane\nPa makasa yakwe yesu\nTumonane, tumonane\nTumonane, tumonane",
+      "Yesu wesu mube nefwe\nMutufishe kuli Lesa\nMutupele kuli Shinwe\nTukasuka tumonane",
+      "Lesa wesu abe nefwe\nAmacushi yesu yonse\nYabe mu maboko yakwe\nTukasuka tumonane",
+      "Lesa wesu abe nefwe\nTusungwe no luse lwakwe\nTucimfye amaka ya mfwa\nTukasuka tumonane",
+      "Shalenipo no mutende\nPoseni fyonse fya calo\nFilekeni mukeseko\nKu calo ica kuntanshi",
     ],
   },
   {
@@ -2191,9 +2188,9 @@ export const HYMNS: Hymn[] = [
     category: "Benediction",
     verses: [],
     versesBemba: [
-      "Lesa wesu abe nobe Akusunge ne cikuku\nAkopyo tulo tusuma Tukamonane kabili",
-      "Mulubushi abe nobe Nangu fimo fikutinye\nAkusende mu maboko Tukamonane kabili",
-      "Kasansamusha abe nobe Usungwe pamo na bakwe\nPanshi ya mapindo yakwe Tukamonane kabili.\nAmen"
+      "Lesa wesu abe nobe\nAkusunge ne cikuku\nAkupyo tulo tusuma\nTukamonane kabili",
+      "Mulubushi abe nobe\nNangu fimo fikutinye\nAkusende mu maboko\nTukamonane kabili",
+      "Kasansamusha abe nobe\nUsungwe pamo na bakwe\nPanshi ya mapindo yakwe\nTukamonane kabili",
     ],
   },
   {
@@ -2204,12 +2201,10 @@ export const HYMNS: Hymn[] = [
     category: "Spirituals",
     verses: [],
     versesBemba: [
-      "Nalolesha Yordan nga namwenenshi?\nLyaishilo kwisa nsenda Abangeli balenkonkelela\nLyaishilo kwisa nsenda",
-      "Ika we celeta waishilo kwisa nsenda\nIka we celeta waishilo kwisa nsenda",
-      "Nga wafika ilyo nshilati mfike Lyaishilo kwisa nsenda\nKube abanandi ndi mu nshila Lyaishilo kwisa nsenda",
-      "Ika we celeta waishilo kwisa nsenda\nIka we celeta waishilo kwisa nsenda",
-      "Limo ni nseko limo bulanda Lyaishilo kwisa nsenda\nLelo ncilanguluke fya mulu Lyaishilo kwisa nsenda",
-      "Ika we celeta waishilo kwisa nsenda\nIka we celeta waishilo kwisa nsenda"
+      "Nalolesha Yordan nga namwenenshi?\nLyaishilo kwisa nsenda\nAba balenkonkelela\nLyaishilo kwisa nsenda",
+      "Ika we Celeta\nWaishilo kwisa nsenda\nIka we celeta\nWaishilo kwisa nsenda",
+      "Nga wafika ilyo nshilati mfike\nLyaishilo kwisa nsenda\nKebe abanandi ndi mu nshila\nLyaishilo kwisa nsenda",
+      "Limo ni nseko limo bulanda\nLyaishilo kwisa nsenda\nLelo ncilanguluke fya mulu\nLyaishilo kwisa nsenda",
     ],
   },
   {
