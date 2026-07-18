@@ -2959,12 +2959,12 @@ export const HYMNS: Hymn[] = [
     category: "Assurance",
     verses: [],
     versesBemba: [
-      "Ntendwe ne calo cafulo bubi\nNtendwe ne calo cafula bubi\nNdelolesho mulu ndefuluka kwene fibi tafyaba ne ncende\nKwena nintesha baleti, “Isa”",
+      "Ntendwe ne calo cafulo bubi\nNdelolesho mulu ndefuluka\nKwene fibi tafyaba ne ncende\nKwena nintesha baleti, “Isa”",
       "Ne wabipisha nga kuya shani\nMu lulumbi Iwa calo cabene\nNje moneke ku cipuna cilya\nUkuba kwena balesengela",
-      "Ndeti naesho kuye ya mulu\nBubi nabo elintu bwapimpa\nNalya line ncili teshe landwe\nLapila yebelelyo pusuke",
-      "Lishiwi lyakwa yesu ndeumfwa\nMaboko yakwe natabilika\nMulopa wakwe watulubula\nTwalulwa ku fyabipa fynse",
-      "Mwandi ngasukila mfumu yandi\nUluse lobe nani citambu\nImyunga yobe ine cilongwe\nNo kupoko mweo wambikila",
-      "Nshikwete kantu kakukupela\nUleke fyo mutima wisule\nFyabupe bwandí no kutotela\nFingi njellelwa nani ntemwishe."
+      "Ndeti naesho kuye ya mulu\nBubi nabo elintu bwapimpa\nNelyo line ncili teshe landwe\nLapila yebelelyo pusuke",
+      "Ishiwi lyakwa yesu ndeumfwa\nMaboko yakwe natambalika\nMulopa wakwe watulubula\nTwalubulwa ku fyabipa fynse",
+      "Mwandi ngasukila Mfumu yandi\nUluse lobe nani cilambu\nImyunga yobe ine cilongwe\nNo kupoko mweo wambikila",
+      "Nshikwete kantu kakukupela\nUleke fyo mutima wisule\nFyabupe bwandí no kutotela\nFingi njellelwa nani ntemwisha."
     ],
   },
   {
@@ -2976,8 +2976,8 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Naumfwe shiwi Iyafuma\nNaumfwe shiwi lyafuma\nKu mulu lyanjeba lyati\nLembo tile; balishuka\nAba lefwila mu mfumu",
-      "Panuma yaifi fyonse\nMupashi asosa ati:\n“kabese bese batushe ku macushi yabo yonse”",
-      "Ati, “imilimo yabo ilebakonka bonse fye lembo tile;\nBalishuka\nEfyo mupashi asosa"
+      "Panuma yaifi fyonse\nMupashi asosa ati:\n“kabese bese batushe\nKu macushi yabo yonse”,
+      "Ati, “imilimo yabo ilebakonka bonse fye\nLembo tile;Balishuka\nEfyo mupashi asosa"
     ],
   },
   {
