@@ -410,6 +410,12 @@ export const HYMNS: Hymn[] = [
     ],
     versesBemba: [
       "Lesa wesu ube nefwe\nUtulele utusunge\nTube ba mu lupwa lobe\nTukamonane ku mulu",
+      "Tukamonana ku ntanshi\nPa makasa yakwa Yesu\nTukamonana kabili\nKu calo ico cikesa",
+      "Lesa wesu ube nefwe\nTufiswe pesamba lyobe\nUtutwale kuli Yesu\nTukamonane ku ntanshi",
+      "Lesa wesu ube nefwe\nLintu tuli mu macushi\nTube mu mapindo yobe\nTukamonane ku mulu",
+      "Lesa wesu ube nefwe\nTusungwe mu luse lobe\nTucimfye amaka ya mfwa\nTukamonane ku ntanshi",
+      "Mushale no busumino\nMwe Cilonganino panshi\nTukamonane ku ntanshi\nKu calo ico cikesa",
+      "Amen",
     ],
   },
   {
@@ -422,9 +428,10 @@ export const HYMNS: Hymn[] = [
       "Walking with Jesus, when troubles assail,\nHe is my refuge, He will not fail.",
     ],
     versesBemba: [
-      "Akwenda na yesu ilyo wililwa\nNge nshila yafika umupalame\nIlyo abalwani bakufikila\nNga wenda na yesu tekutyu tine\nwende fye uwacincila\nulekya maka yese\npe fye wende na katula\nna wene alekulondola",
-      "Akwenda na yesu konse wangala\nNangu ni mu mfifi alekulanga\nUlubuto lwakwe lubushe nshila\nNe fiswebebe fikaba libala\nwende fye uwacincila\nulekya maka yese\npe fye wende na katula\nna wene alekulondola",
-      "Akwenda na yesu nangu 'lesunta\nConse akufunda ucisumine,\nWine nga akweba upoke amaka\nPo wende na yesu uli wacine\nwende fye uwacincila\nulekya maka yese\npe fye wende na katula\nna wene alekulondola",
+      "Akwenda na yesu ilyo wililwa\nNge nshila yafika umupalame\nIlyo abalwani bakufikila\nNga wenda na yesu tekutyu utine",
+      "Wende fye uwacincila\nUlekya maka yese\nPe fye wende na katula\nNa wene alekulondola",
+      "Akwenda na yesu konse wangala\nNangu ni mu mfifi alekulanga\nUlubuto lwakwe lubushe nshila\nNe fiswebebe fikaba libala",
+      "Akwenda na yesu nangu 'lesunta\nConse akufunda ucisumine,\nWine nga akweba upoke amaka\nPo wende na yesu uli wacine",
     ],
   },
   {
@@ -441,7 +448,7 @@ export const HYMNS: Hymn[] = [
       "Nacimone cakupapa\nCamushilwe ca m'mulu\nTwasende fipe fyafina\nTuya ku kulubulwa\nTwilatina!\nTupembelelo kufwa",
       "Nacimone cakupapa\nCamushilwe ca m'mulu\nNga tulenino lupili\nTusendele fyafina\nTwilatina!\nTupembelelo kufwa",
       "Nacimone cakupapa\nCamushilwe ca m'mulu\nTubilikisha mashiwi\nTutile, \"mubelele\"\nTwilatina!\nTupembelelo kufwa",
-      "Bapupuka abangeli\nBacimufukamina\nBapupukila kwa yesu\nAbateyanishiwa\nTwilatina!\nTupembelelo kufwa",
+      "Bapupuka Abangeli\nBacimufukamina\nBapupukila kwa yesu\nAbateyanishiwa\nTwilatina!\nTupembelelo kufwa",
       "Natukutikishe bonse\nKwishiwi lya bupalo\nLishilisha no kusamba\nLileti nomba capwa;\nSeni bonse!\nMulelolela bonse",
     ],
   },
@@ -455,11 +462,12 @@ export const HYMNS: Hymn[] = [
       "Abide with us, O Lord, for it is toward evening,\nAnd the day is far spent.",
     ],
     versesBemba: [
-      "Mube nefwe mfumu yesu\nTumonyo bupalo bwenu\nTatwakwata nangu kamo\nFwe tuli bapina benu",
+      "Mube nefwe Mfumu yesu\nTumonyo bupalo bwenu\nTatwakwata nangu kamo\nFwe tuli bapina benu",
       "Mube nefwe mulubushi\nNe shiwi lyenu lisuma\nMutukoshe twinenuka\nKu mafunde yenu yonse",
       "Mube nefwe mwe lubuto\nMwise mutusanikile\nTumfwe fyonse ifyacine\nTwakatishe twinenuka",
       "Mube nefwe mwebashila\nNa maka ya kutuwamya\nMwebo ifwe tushamona\nMwe babuta bamushilo",
-      "Mube nefwe lesa wesu\nMututeke no bufumu\nTufumemo mu bulwani\nWe mfumu niwe utwafwe",
+      "Mube nefwe Lesa wesu\nMututeke no bufumu\nTufumemo mu bulwani\nWe mfumu niwe utwafwe",
+      "Amen",
     ],
   },
   {
@@ -472,9 +480,11 @@ export const HYMNS: Hymn[] = [
       "Be not dismayed whate'er betide,\nGod will take care of you;",
     ],
     versesBemba: [
-      "Mwilatina nangu cafye\nLesa akulakwafwa\nUbe mu mapindo yakwe\nLesa kulakwafwa\nLesa 'kulakwafwa\nInshiku pe na mu lwendo\nAkulakwafwa pe\nLesa kulakwafwa",
-      "Mu nshiku isha macushi\nLesa akulakwafwa\nNga wapona mu busanso\nLesa kulakwafwa\nLesa 'kulakwafwa\nInshiku pe na mu lwendo\nAkulakwafwa pe\nLesa kulakwafwa",
-      "Alekupele fyo fwaya\nLesa akulakwafwa\nTakutane fyo lefwaya\nLesa kulakwafwa\nLesa 'kulakwafwa\nInshiku pe na mu lwendo\nAkulakwafwa pe\nLesa kulakwafwa",
+      "Mwilatina nangu cafye\nLesa akulakwafwa\nUbe mu mapindo yakwe\nLesa kulakwafwa",
+      "Lesa 'kulakwafwa\nInshiku pe na mu lwendo\nAkulakwafwa pe\nLesa kulakwafwa",
+      "Mu nshiku isha macushi\nLesa akulakwafwa\nNga wapona mu busanso\nLesa kulakwafwa",
+      "Alekupele fyo fwaya\nLesa akulakwafwa\nTakutane fyo lefwaya\nLesa kulakwafwa",
+      "Amen",
     ],
   },
   {
@@ -520,7 +530,7 @@ export const HYMNS: Hymn[] = [
       "Onward, Christian soldiers, marching as to war,\nWith the cross of Jesus going on before.",
     ],
     versesBemba: [
-      "Ni mwana lesa aleya\nKu kulwa na ciwa\nUluunga lulepupa\nNani ulekonka\nWinganwako ulukombo\nLwa kuculacula\nUwasenda ulupanda\nWena alekonka",
+      "Ni Mwana Lesa aleya\nKu kulwa na ciwa\nUluunga lulepupa\nNani ulekonka\nWinganwako ulukombo\nLwa kuculacula\nUwasenda ulupanda\nWena alekonka",
       "Mpuka ya basalwa bonse\nBali no mupashi\nBaishiba shikulwimbo\nTababa na mwenso\nBakumenye umulwani\nNo kwanshe fyabipa\nBafika kumfwa balwa fye\nNani ulekonka",
       "Abaume na baice\nNabafwikwa tutu\nBamayo na bakashana\nBaanga kwa Yesu\nBalemina ulupili\nLwa kuculacula\nMwe Lesa nefwe tukonke\nMu mulongo wabo.",
     ],
@@ -535,7 +545,7 @@ export const HYMNS: Hymn[] = [
       "Blest be the tie that binds\nOur hearts in Christian love;",
     ],
     versesBemba: [
-      "Cilonganino caba pali yesu kristu\nCabe cilengo cipya ce shiwi na menshi\nAishile cifwaya ukuba nabwinga\nCashita no mulopa alicifwilile",
+      "Cilonganino caba pali Yesu Kristu\nCabe cilengo cipya ce shiwi na menshi\nAishile cifwaya ukuba nabwinga\nCashita no mulopa alicifwilile",
       "Baitwa bena fyalo ku kufyalwa cipya\nBucetekelo bumo ne mfumu imo fye\nCitashe shina limo cilyo cimo cilya\nNe cisumino cimo eco cakwatisha",
       "Mu bwafya no bulanda pamo na mu bulwi\nCilolelo mutende uwa ciyayaya\nLintu ifyalulumbi fikesamoneka\nElye cilonganino cikalatushisha",
       "Calundana panonse na lesa patatu\nCilomfwana na balya abaletusho ko\nAngeni mwe bashila mwe mfumu tupeni\nPamo nabwa bafuka tukekale nemwe.",
@@ -549,11 +559,12 @@ export const HYMNS: Hymn[] = [
     category: "Redemption",
     verses: [],
     versesBemba: [
-      "Ndeimbilo mulubshi\nUwantemwisha nganshi\nAnculile pa lupanda\nAnkakwile ku fibi",
-      "Ndeimbilo mulubushi\nAndubwile ku m’lopa\nAnjelele pa lupanda\nAndubwile mu busha",
-      "Ndeimbilo mulubushi\nIco eumpuswishe\nNa mu luse no kutemwa\nAmfutilyo mulandu",
-      "Ndeimbilo kucimfya\nIfyo atucimfisha\nFibi ne mfwa na kumbo",
-      "Ndeimbilo mulubushi\nPantu alintemwisha\nAlimpokolola mu mfwa\nKuti mbe mwana Lesa",
+      "Ndeimbilo Mulubshi\nUwantemwisha nganshi\nAnculile pa lupanda\nAnkakwile ku fibi",
+      "Ndeimbilo Mulubushi\nAndubwile ku m’lopa\nAnjelele pa lupanda\nAndubwile ku busha",
+      "Ndeimbilo Mulubushi\nIco eumpuswishe\nNa mu luse no kutemwa\nAmfutilyo mulandu",
+      "Ndeimbilo Mulubushi\nNdeishimiko kucimfya\nIfyo atucimfisha\nFibi ne mfwa na kumbo",
+      "Ndeimbilo Mulubushi\nPantu alintemwisha\nAlimpokolola mu mfwa\nKuti mbe mwana Lesa",
+      "Amen",
     ],
   },
   {
@@ -568,6 +579,7 @@ export const HYMNS: Hymn[] = [
       "Namutemwa Aleluya,\nNamutemwa Mulubushi\nNamutemwa Yesu Kristu\nAmfwilile pa Calvary",
       "Yesu nomba alefwaya,\nndemukonke nshiku pe.\nMu makasa yakwe mwine,\nmwaendele pano nse",
       "Yesu mwine akabwela, Kututwala ku mwakwe,\nEko tukalasekela, Mumusumba wakwe pe.",
+      "Amen",
     ],
   },
   {
@@ -2136,16 +2148,13 @@ export const HYMNS: Hymn[] = [
     category: "Invitation",
     verses: [],
     versesBemba: [
-      "Mona ninjiminina Pa mwinshi no kukunta\nNgo muntu omfwe shiwi Lyandi no kwasuka",
-      "Cibi ‘co caisuka, Cibi ‘co caisuka\nEukapwisha fyonse Cibi caisuka",
-      "Mwe banaka iseni No kufuta pa nsaka\nDavid aiswile cibi No kukunta",
-      "Cibi ‘co caisuka, Cibi ‘co caisuka\nEukapwisha fyonse Cibi caisuka",
-      "Panuma ya fintwi-ifi Namwene nge cabipa\nCaiswike ku mulu Shiwi lyakwa lesa",
-      "Cibi ‘co caisuka, Cibi ‘co caisuka\nEukapwisha fyonse Cibi caisuka",
-      "Mungile wakwa lesa Filadelifya lemba\nLufungulo ninkupa Cibi caisuka",
-      "Cibi ‘co caisuka, Cibi ‘co caisuka\nEukapwisha fyonse Cibi caisuka",
-      "Naisule cibi co Tapali wakwisala\nIkatisha wingile Cibi caisuka",
-      "Cibi ‘co caisuka, Cibi ‘co caisuka\nEukapwisha fyonse Cibi caisuka"
+      "Mona ninjiminina\nPa mwinshi no kukunta\nNgo muntu omfwe shiwi\nLyandi no kwasuka",
+      "Cibi ‘co caisuka\nCibi ‘co caisuka\nEukapwisha fyonse\nCibi caisuka",
+      "Mwe banaka iseni\nNo kufuta pa nsaka\nDavid aiswile cibi\nNo kukunta",
+      "Panuma ya fintwi-ifi\nNamwene nge cabipa\nCaiswike ku mulu\nShiwi lyakwa lesa",
+      "Mungeli wakwa lesa\nFiladelifya lemba\nLufungulo ninkupa\nCibi caisuka",
+      "Naisule cibi co\nTapali wakwisala\nIkatisha wingile\nCibi caisuka",
+      "Amen",
     ],
   },
   {
