@@ -1421,10 +1421,10 @@ export const HYMNS: Hymn[] = [
     category: "Prayer",
     verses: [],
     versesBemba: [
-      "Mutupele imitima\nYakulumbanisha\nImitima mwe Lesa\Iyatemwo kuwamyu",
+      "Mutupele imitima\nYakulumbanisha\nImitima mwe Lesa\nIyatemwo kuwamyu",
       "Mutupele mitima ipya\nYaba ngo mutima wenu\nUmutima wa kutemwa\nKukonka we mfumu yandi",
       "Umutima wa kutemwa\nUwa kumfwana na bambi\nUwa kutemwa bonse\nWaba ngo mutima obe",
-      "Utupyo mutima Yesu\nTukalumbanye mu cine\Tulalekeshe ku mulu\nUko tukabelelela\n\nAmen"
+      "Utupyo mutima Yesu\nTukulumbanye mu cine\Tulolekeshe ku mulu\nUko tukabelelela\n\nAmen"
     ],
   },
   {
@@ -1438,7 +1438,7 @@ export const HYMNS: Hymn[] = [
       "Lesa nangenikwe nshila\nIyaya ku mweo\nUko kuntu mwikala\nUkwa muyayaya",
       "Lesa mpelenyu yo mwana\nMwatile “Enshila;”\nYakuila ku lubuto\nPamo ne nkashi shesu",
       "Lesa nangeni kristu\nMwatile Enshila\nNdeisa nankwe kristu\nUko kuntu ekala",
-      "Wene acifishe imfwa\nKuli Lesa wakwe\nAsalile ukusulwa\nPa kututemwisha",
+      "Wene acimfishe imfwa\nKuli Lesa wakwe\nAsalile ukusulwa\nPa kututemwisha",
       "Ndekumbwa uko kutemwa\nKu cifulo cakwe\nKu bututubuko Lesa\nUbo mwamupele.\nAmen"
     ],
   },
@@ -1450,11 +1450,11 @@ export const HYMNS: Hymn[] = [
     category: "Heaven",
     verses: [],
     versesBemba: [
-      "NDEIBUKISHA KUMULU\nKUMUSHI WA BABUTA\nKU LUBUTO LWA KU PAPA NAINE\nNUMBANYE",
-      "NDEIBUKISHA KU MULU\nKU MUSHI WA KWA YESU\nMU KATI FYE KA MAKUMBI\nBALETASHA YESU",
-      "NDI MWENI MUNO MU CALO NE FIKOLWE FYANDI\nIFYALI MUNO MU CALO\nMWALIFITA FYONSE",
-      "NAINE TATA WASHILA\nSENI MU NSHILISHE\nMUPASHI WANDI UBUTE\nNKESE MONA IMWE",
-      "ABASUMINA BONSE FYE\nBALINSHA FYE BONSE\nBAISA UKO KU MULU\nNAINE KO NKESA\n\nAmen"
+     "Ndeibukisha kumulu\nKumushi wa Babuta\nKu lubuto lwa ku papa \nNaine numbanye",
+     "Ndeibukisha ku mulu\nKu mushi wakwa Yesu\nMu kati fye ka makumbi\nBaletasha Yesu",
+     "Ndi mweni muno mu calo\nNe fikolwe fyandi\nIfyali muno mu calo\nMwalifita fyonse",
+     "Naine Tata washila\nSeni mu nshilishe\nMupashi wandi ubute\nNkese mona Imwe",
+     "Abasumina bonse fye\nBalinsha fye bonse\nBaisa uko ku mulu\nNaine ko nkesa\n\nAmen"
     ],
   },
   {
@@ -1466,7 +1466,7 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Ubushiku nga bwaca\nMutima utila\nYesu alumbaniwe\ Mwipepo ne ncito\nKwa yesu ndayako\nYesu alumbaniwe",
-      "Ilyo nsenauka fye\nNshimona na tulo\nYesu alumbaniwe\nMatontonkanyo yabi\nNakulakanya neci\nYesu alumbaniwe",
+      "Ilyo nsenauka fye\nNshimona no tulo\nYesu alumbaniwe\nMatontonkanyo yabi\nNakulakanya neci\nYesu alumbaniwe",
       "Nga ndi no bulanda\nNdateko mutima\nYesu alumbaniwe\nNangu mbe fyo mupina\nKansose mu mutima\nYesu alumbaniwe",
       "Mu mulu mwa Lesa\nBangeli basosa ti\nLesa lumbaniwe\nPamo na bapanonshi\nNabo balemba bati\nYesu alumbaniwe",
       "Ulwimbo lwine ulu\nNdeimbila Yesu\nYesu alumbaniwe\nNo lu lwimbo lwa pe\nLwa myaka na myaka\nYesu alumbaniwe\n\nAmen"
@@ -1481,7 +1481,7 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Shikulu e mfumu; calo\nCisekelele ne myulu\nKonsekolele cilumbuke\nIfyo shikulu e shifwe",
-      "Shikulu e mfumu; nani\nUlemukana ku fibi\nNelyo ku mung’wing’inka\nNo kukana musumina",
+      "Shikulu e mfumu; nani\nUlemukana ku fibi\nNelyo ku mung’wing’witika\nNo kukana musumina",
       "Shikulu e mfumu wena\nE kapingula wacine\nNshila shakwe shacishinka\nAbantu kabamumwile",
       "Ateka mwe basambi mwe\nMwakulalumbanya shifwe\nNa Yesu waba mu mulu\nUwatanikwe ngo muntu",
       "Awe teti apumbile\nNo luse teti lucepe\nMwe bena mwakwe mwileka\nKwimbe fyo shifwe ateka. Amen"
@@ -1495,9 +1495,10 @@ export const HYMNS: Hymn[] = [
     category: "Christmas",
     verses: [],
     versesBemba: [
-      "Tacabala cimonwa\nulubuto ne nyimbo\nShaimbilwe mu mulu, kuli bamalaika\nNe ntanda shalalumbulumbanya\nNaisa uwa mutende\nKukwikala muli fwe\nNi yesu Kristu\nNi Yesu Imanyule",
-      "Lulya lwimbo na nomba\nLwacumfwika ku maca\nElyo lwacilaimbwa, Lubuto lwamoneka\nBapano nse balumbule\nNaisa uwa mutende\nKukwikala muli fwe\nNi yesu Kristu\nNi Yesu Imanyule",
-      "Isa we kasuba we,\nTulecindike mfumu\nNatwisa kukupepa, nokuilumbanisha\nCalo conse cilumbanye\nNaisa uwa mutende\nKukwikala muli fwe\nNi yesu Kristu\nNi Yesu Imanyule"
+      "Tacabala cimonwa\nUlubuto ne nyimbo\nShaimbilwe mu mulu, kuli bamalaika\nNe ntanda shalalumbanya",
+      "Naisa uwa mutende\nKukwikala muli fwe\nNi yesu Kristu\nNi Yesu Imanwele",
+      "Lulya lwimbo na nomba\nLwacumfwika ku maca\nElyo lwacilaimbwa, Lubuto lwamoneka\nBapanonse balumbule",
+      "Isa we kasuba we,\nTulecindike Mfumu\nNatwisa kukupepa, nokuilumbanisha\nCalo conse cilumbanye"
     ],
   },
   {
@@ -1508,7 +1509,7 @@ export const HYMNS: Hymn[] = [
     category: "Easter/Resurrection",
     verses: [],
     versesBemba: [
-      "Yesu alishukuka\nImfwa teti itutinye\nEco naishibila\nKuti yesu akanjimya",
+      "Yesu alishukuka\nImfwa teti itutinye\nEco naishibila\nKuti yesu akanjimya\nAleluya",
       "Yesu alishukuka\nAlikala pa cipuna\nEko ine ndekonka\nNje njikale nankwe pamo\nAleluya",
       "Yesu alishukuka\nUlya wine wamwilile\nNakulamubombela\nNo kumulumbanya pe fye\nAleluya",
       "Yesu alishukuka\nUmweo nangu fye ni mfwa\nTeti fitupatule\nKu temwa kwakwa Lesa\nAleluya",
@@ -1528,7 +1529,7 @@ export const HYMNS: Hymn[] = [
       "Katupalamishe\nMupepipepi\nNo kufukamisha\nPa kucelela\nNa pa kututula\nMwaishilefwa\nMwaya na ku mulu\nNefwe tukesa",
       "Ifya luse lwenu\nFyalifulisha\nNo bupanda bwenu\nBwabo bwacine\nTakwaba bulanda\nNelyo cikonko\nNa bamalaika\nBamwimbila pe",
       "Nomba akasuba\nKaya ku kuwa\nKalesanikila\nPafyo twabomba\nYaswa ipwe nshita\nKucula kupwe\nElyo mwe katula tukayatusha",
-      "Tuye lwa kuntanshi\nMu lwendo lwesu\nNga bashilishiwa\nAbakwa yesu\nTushe fya mu calo\nNatucincile\Twicebu ku numa\nTukafike fye. Amen"
+      "Tuye lwa kuntanshi\nMu lwendo lwesu\nNga bashilishiwa\nAbakwa yesu\nTushe fya mu calo\nNatucincile\nTwiceba ku numa\nTukafike fye. Amen"
     ],
   },
   {
@@ -1540,7 +1541,7 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Mwe cilibwe cakale\nKamfisame muli mwe\nUmulopa na menshi\nFyasumine pali ne\nEfyansamba ifibi\nNsangululwe muntule",
-      "Nelyo kamo nshikwete\nLupanda njikete fye\nMumfwike ndifyo bwamba\nMungafwe ne wanaka\nNomba njise ne mubi\nMuntule nikesafwa",
+      "Nelyo kamo nshikwete\nLupanda njikete fye\nMumfwike ndifyo bwamba\nMungafwe ne wamaka\nNomba njise ne mubi\nMuntule nikesafwa",
       "Milimo ya ku minwe\nTeti eyo intule\nNga nshile na mukosha\nNangu mponye filamba\nIfi teti fintule\nKano fye imwe mweka",
       "Lintu nkaleko mweo\nYakashibata menso\nNkamono ko mwikele\nPa cipuna ca cilye\nMwe cilibwe cakale\nKamfisame muli mwe.\nAmen"
     ],
