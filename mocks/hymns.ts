@@ -2179,7 +2179,7 @@ export const HYMNS: Hymn[] = [
     versesBemba: [
       "Lesa wesu abe nobe\nAkusunge ne cikuku\nAkupyo tulo tusuma\nTukamonane kabili",
       "Mulubushi abe nobe\nNangu fimo fikutinye\nAkusende mu maboko\nTukamonane kabili",
-      "Kasansamusha abe nobe\nUsungwe pamo na bakwe\nPanshi ya mapindo yakwe\nTukamonane kabili",
+      "Kasansamusha abe nobe\nUsungwe pamo na bakwe\nPanshi ya mapindo yakwe\nTukamonane kabili.\nAmen"
     ],
   },
   {
@@ -2972,7 +2972,7 @@ export const HYMNS: Hymn[] = [
     category: "Funeral",
     verses: [],
     versesBemba: [
-      "We mfwa iwe! We mulwani\nWe mfwa iwe! We mulwani\nKu fintu fyonse fya mweo\nFyonse ifya muno calo\nFyalikunakila fyonse",
+      "We mfwa iwe! We mulwani\nKu fintu fyonse fya mweo\nFyonse ifya muno calo\nFyalikunakila fyonse",
       "Icilumba cene cipwe\nWilailumba pa bumi\nUwa maka no wanaka\nNga yafika bakalila",
       "Ku bena fyalo bonse fye\nUcito bufwayo bobe\nKu bakulu na baice\nNi nshila fye imo ine",
       "Efyo lyabe funde lyobe\nTalisala talicimba\nBalumendo bakashana\nIcine cenu cikose",
@@ -2987,14 +2987,11 @@ export const HYMNS: Hymn[] = [
     category: "Evangelism",
     verses: [],
     versesBemba: [
-      "Posenyu mwando pe tenga apo\nPosenyu mwando pe tenga apo\nUmo epwali uwakutula\nMuntu alafwa nani amwafwe\nPosenipo mwando mumutule",
-      "posenyu mwando pe tenga apo\numwasendwa na matamba\nposenyu mwando wa kupususha\numwalenwena lelo",
+      "Posenyu mwando pe tenga apo\nUmo epwali uwakutula\nMuntu alafwa nani amwafwe\nPosenipo mwando mumutule",
+      "Posenyu mwando pe tenga apo\numwasendwa na matamba\nposenyu mwando wa kupususha\numwalenwena lelo",
       "Posenyu mwando bwangu mwendeshe\nMwishingashinga mwapose nshita\nNomba ibila citeni bwangu\nTwalenyu bwato mu mupusushe",
-      "posenyu mwando pe tenga apo\numwasendwa na matamba\nposenyu mwando wa kupususha\numwalenwena lelo",
       "Posenyu mwando ku ku basanshilwe\nBabunda mu bulanda ne cikonko\nCipupu na matamba fyabasenda\nUkubatwala ukwashikisha",
-      "posenyu mwando pe tenga apo\numwasendwa na matamba\nposenyu mwando wa kupususha\numwalenwena lelo",
       "Nshita yalapwa iyakutula\nBalasendelwa ku muyayaya\nEndesheni mwibaleka bafwe\nPosenyu mwando wakubatula",
-      "posenyu mwando pe tenga apo\numwasendwa na matamba\nposenyu mwando wa kupususha\numwalenwena lelo"
     ],
   },
   {
