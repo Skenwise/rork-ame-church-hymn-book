@@ -2710,8 +2710,8 @@ export const HYMNS: Hymn[] = [
     versesBemba: [
       "Akubombesha na maka Umufwaila shifwe\nEfyo yesu acitile Bushe iwe tetyu cite",
       "Bombesha pose calo Ifyuma fili ku mulu\nCenjeleni mwilumba Lumbeni mfumu te bantu",
-      "Bombe iyo cili mu calo Nga kutasha akubula\nUkapelwo kutusha Tawakapelwepo fye",
-      "Akucula ne neseko Panuma ukatusha\nShibwinga kesa bushiku Ukomfwa ti Ninjisa.\nAmen"
+      "Bombe ilyo cili mu calo Nga kutasha akubula\nUkapelwo kutusha Tawakapelwepo fye",
+      "Akucula ne nseko Panuma ukatusha\nShibwinga keso bushiku Ukomfwa ti Ninjisa.\nAmen"
     ],
   },
   {
@@ -3283,7 +3283,7 @@ export const HYMNS: Hymn[] = [
       "Ilyo wabashile,\nAba bantu bobe,\nMona we Katula wandi\nUlenjibukisha.",
       "Ukusambwa kwandi\nWe Mfumu yaluse,\nNiwe weka waishiba\nUlenjibukisha.",
       "Lintu balelembwa\nMwi-Buku lya mweo,\nNaine Mfumu ndi obe\nUlenjibukisha.",
-      "Ilyo kalabwela ‘Kupingule calo,\nNaine wine nkelelwe\nUlenjibukisha."
+      "Ilyo kalabwela ‘Kupingule calo,\nNaine wine nkelelwe\nUlenjibukisha.",
     ],
   },
   {
@@ -3299,7 +3299,7 @@ export const HYMNS: Hymn[] = [
       "Yesu mfumu yesu suminisheni\nMutupelya maka mulimo ukule\nMulimo ukule\nMulimo wakwa lesa teti ulale\nMulimo ukule",
       "Fwe tuleilanga ku bantu bonse\nTuli bakamboni mulimo ukule\nMulimo ukule\nMulimo ukule Mulimo wakwa lesa teti ulale\nMulimo ukule",
       "Tamfyenimo mwenso mutupyo kushipa\nTucimfye satana mulimo ukule\nMulimo ukule\nMulimo wakwa lesa teti ulale\nMulimo ukule",
-      "Mwisalisheko fye ku fakweshiwa\nTuli na balwani mulimo ukule\nMulimo ukule\nMulimo wakwa lesa teti ulale\nMulimo ukule"
+      "Mwisalisheko fye ku fakweshiwa\nTuli na balwani mulimo ukule\nMulimo ukule\nMulimo wakwa lesa teti ulale\nMulimo ukule",
     ],
   },
   {
@@ -3314,7 +3314,7 @@ export const HYMNS: Hymn[] = [
       "Yesu aletwita ‘leti:\n“Lekeni fya mu calo\nMwilapepa fintu fyafwe\nMwina Kristu ntemwisha.”",
       "Mu buseko mu bulanda,\nNeshita sha busanso,\nAleita aletila:\n“Posa fyonse unkonke.”",
       "Yesu aletwita “Leti;\n“Cinshi cilemukanya\nUkunkonka? Ciposeni\nNtemwo kucila fyonse.”",
-      "Yesu muletwita bonse\nLekeni tumwasuke,\nTusumine imwe Kristu\nTumubombele."
+      "Yesu muletwita bonse\nLekeni tumwasuke,\nTusumine imwe Kristu\nTumubombele.",
     ],
   },
   {
@@ -3325,10 +3325,10 @@ export const HYMNS: Hymn[] = [
     category: "Fellowship",
     verses: [],
     versesBemba: [
-      "Walipelwo mwando watukaka bonse\nWalipelwo mwando watukaka bonse\nBonse muli Kristu tuli fwe ba mu mulu",
+      "Walipelwo mwando watukaka bonse\nBonse muli Kristu tuli fwe ba mu mulu",
       "Kuntashi kwa shifwe twapepeshe lingi\nIsubilo lyesu limo no kusakamana",
       "Tulelililana no kwafwana bonse\nPefye pali umo umo tulile filamba",
-      "Nga twapatukana tulailishanya\nTumonana mu mitima tukaya kumama."
+      "Nga twapatukana tulailishanya\nTumonana mu mitima tukaya kumana."
     ],
   },
   {
