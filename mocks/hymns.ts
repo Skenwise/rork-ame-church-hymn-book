@@ -4186,11 +4186,11 @@ export const HYMNS: Hymn[] = [
     title: "O Lord My God",
     category: "Hymns",
     verses: [
-      "O Lord my God, when I in awesome wonder\nConsider all the works Thy hand hath made,\nI see the stars, I hear the mighty thunder,\nThy power throughout the universe displayed.",
+      "O Lord my God, when I in awesome wonder\nConsider all the works Thy hand hath made,\nI see the stars, I hear the rolling thunder,\nThy power throughout the universe displayed.",
       "Then sings my soul, my Saviour God, to Thee:\nHow great Thou art! How great Thou art!\nThen sings my soul, my Saviour God, to Thee:\nHow great Thou art! How great Thou art!",
       "When through the woods and forest glades I wander,\nI hear the birds singing sweetly in the trees;\nWhen I look down from lofty mountain grandeur,\nAnd hear the brook and feel the gentle breeze.",
-      "And when I think that God, His Son not sparing,\nSent Him to die—I scarce can take it in—\nThat on the cross, my burden gladly bearing,\nHe bled and died to take away my sin.",
-      "When Christ shall come with shout of acclamation\nAnd take me home—what joy shall fill my heart!\nThen I shall bow in humble adoration,\nAnd there proclaim, my God, how great Thou art!"
+      "And when I think that God, His Son not sparing,\nSent Him to die, I scarce can take it in\nThat on the cross, my burden gladly bearing,\nHe bled and died to take away my sin.",
+      "When Christ shall come with shout of acclamation\nAnd take me home, what joy shall fill my heart!\nThen I shall bow in humble adoration,\nAnd there proclaim, my God, how great Thou art!"
     ],
   },
   {
@@ -4212,11 +4212,12 @@ export const HYMNS: Hymn[] = [
     title: "Nearer, My God, to Thee",
     category: "Hymns",
     verses: [
-      "Nearer, my God, to Thee,\nNearer to Thee!\nE'en though it be a cross\nThat raiseth me.\nStill all my song shall be,\nNearer, my God, to Thee,\nNearer, my God, to Thee,\nNearer to Thee!",
-      "Though like the wanderer,\nThe sun goes down,\nDarkness be over me,\nMy rest a stone;\nYet in my dreams I'd be\nNearer, my God, to Thee,\nNearer, my God, to Thee,\nNearer to Thee!",
-      "There let the way appear,\nSteps unto heaven;\nAll that Thou sendest me,\nIn mercy given;\nAngels to beckon me\nNearer, my God, to Thee,\nNearer, my God, to Thee,\nNearer to Thee!",
-      "Then, with my waking thoughts\nBright with Thy praise,\nOut of my stony griefs\nBethel I'll raise;\nSo by my woes to be\nNearer, my God, to Thee,\nNearer, my God, to Thee,\nNearer to Thee!",
-      "Or if, on joyful wing\nCleaving the sky,\nSun, moon, and stars forgot,\nUpward I fly,\nStill all my song shall be,\nNearer, my God, to Thee,\nNearer, my God, to Thee,\nNearer to Thee!"
+      "Nearer, my God, to Thee,\nNearer to Thee!\nE'en though it be a cross\nThat raiseth me.\nStill all my song shall be nearer my God, to Thee",
+      "Nearer, my God, to Thee,\nNearer to Thee!",
+      "Though like the wanderer,\nThe sun goes down,\nDarkness be over me,\nMy rest a stone;\nYet in my dreams I'd be nearer my God, to Thee",
+      "There let the way appear,\nSteps unto heaven;\nAll that Thou sendest me,\nIn mercy given;\nAngels to beck on me nearer my God, to Thee",
+      "Then, with my waking thoughts\nBright with Thy praise,\nOut of my stony griefs\nBethel I'll raise;\nSo by my woes to be nearer, my God, to Thee",
+      "Or if, on joyful wing\nCleaving the sky,\nSun, moon, and stars forgot,\nUpward I fly,\nStill all my song shall be, nearer, my God, to Thee\nAmen"
     ],
   },
   {
@@ -4225,7 +4226,8 @@ export const HYMNS: Hymn[] = [
     title: "I Am Thine, O Lord",
     category: "Hymns",
     verses: [
-      "I am Thine, O Lord, I have heard Thy voice,\nAnd it told Thy love to me;\nBut I long to rise in the arms of faith\nAnd be closer drawn to Thee.\nDraw me nearer, nearer, blessed Lord,\nTo the cross where Thou hast died;\nDraw me nearer, nearer, nearer, blessed Lord,\nTo Thy precious, bleeding side.",
+      "I am Thine, O Lord, I have heard Thy voice,\nAnd it told Thy love to me;\nBut I long to rise in the arms of faith\nAnd be closer drawn to Thee",
+      "Draw me nearer, nearer\nNearer blessed Lord,\nTo the cross where Thou hast died;\nDraw me nearer, nearer\nNearer, blessed Lord,\nTo Thy precious, bleeding side.",
       "Consecrate me now to Thy service, Lord,\nBy the pow'r of grace divine;\nLet my soul look up with a steadfast hope,\nAnd my will be lost in Thine.",
       "Oh, the pure delight of a single hour\nThat before Thy throne I spend,\nWhen I kneel in prayer, and with Thee, my God,\nI commune as friend with friend!",
       "There are depths of love that I cannot know\nTill I cross the Narrow sea;\nThere are heights of joy that I may no reach\nTill I rest in peace with Thee"
@@ -4237,7 +4239,7 @@ export const HYMNS: Hymn[] = [
     title: "He Is Lord",
     category: "Praise & Worship",
     verses: [
-      "He is Lord, He is Lord\nHe is Lord, He is Lord\nHe is risen from the grave\nAnd He is Lord\nEvery knee shall bow, every tongue confess\nThat Jesus Christ is Lord."
+      "He is Lord, He is Lord\nHe is Lord, He is Lord\nHe has risen from the grave\nAnd He is Lord\nEvery knee shall bow, every tongue confess\nThat Jesus Christ is Lord."
     ],
   },
   {
@@ -4270,10 +4272,10 @@ export const HYMNS: Hymn[] = [
     title: "I Need Thee Every Hour",
     category: "Hymns",
     verses: [
-      "I need Thee every hour, most gracious Lord;\nNo tender voice like Thine can peace afford.\nI need Thee, O I need Thee;\nEvery hour I need Thee;\nO bless me now, my Savior,\nI come to Thee.",
-      "I need Thee every hour, stay Thou nearby;\nTemptations lose their power when Thou art nigh.",
+      "I need Thee every hour, most gracious Lord;\nNo tender voice but Thine can peace afford.",
+      "I need Thee every hour, stay Thou nearby;\nTemptations lose their power when Thou art high.",
       "I need Thee every hour, in joy or pain;\nCome quickly and abide, or life is vain.",
-      "I need Thee every hour, teach me Thy will;\nAnd Thy rich promises in me fulfill."
+      "I need Thee every hour, teach me Thy will;\nAnd Thy rich promises in me fulfill\nAmen"
     ],
   },
   {
@@ -4282,9 +4284,10 @@ export const HYMNS: Hymn[] = [
     title: "Great Is Thy Faithfulness",
     category: "Hymns",
     verses: [
-      "Great is Thy faithfulness, O God my Father;\nThere is no shadow of turning with Thee;\nThou changest not, Thy compassions, they fail not;\nAs Thou hast been Thou forever wilt be.\nGreat is Thy faithfulness!\nGreat is Thy faithfulness!\nMorning by morning new mercies I see;\nAll I have needed Thy hand hath provided;\nGreat is Thy faithfulness, Lord, unto me!",
+      "Great is Thy faithfulness, O God my Father;\nThere is no shadow of turning with Thee;\nThou changest not, Thy compassions, they fail not;\nAs Thou hast been Thou forever wilt be",
+      "Great is Thy faithfulness!\nGreat is Thy faithfulness!\nMorning by morning new mercies I see;\nAll I need Thy hand hath provided;\nGreat is Thy faithfulness, Lord, unto me!",
       "Summer and winter, and springtime and harvest,\nSun, moon, and stars in their courses above,\nJoin with all nature in manifold witness\nTo Thy great faithfulness, mercy and love.",
-      "Pardon for sin and a peace that endureth,\nThine own dear presence to cheer and to guide;\nStrength for today and bright hope for tomorrow,\nBlessings all mine, with ten thousand beside!"
+      "Pardon for sin and a peace that endureth,\nThine own dear presence to cheer and to guide;\nStrength for today and bright hope for tomorrow,\nBlessings all mine, with ten thousand beside!\nAmen"
     ],
   },
   {
@@ -4293,10 +4296,11 @@ export const HYMNS: Hymn[] = [
     title: "God Be with You Till We Meet Again",
     category: "Hymns",
     verses: [
-      "God be with you till we meet again!\nBy His counsels guide, uphold you,\nWith His sheep securely fold you;\nGod be with you till we meet again!\nTill we meet! Till we meet!\nTill we meet at Jesus' feet;\nTill we meet! Till we meet!\nGod be with you till we meet again!",
+      "God be with you till we meet again!\nBy His counsels guide, uphold you,\nWith God's sheep securely fold you;\nGod be with you till we meet",
+      "Till we meet! Till we meet!\nTill we meet at Jesus' feet;\nTill we meet! Till we meet!\nGod be with you till we meet again!",
       "God be with you till we meet again!\n'Neath His wings protecting hide you,\nDaily manna still provide you;\nGod be with you till we meet again!",
       "God be with you till we meet again!\nWhen life's perils thick confound you,\nPut His arms unfailing round you;\nGod be with you till we meet again!",
-      "God be with you till we meet again!\nKeep love's banner floating o'er you,\nSmite death's threatening wave before you;\nGod be with you till we meet again!"
+      "God be with you till we meet again!\nKeep love's banner floating o'ver you,\nSmite death's threatening wave before you;\nGod be with you till we meet again!\nAmen"
     ],
   },
   {
