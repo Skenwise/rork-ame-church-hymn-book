@@ -2826,11 +2826,8 @@ export const HYMNS: Hymn[] = [
       "Mu bulanda bonse ubo usanga\nMukushuka monse mukupelelwa\nPende fintu ifyo Lesa akupa\nCine uletasha pantu fyafula",
       "Pende fintu fyonse fisuma\nPende fya bupe bwakwa Lesa\nPenda kale penda na nomba\nCine uletasha pantu fyafula",
       "Wafininwa no kucula we mwana\nUlupanda usendele lwafina\nPende fintu ifyo Lesa akupa\nUmwimbile no lwimbo lwa malumbo",
-      "Pende fintu fyonse fisuma\nPende fya bupe bwakwa Lesa\nPenda kale penda na nomba\nCine uletasha pantu fyafula",
       "Nga wamona bambi bali ne fyuma\nBebyo tile “Yesu andaye fyuma”\nIfishili fyakushita ne mpiya\nIfyuma fya mweo wa muyayaya",
-      "Pende fintu fyonse fisuma\nPende fya bupe bwakwa Lesa\nPenda kale penda na nomba\nCine uletasha pantu fyafula",
       "Nomba mu kulwisha konse witendwa\nLesa mukalamba alekumona\nWene aishibe nshila wendamo\nLwendo lonse mwine akulakwafwa",
-      "Pende fintu fyonse fisuma\nPende fya bupe bwakwa Lesa\nPenda kale penda na nomba\nCine uletasha pantu fyafula\nAmen"
     ],
   },
   {
@@ -2841,14 +2838,11 @@ export const HYMNS: Hymn[] = [
     category: "Warfare",
     verses: [],
     versesBemba: [
-      "Mwe bashilikale Mwaya ku buta\nLupanda lwa mwine Luletangila\nYesu mfumu yesu\nYakulatwensha",
-      "No luunga lwesu Twakulasenda\nMwe bashilikale Mwaya ku buta\nLupanda lwa mwine Luletangila",
-      "Ifwe nga twacimfya Baletamfiwa\nBena Yesu bonse Twendeni twanshe\nNa pakwimba kwesu Kumbo kwatenta",
-      "Imbileni Yesu Shisansuleni\nMwe bashilikale Mwaya ku buta\nLupanda lwa mwine Luletangila",
-      "Bumba lyakwa Lesa Cilonganino\nBane tuleenda Nga bamushilo\nFwemubili umo Tatwalekana",
-      "Mu bucetekelo Nelyo mu luse\nMwe bashilikale Mwaya ku buta\nLupanda lwa mwine Luletangila",
-      "Bane natwendele Pamo na bonse\nNa mashiwi twimbe Ulwimbo lwesu\nPelenyu mucinshi Ku mfumu Yesu",
-      "Bantu abalubulwa Ebaleimba\nMwe bashilikale Mwaya ku buta\nLupanda lwa mwine Luletangila\nAmen"
+      "Mwe bashilikale Mwaya ku buta\nLupanda lwa mwine Luletangila\nYesu mfumu yesu\nYakulatwensha\nNo luunga lwesu twakulasenda",
+      "Mwe bashilikale Mwaya ku buta\nLupanda lwa mwine Luletangila",
+      "Ifwe nga twacimfya baletamfiwa\nBena Yesu bonse Twendeni twanshe\nNa pakwimba kwesu Kumbo kwatenta\nImbileni Yesu Shisansuleni",
+      "Bumba lyakwa Lesa Cilonganino\nBane tuleenda Nga bamushilo\nFwemubili umo tatwalekana\nMu bucetekelo Nelyo mu luse",
+      "Bane natwendele Pamo na bonse\nNa mashiwi twimbe Ulwimbo lwesu\nPelenyu mucinshi Ku mfumu Yesu\nBantu abalubulwa Ebaleimba"
     ],
   },
   {
@@ -3563,10 +3557,10 @@ export const HYMNS: Hymn[] = [
     category: "Faith",
     verses: [],
     versesBemba: [
-      "Nga nalolesha we\nNga nalolesha we wali pa calvary mupusushi\nUng'umfwe mwipepo\nUfumyemwe fibi\nNdetendeke lelo kuba wenu",
-      "Umpele cikuku Cafuma ku mulu Ulenkosha\nPantu wamfwilile Kuti ntemwe iwe\nLelo ne nshiku pe Mu mutima",
-      "Nga nyenda mu mfifi Yaisa macushi\nNtungululwe Mfifi be kasuba\nMufumyo kucula Mundesho kufuma kuli imwe",
-      "Ngo Iwendo Iwa mweo Lukapwa mu calo\nMukansende Mwe mfumu mu luse\nFibi mufumyemo Kkesho walubulwa Kuli imwe."
+      "Nga nalolesha we wali pa Kalvari\nMpulumushi ung'umfwe mwipepo\nUfumyemo fibi, ndetendeke lelo kuba wenu",
+      "Umpele cikuku Cafuma ku mulu\nUlenkosha, pantu wamfwilile\nKuti ntemwe iwe, Lelo ne nshiku pe Mu mutima",
+      "Nga nyenda mu mfifi Yaisa macushi\nNtungululwe Mfifi be kasuba\nMufumyo kucula, Mundesho kufuma kuli imwe",
+      "Ngo Iwendo Iwa mweo Lukapwa mu calo\nMukansende Mwe mfumu mu luse\nFibi mufumyemo nkesho walubulwa Kuli imwe."
     ],
   },
   {
@@ -3577,7 +3571,7 @@ export const HYMNS: Hymn[] = [
     category: "Service",
     verses: [],
     versesBemba: [
-      "Sumbulo lupanda\nSumbulo lupanda\nWe muntu we nkonka\nKuli mfifi natunaka\nLelo twalakonka",
+      "Sumbulo lupanda\nWe muntu we nkonka\nKuli mfifi natunaka\nLelo twalakonka",
       "Mwe mfumu twafwayo\nKuti tumumone\nPa mpumi yenu panono\nElyo tulekonka",
       "Mu nshita shakale\nTwalelulumba fye\nLelo nomba natubwela\nNimwe twalakonka",
       "Ishiwi natumfwa\nIlya ku Galili\nTwaisa tumunakile\nKuti tumukonke",
