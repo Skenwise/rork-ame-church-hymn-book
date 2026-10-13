@@ -2379,12 +2379,10 @@ export const HYMNS: Hymn[] = [
     category: "Praise",
     verses: [],
     versesBemba: [
-      "Iwe ulumbanye lumba lumba Nge cuni cisuma ulumbanye\nNgoleensho mweo tekanya pakwenda",
-      "Wibukishe pepo imbo Iwimbo ukwimba ulwimbo\nKulamusekesha uyo wabulanda ulumbanye",
-      "Nga wamona yesu lumba lumba Lumbo luse lwakwe ulumbanye\nUbulanda ubo bulemya abafwa Afwilile ifwe ulumbanye",
-      "Ukwimba ulwimbo kulamusekesha uyo wabulanda ulumbanye",
-      "Ngo mutima wafwa lumba lumba Kulalete nesko kulumbanya\nBonse abangeli balumbanye mfumu Nobe wine lumba ulumbanye",
-      "Ukwimba ulwimbo kulamusekesha uyo wabulanda ulumbanye\nAmen"
+      "Iwe ulumbanye lumba lumba\nNge cuni cisuma ulumbanye\nNgoleensho mweo tekanya pakwenda\nWibukishe pepo imbo Iwimbo", 
+      "Ukwimba ulwimbo kulamusekesha\nUyo wabulanda, ulumbanye",
+      "Nga wamona Yesu lumba lumba\nLumbo luse lwakwe ulumbanye\nUbulanda ubo bulemya abafwa\nAfwilile ifwe ulumbanye",
+      "Ngo mutima wafwa lumba lumba\nKulalete nseko kulumbanya\nBonse abangeli balumbanye Mfumu\nNobe wine lumba,ulumbanye",
     ],
   },
   {
@@ -2395,10 +2393,9 @@ export const HYMNS: Hymn[] = [
     category: "Worship",
     verses: [],
     versesBemba: [
-      "Ishina Iyenu yesu Likulu Iya lulumbi\nLyatemwikwa ku mulu Pamo na pana calo",
-      "Ku basumina bonse Lilalumbwa mu nyimbo\nIshina Iyenu yesu Lisuminwa na babi",
-      "Litamfye mpulumushi Na satan ne fibi\nKulyu yo wasumina Limupususha ku mfwa",
-      "Ishina Iyenu yesu Elyo ntasha fye lyeka\nE kasuba kanyensha Nkafika nalyo ku mfwa\nIshina lyakwa yesu Likantwala ku mulu.\nAmen"
+      "Ishina Iyenu yesu,Likulu Iya lulumbi\nLyatemwikwa ku mulu Pamo na pana calo\nKu basumina bonse, Lilalumbwa mu nyimbo",
+      "Ishina Iyenu Yesu,Lisuminwa na babi\nLitamfye mpulumushi, Na satan ne fibi\nKulyu yo wasumina Limupususha ku mfwa",
+      "Ishina Iyenu yesu Elyo ntasha fye lyeka\nE kasuba kanyensha,Nkafika nalyo ku mfwa\nIshina lyakwa yesu Likantwala ku mulu.\nAmen"
     ],
   },
   {
@@ -2409,10 +2406,10 @@ export const HYMNS: Hymn[] = [
     category: "Praise",
     verses: [],
     versesBemba: [
-      "Aleluya, Aleluya Nomba natusambwa\nNe cikuku cenu Lesa Tulemutotela.",
-      "Aleluya, Aleluya Amakumbi yenu\nYaleto mutende konse Tulemutotela.",
-      "Aleluya, Aleluya Icikuku cenu\nCilatupela imfula Tulemutotela.",
-      "Aleluya, Aleluya Twali pepi ne mfwa\nPamo pene ne finama Tulemutotela.",
+      "Aleluya, Aleluya Nomba natusambwa\nNe cikuku cenu Lesa Tulemutotela",
+      "Aleluya, Aleluya Amakumbi yenu\nYaleto mutende konse Tulemutotela",
+      "Aleluya, Aleluya Icikuku cenu\nCilatupela imfula Tulemutotela",
+      "Aleluya, Aleluya Twali pepi ne mfwa\nPamo pene ne finama Tulemutotela",
       "Aleluya, Aleluya Ukusambwa kwesu\nKwaleko kuti tuwame Tulemutotela.\nAMEN"
     ],
   },
@@ -3143,16 +3140,12 @@ export const HYMNS: Hymn[] = [
     category: "Praise",
     verses: [],
     versesBemba: [
-      "Nalimbi Iyo We mutima wandi\nNalimbi Iyo we mutima wandi\nShiwi Iya Mpusushi,\nMfumu nomba leka ntale mone,\nBushe nkusumine?",
-      "Eya; eya; eya Lesa ngafweniko\nKuba we Mwanshita mu mulopa wafina\nEya ndeba wenu.",
+      "Nalimbi Iyo We mutima wandi\nShiwi Iya Mpusushi\nMfumu nomba leka ntale mone,\nBushe nkusumine?",
+      "Eya; eya; eya Lesa ngafweniko, kuba wenu\nMwanshita mu mulopa wafina\nEya ndeba wenu.",
       "Mu cikuku emo mpokelela\nKutemwa kwenu ku;\nMuli Kristu emo ncetekele\nUmuyayaya pe",
-      "Eya; eya; eya Lesa ngafweniko\nKuba we Mwanshita mu mulopa wafina\nEya ndeba wenu.",
       "Mwalishibe fyo nsakwata maka\nNo mwenso nakwata ,\nMunkoseleshe muleke mombe\nMilimo yenu pe",
-      "Eya; eya; eya Lesa ngafweniko\nKuba we Mwanshita mu mulopa wafina\nEya ndeba wenu.",
-      "Na nombwa me mfumu twapapata\nMwafwe aba bonse\nKuti bembe no mutima umo\nEya ndeba wenu",
-      "Eya; eya; eya Lesa ngafweniko\nKuba we Mwanshita mu mulopa wafina\nEya ndeba wenu.",
+      "Na nombwa me Mfumu twapapata\nMwafwe aba bonse\nKuti bembe no mutima umo\nEya ndeba wenu",
       "Kale bonse fye balemulomba\nAbati mutwafwe\nMwalebasuka amuti eya\nNefwe fyo mwasuke",
-      "Eya; eya; eya Lesa ngafweniko\nKuba we Mwanshita mu mulopa wafina\nEya ndeba wenu."
     ],
   },
   {
