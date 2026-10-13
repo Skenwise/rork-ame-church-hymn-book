@@ -2660,10 +2660,10 @@ export const HYMNS: Hymn[] = [
     versesBemba: [
       "Kuli calo ca buseko Ukwaba basambwa\nUkwateka bena kristu Imfumu ni yesu",
       "Takwabako akasuba No bushiku bwine\nKasuba kabo ni yesu E lubuto Iwabo",
-      "Imfwa tekuti fikeko Ne nshishi twaba\nNangu cikonko takwaba No kufwa takwaba",
-      "Ishiko Iyabako Iyenu Tukalasekela\nTukaya ku mushi wesu Tukayanwa menshi",
-      "Tukabuka nge ciloto Umumana wa mfwa\nTukekala nakwe yesu Nifwe tukapyana",
-      "Tukafuma mu bucushi Tukaya ku bumi\nTukalasambo kutemwa No kulye fya mweo.\nAmen"
+      "Imfwa tekuti fikeko Ne nshishi takwaba\nNangu cikonko takwaba No kufwa takwaba",
+      "Ishuko Iyabako Iyesu Tukalasekela\nTukaya ku mushi wesu Tukayanwa menshi",
+      "Tukabuka nge ciloto Umumana wa mfwa\nTukekala nankwe yesu Nifwe tukapyana",
+      "Tukafuma mu bucushi Tukaya ku bumi\nTukalasambo kutemwa No kulye ifya mweo.\nAmen"
     ],
   },
   {
@@ -2677,13 +2677,9 @@ export const HYMNS: Hymn[] = [
       "Mwandi kale nalifya kapondo,\nNomba fye ndebwela,\nKu luse lwakwe fye anondola!\nNdeisa ku mwesu.",
       "Cine ndeisa, ku Mfumu yandi,\nNdeisa nku mwesu;\nAwe ndebwela, ku Mfumu yandi,\nMbwelele ku mwesu.",
       "Ninaka ne calo cabipisha,\nNdeya fye ku mwesu\nCine Mfumu ikaya nsengela,\nNdeya fye ku mwesu.",
-      "Cine ndeisa, ku Mfumu yandi,\nNdeisa nku mwesu;\nAwe ndebwela, ku Mfumu yandi,\nMbwelele ku mwesu.",
       "Kwene nkayasanga ubutusho,\nKambwelele kwesu,\nNkalatusha pa cifuba cakwe\nLyo Tata ndebwela.",
-      "Cine ndeisa, ku Mfumu yandi,\nNdeisa nku mwesu;\nAwe ndebwela, ku Mfumu yandi,\nMbwelele ku mwesu.",
       "Panono-panono nsuke mfike\nKu mwesu ku mulu,\nNkasuke mone fyo kwawamisha\nKwisano lya Mfumu.",
-      "Cine ndeisa, ku Mfumu yandi,\nNdeisa nku mwesu;\nAwe ndebwela, ku Mfumu yandi,\nMbwelele ku mwesu.",
       "Ku wabupalo bwa ciyayaya\nKanshi eko ndeya,\nKuwita babipisha nga ine!\nCine eko ndeya.",
-      "Cine ndeisa, ku Mfumu yandi,\nNdeisa nku mwesu;\nAwe ndebwela, ku Mfumu yandi,\nMbwelele ku mwesu.\nAMEN"
     ],
   },
   {
@@ -2694,10 +2690,9 @@ export const HYMNS: Hymn[] = [
     category: "General",
     verses: [],
     versesBemba: [
-      "Imeni mwe bantu shiwi Iya mulubushi\nLyati imya menso wangile umweo\nAlimisha bafwa no kubapo mweo",
-      "Mulopa asumyo wakwafwa bonse fye\nImeni imfwe yo mweo walicepa\nWaba ngo lubuto nseko ne cikonko",
-      "Ima no kuluba ubulwi bwa lesa\nBikapo mutimo kengili mu mulu\nIma ku filoto sibuka mu tulo",
-      "Sunge shina lyakwe ufwaye fya mulu\nMilimo ilipo ne cilumba cobe\nKafwikwo lulumbi pa ku mukumaya.\nAmen"
+      "Imeni mwe bantu shiwi Iya mulubushi\nLyati imya menso wangile umweo\nAlimisha bafwa no kubapo mweo\nMulopa asumyo wakwafwa bonse fye",
+      "Imeni imfwe yo mweo walicepa\nWaba ngo lubuto nseko ne cikonko\nIma no kuluba ubulwi bwa lesa\nBikapo mutimo kengile mu mulu",
+      "Ima ku filoto sibuka mu tulo\nSunge shina lyakwe ufwaye fya mulu\nMilimo ilipo ne cilumba cobe\nKafwikwo ululumbi pa ku mukumanya.\nAmen"
     ],
   },
   {
@@ -3310,7 +3305,7 @@ export const HYMNS: Hymn[] = [
     category: "Discipleship",
     verses: [],
     versesBemba: [
-      "Yesu aletwita\nYesu aletwita bonse\nMu congo ca mu calo,\nNshiku shonse aleitila;\n“Mwina Kristu sonkonke”.",
+      "Yesu aletwita bonse\nMu congo ca mu calo,\nNshiku shonse aleitila;\n“Mwina Kristu sonkonke”.",
       "Yesu aletwita ‘leti:\n“Lekeni fya mu calo\nMwilapepa fintu fyafwe\nMwina Kristu ntemwisha.”",
       "Mu buseko mu bulanda,\nNeshita sha busanso,\nAleita aletila:\n“Posa fyonse unkonke.”",
       "Yesu aletwita “Leti;\n“Cinshi cilemukanya\nUkunkonka? Ciposeni\nNtemwo kucila fyonse.”",
