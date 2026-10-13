@@ -3370,12 +3370,10 @@ export const HYMNS: Hymn[] = [
     category: "Evangelism",
     verses: [],
     versesBemba: [
-      "Pa milundu na pa mpili\nPa milundu na pa mpili\nTumfwe mbila ye landwe\nUmfweni ipusukilo\nIseni kuli Lesa",
-      "Wilenimo mututule\nWilenimo mututule\nTkumbinkane penga liletwita\nBena Kristu iseni",
-      "Fwaleni ifyakulwila\nSumbulenyu lungan\nIlyo mulewilo mweo\nBangeli bambake",
+      "Pa milundu na pa mpili\nTumfwe mbila ye landwe\nUmfweni ipusukilo\nIseni kuli Lesa",
       "Wilenimo mututule\nWilenimo mututule\nTukumbinkane penga liletwita\nBena Kristu iseni",
+      "Fwaleni ifyakulwila\nSumbuleni uluunga\nIlyo mulelwilo mweo\nBangeli bamubake",
       "Bilikisheni no kwita\nUmfwikeni mukulwa\nBonse fye mwe bena Yesu\nNangu tufwe twacimfya",
-      "Wilenimo mututule\nWilenimo mututule\nTukumbinkane penga liletwita\nBena Kristu iseni"
     ],
   },
   {
@@ -3985,9 +3983,9 @@ export const HYMNS: Hymn[] = [
     category: "Prayer/Salvation",
     verses: [],
     versesBemba: [
-      "Mu busha bwandi kandubuke\nYesu njise, Yesu njise\nNyingile mu butungwa bobe\nYesu njisho koli\nUbulwele bwandi umposhe\nIfyo mfwaya fyaba muli iwe\nNalete mpulumushi shandi\nYesu njisho koli",
-      "Insoni shalingonaula\nYesu njise, Yesu njise\nMu lulumbi nonkyo lupanda\nYesu njisho koli\nMu bulanda bwa mupashi bufukeko\nBucushi busanguke nesko\nYesu njisho koli",
-      "Mu kucucutika mfumemo\nYesu njise Yesu njise\nNyingile mu kutemwa kobe\nYesu njisho koli\nNjikalile umo fwaila\nNilanaka nkasendwe ku mulu\nNkaye ndepupuka nge knunda\nYesu njisho koli.\nAmen"
+      "Mu busha bwandi kandubuke\nYesu njise, Yesu njise\nNyingile mu butungwa bobe\nYesu njishe ukoli\nUbulwele bwandi umposhe\nIfyo mfwaya fyaba muli iwe\nNalete mpulumushi shandi\nYesu njisho koli",
+      "Insoni shalingonaula\nYesu njise, Yesu njise\nMu lulumbi nonke Ulupanda\nYesu njise koli\nMu bulanda bwa mupashi bufukeko\nBucushi busanguke nseko\nYesu njise koli",
+      "Mu kucucutika mfumemo\nYesu njise Yesu njise\nNyingile mu kutemwa kobe\nYesu njise ukoli\nNjikalile umo fwaila\nNilanaka nkasendwe ku mulu\nNkaye ndepupuka nge nkunda\nYesu njise koli.\nAmen"
     ],
   },
   {
