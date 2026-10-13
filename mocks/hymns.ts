@@ -1838,10 +1838,10 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Nshita shaka celo celo\nFyonse filumbanya imwe\nUmweo waba kuli imwe\nNefwe nimwe mutusunga",
-      "Akasuba nga tula\nKenda mu nshila yakako\nNako kalamulumbanya\nKaleti we mfumu yandi",
+      "Akasuba nga katula\nKenda mu nshila yakako\nNako kalamulumbanya\nKaleti we mfumu yandi",
       "Akasuba nga katula,\nkaba no lubuto lwakwe\nMona! Nako kalelumba\nKaleti niwe wa mpanga",
-      "Makumbi yashinguluka\nNayo yaleshimikila\nYalesabankanya konso\nYaliti ni we watukosha",
-      "Mitundu ya nama yonse\nNimwe mushipelo kulya\nNefwe tulelombe filyo\nKuli mweba tulengele"
+      "Makumbi yashinguluka\nNayo yaleshimikila\nYalesabankanya konso\nYaleti ni we watukosha",
+      "Mitundu ya nama shonse\nNimwe mushipelo kulya\nNefwe tulelombe filyo\nKuli mweba tulengele"
     ],
   },
   {
@@ -2452,11 +2452,11 @@ export const HYMNS: Hymn[] = [
     category: "Fellowship",
     verses: [],
     versesBemba: [
-      "Mfumu twalongana Tuli pacinso cenu\nMfumu mwise no mushilo Na maka yenu ayo",
-      "Twaleto bulwele Bwa fyabipa fyesu\nTwainama nafyo kuli mwe Mutwafwe mwe mfumu",
-      "Ubupanda bumbi Ifwe tatukwete\nUbupanda bwesu nimwe Mwise mfumu yesu",
-      "Lesa mutumone Ne cikuku cenu\nIlyo tulemulilila Mutumfwe mwe mfumu",
-      "Ilye shiwi lyenu Lilesoswe lelo\nTumfwikishe tupusuke No bulayo bwenu.\nAmen"
+      "Mfumu twalongana, Tuli pacinso cenu\nMfumu mwise no mushilo, Na maka yenu ayo",
+      "Twaleto bulwele, Bwa fyabipa fyesu\nTwainama nafyo kuli mwe, Mutwafwe mwe mfumu",
+      "Ubupanda bumbi, Ifwe tatukwete\nUbupanda bwesu nimwe, Mwise mfumu yesu",
+      "Lesa mutumone, Ne cikuku cenu\nIlyo tulemulilila, Mutumfwe mwe mfumu",
+      "Ilye shiwi lyenu, Lilesoswe lelo\nTumfwikishe tupusuke, No bulayo bwenu.\nAmen"
     ],
   },
   {
@@ -3200,10 +3200,11 @@ export const HYMNS: Hymn[] = [
     category: "Celebration",
     verses: [],
     versesBemba: [
-      "Nomba bushiku bwa mfumu\nNombabushikubwa mfumu\nBushikubwakwanga\nUbwacitwanakatula\nBushikubukulu",
+      "Nomba bushiku bwa Mfumu\nBushiku bwa kwanga\nUbwacitwa na katula\nBushiku bukulu",
       "Bushiku bwa bantu bonse\nAba mu calo conse\nNa bantu bafita bonse\nAba muno calo",
-      "Elyo kufwa kwacimfwe\nBushiku ‘bu bwine\nAlishukweke mwilindi\nMu bushiku buno",
-      "Tusekelele fye bonse\nFwe bamusumina\nNa bantu bafita bonse\nAba muno calo\nshifumenimo bonse mu masambi yenu\nlelo kuli pusukilo ku mwina Afrika"
+      "Elyo kufwa kwacimfiwe\nBushiku ‘bu bwine\nAlishukwike mwilindi\nMu bushiku buno",
+      "Tusekelele fye bonse\nFwe bamusumina\nNa bantu bafita bonse\nAba muno calo",
+      "Shifumenimo bonse\nMu masambi yenu\nLelo kuli pusukilo\nKu mwina Afrika"
     ],
   },
   {
@@ -4022,11 +4023,11 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Tulelumbanya mwe yesu,\nLintu tulongene;\nSeni mutusanikile,\nNgatwalube nshila.",
-      "Kumoneke 'kwafwa kwenu,\nku kwesha kwesu ku,\nukuti twilalufunya,\nKu nshiku shonse fye",
-      "Bucenjeshi bwesu mfumu,\nTabucita kantu,\nSolongane nefwe Yesu,\nWise utupale.",
+      "Kumoneke 'kwafwa kwenu,\nku kwesha kwesu ku,\nUkuti twilalufunya,\nKu nshiku shonse fye",
+      "Bucenjeshi bwesu Mfumu,\nTabucita kantu,\nSolongane nefwe Yesu,\nWise utupale.",
       "Ukushukuka fye kwesu,\nKwakushukila fye,\nTukanga no kusekela,\nLyo tukashukuka.",
       "Ube lubuto Iwa calo,\nMu nshila shonse fye,\nTukanga nokusekela,\nLyo tukashukuka",
-      "Palenyu bukumbinkano,\nNamupashi wenu,\nUmulimo ulungangame,\nMubufwayo bwenu\nAmen"
+      "Palenyu bukumbinkano,\nNamupashi wenu,\nUmulimo ulungaame,\nMubufwayo bwenu\nAmen"
     ],
   },
   {
