@@ -2624,7 +2624,7 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Fikilishenyi ubulyo Lesa mfumu mwebacine\nAbantu ba fyalo fyonse Basange ubupususho",
-      "Makufi ya muno calo Yalefukamina iwe\nUkuti ndimi shonse Shilumbanye shina Iyobe",
+      "Makufi ya muno calo Yalefukamina iwe\nUkuti indimi shonse Shilumbanye shina Iyobe",
       "Yesu mfumu ututeke Niwe uleto mutende\nUkulubaluba kwesu Ekwaonaule calo",
       "Mone calo cesu mfumu Welele fibi fyaciko\nWitekela ku bukali Kuti lwafwo lupwa Iwesu",
       "Utukanye twilasula Amafunde yobe yonse\nWise utwimye fye bonse Tumfwe ifyacine cobe.\nAmen"
@@ -3270,7 +3270,7 @@ export const HYMNS: Hymn[] = [
     category: "Prayer",
     verses: [],
     versesBemba: [
-      "We shifwe wa luse\nWe Shifwe waluse\nLintu ncili pano,\nPakati ka bantu bobe\nUlenjibukisha.",
+      "We Shifwe waluse\nLintu ncili pano,\nPakati ka bantu bobe\nUlenjibukisha.",
       "Ilyo wabashile,\nAba bantu bobe,\nMona we Katula wandi\nUlenjibukisha.",
       "Ukusambwa kwandi\nWe Mfumu yaluse,\nNiwe weka waishiba\nUlenjibukisha.",
       "Lintu balelembwa\nMwi-Buku lya mweo,\nNaine Mfumu ndi obe\nUlenjibukisha.",
