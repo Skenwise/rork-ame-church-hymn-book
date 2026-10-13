@@ -2022,27 +2022,28 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Tande nshiku shonse mbuto sha busuma\nTanda ku lucelo, na po kawa fye\nTulolela mwela nshita yakusepa\nNga twaya tutila tukasamwa pe",
-      "Tukasamwa pe, tukasamwa pe nga twaya tutila, tukasambwa pe\nTukasamwa pe, tukasambwa pe\nNga twaya tutila, tusamwa pe",
+      "Tukasamwa pe, tukasamwa pe\nNga twaya tutila, tukasamwa pe\nTukasamwa pe, tukasamwa pe\nNga twaya tutila, tukasamwa pe",
       "Tanda ku kasuba na ku cintelelwe\nWilatina mfula, nangu bulwani\nTulecula nomba, limbi tukasepa\nNga twaya tutila tukasamwa pe",
-      "Tukasamwa pe, tukasamwa pe nga twaya tutila, tukasambwa pe\nTukasamwa pe, tukasambwa pe\nNga twaya tutila, tusamwa pe",
-      "Kanshi fye balila, kanshi fwe banaka\nTuletande mbuto sha mfumu ine\nNgo mulimo wapwa ikesa tupoka\nNga twaya tutila tukasamwa pe.",
-      "Tukasamwa pe, tukasamwa pe nga twaya tutila, tukasambwa pe\nTukasamwa pe, tukasambwa pe\nNga twaya tutila, tusamwa pe\nAmen"
+      "Kanshi fwe balila, kanshi fwe banaka\nTuletande mbuto sha mfumu ine\nNgo mulimo wapwa ikesa tupoka\nNga twaya tutila tukasamwa pe.",
     ],
   },
   {
     id: "262",
     number: 262,
-    title: "Nomba kwishiba naishiba",
+    title: "Blessed Assurance",
     titleBemba: "Nomba kwishiba naishiba",
     category: "Joy",
-    verses: [],
+    verses: [
+      "Blessed assurance, Jesus is mine!\nO what a foretaste of glory divine!\nHeir of salvation, purchase of God,\nBorn of His Spirit, washed in His blood.",
+      "This is my story, this is my song,\nPraising my Savior all the day long;\nThis is my story, this is my song,\nPraising my Savior all the day long.",
+      "Perfect submission, perfect delight,\nVisions of rapture now burst on my sight;\nAngels descending, bring from above\nEchoes of mercy, whispers of love.",
+      "Perfect submission, all is at rest,\nI in my Savior am happy and blest;\nWatching and waiting, looking above,\nFilled with His goodness, lost in His love.",
+    ],
     versesBemba: [
       "Nomba kwishiba naishiba\nYesu antula no kumposha\nAmfumya mumfifi na ku mfwa\nMu mutima ankoselesha",
-      "Ndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi\nndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi",
-      "Ndi ne cimwemwe, ndeangila\nFyacindama fya kwa lesa\nMu mutima e mwamoneka\nMaka ya mfumu no kutemwa",
-      "Ndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi\nndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi",
+      "Ndi ne cimwemwe, ndeanga pe\nNdetasha Yesu mfumu yandi\nNdi ne cimwemwe, ndeanga pe\nNdetasha Yesu mfumu yandi",
+      "Ndi ne cimwemwe, ndeangila\nIfyacindama fya kwa lesa\nMu mutima e mwamoneka\nMaka ya mfumu no kutemwa",
       "Nomba mutima watalala\nYesu na ine bucibusa\nNdelindilila ndelolesha\nYesu umwine akabwela",
-      "Ndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi\nndi ne cimwemwe, ndeanga pe ndetasha yesu mfumu yandi\nAmen"
     ],
   },
   {
@@ -2054,13 +2055,10 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Kulyu bwite bulefuma kwi shilya, ‘leteni ulubuto,’\nKulya bantu ba kuya pokolola,’leteni ulubuto,’’",
-      "Ulubuto lwa mbila nsuma lubalikile konse\nUlubuto lwa mbila nsuma lubalike pe na pe.",
-      "Ili shiwi lya ku makenoniaya; ‘leteni ulubuto,’\nFya bupe fyesu twakulatambika,’leteni ulubuto,’",
-      "Ulubuto lwa mbila nsuma lubalikile konse\nUlubuto lwa mbila nsuma lubalike pe na pe.",
+      "Ulubuto lwa mbila nsuma, lubalikile konse\nUlubuto lwa mbila nsuma, lubalike pe na pe.",
+      "Ili shiwi lya ku makenoniya; ‘leteni ulubuto,’\nFya bupe fyesu twakulatambika,’leteni ulubuto,’",
       "Icikuku cakwa yesu cise pe,\nTutume ulubuto.\nNe mibele yakwa yesu twishibe, Tutume ulubuto.",
-      "Ulubuto lwa mbila nsuma lubalikile konse\nUlubuto lwa mbila nsuma lubalike pe na pe.",
-      "Twinenuka mu kubombe milimo, tutume ulubuto,\nTulongaya ba kwingila kwa yesu,tutume ulubuto.",
-      "Ulubuto lwa mbila nsuma lubalikile konse\nUlubuto lwa mbila nsuma lubalike pe na pe.\nAmen"
+      "Twinenuka mu kubombe milimo, tutume ulubuto,\nTulonganya ba kwingila kwa yesu,tutume ulubuto.",
     ],
   },
   {
@@ -2883,7 +2881,7 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Bushe ndi mushilikale? Ka konka wa mpanga\nBushe nkatina munshila No kuba ne nsoni?",
-      "Ishina ...... Ilyavama...... Wene amfvoilile;\nMu cikuku nkapokelela Icitebo candi",
+      "Ishina ...... Ilyawama...... Wene amfwilile;\nMu cikuku nkapokelela Icitebo candi",
       "Bushe nje mu mulu mulya Kwabulo kucula?\nIlyo bambi balecula Mu fikali fyonse",
       "Bushe ‘balwani tapali Aba kulwa nabo?\nBushe calo cilengafwa? Kufika ku mulu",
       "Kulwa kwandi kwaba kwa fye Munkoshe mwe Mfumu\nNkashipikisha macusho Mu mashiiwi yenu. - Amen."
@@ -3697,10 +3695,10 @@ export const HYMNS: Hymn[] = [
     category: "Gospel",
     verses: [],
     versesBemba: [
-      "What did He do?\nMwe umfweni imbila nsuma.\nKale twali abaluba;\nYesu afumine ku mulu,\nCine atupuswishe.",
-      "Watupuswishe ni nani?\nCinecine Mwana Lesa!\nMusango nshi? Atanikwe!\nNikwi aya? Ni ku mulu!\nEkuo letupapatila.",
+      "Mwe umfweni imbila nsuma.\nKale twali abaluba;\nYesu afumine ku mulu,\nCine atupuswishe.",
+      "Watupuswishe ni nani?\nCinecine Mwana Lesa!\nMusango nshi? Atanikwe!\nNikwi aya? Ni ku mulu!\nEkwa letupapatila.",
       "Takwali umbi kutufwila,\nNelyo bamalaika;\nUwatanikwe pa lupanda\nE Mwana wakwa Lesa.",
-      "Iso sumine muntu ali,\nNo kumufukamina;\nElya ukumfwo luse lwakwe,\nCine akakutula."
+      "Iso sumine muntu ali,\nNo kumufukamina;\nElyo ukumfwo luse lwakwe,\nCine akakutula."
     ],
   },
   {
@@ -4164,8 +4162,8 @@ export const HYMNS: Hymn[] = [
     verses: [
       "Amazing grace! How sweet the sound\nThat saved a wretch like me!\nI once was lost, but now am found;\nWas blind, but now I see.",
       "'Twas grace that taught my heart to fear,\nAnd grace my fears relieved;\nHow precious did that grace appear\nThe hour I first believed.",
-      "Through many dangers, toils, and snares,\nI have already come;\n'Tis grace hath brought me safe thus far,\nAnd grace will lead me home.",
       "The Lord has promised good to me,\nHis word my hope secures;\nHe will my shield and portion be,\nAs long as life endures.",
+      "Through many dangers, toils, and snares,\nI have already come;\n'Twas grace hath brought me safe thus far,\nAnd grace will lead me home.",
       "When we've been there ten thousand years,\nBright shining as the sun,\nWe've no less days to sing God's praise\nThan when we'd first begun."
     ],
   },
