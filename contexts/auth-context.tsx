@@ -5,13 +5,24 @@ import { Alert } from "react-native";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithCustomToken,
   signOut as firebaseSignOut,
   onAuthStateChanged,
   updateProfile,
   User,
 } from "firebase/auth";
-import { doc, setDoc, getDoc, onSnapshot, deleteDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  onSnapshot,
+  deleteDoc,
+  updateDoc,
+  runTransaction,
+  deleteField,
+} from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
+import { getDeviceId, getDeviceName, MAX_DEVICES } from "@/lib/device";
 
 interface AuthUser {
   userId: string;
@@ -20,15 +31,64 @@ interface AuthUser {
   premiumUnlocked: boolean;
 }
 
+export type DeviceStatus = "ok" | "limit" | null;
+
 export const [AuthContext, useAuth] = createContextHook(() => {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
+  const [deviceStatus, setDeviceStatus] = useState<DeviceStatus>(null);
+
+  // Register (or touch) this phone on the user's account.
+  // Returns "ok" when this phone is one of the allowed devices,
+  // "limit" when both device slots are taken by other phones.
+  const registerCurrentDevice = async (userId: string): Promise<"ok" | "limit"> => {
+    const deviceId = await getDeviceId();
+    const deviceName = getDeviceName();
+    const now = Date.now();
+    const staleMs = 30 * 24 * 60 * 60 * 1000;
+    const userRef = doc(db, "users", userId);
+
+    const result = await runTransaction(db, async (tx) => {
+      const snap = await tx.get(userRef);
+      const devices: Record<string, any> = { ...(snap.data()?.devices ?? {}) };
+
+      if (devices[deviceId]) {
+        devices[deviceId] = { ...devices[deviceId], name: deviceName, lastSeen: now };
+        tx.set(userRef, { devices }, { merge: true });
+        return "ok" as const;
+      }
+
+      // Free up slots held by phones unused for 30+ days (3A).
+      for (const [id, d] of Object.entries(devices)) {
+        const lastSeen = d?.lastSeen ?? d?.registeredAt ?? 0;
+        if (now - lastSeen > staleMs) {
+          delete devices[id];
+        }
+      }
+
+      if (Object.keys(devices).length >= MAX_DEVICES) {
+        return "limit" as const;
+      }
+
+      devices[deviceId] = { name: deviceName, registeredAt: now, lastSeen: now };
+      tx.set(userRef, { devices }, { merge: true });
+      return "ok" as const;
+    });
+
+    setDeviceStatus(result);
+    return result;
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser: User | null) => {
       if (firebaseUser) {
+        // Keep this phone's registration/lastSeen fresh on every launch.
+        registerCurrentDevice(firebaseUser.uid).catch((error) => {
+          console.error("[Auth] Device registration failed:", error);
+        });
+
         const userRef = doc(db, "users", firebaseUser.uid);
         const unsubscribeDoc = onSnapshot(userRef, (snap) => {
           const data = snap.data();
@@ -43,13 +103,17 @@ export const [AuthContext, useAuth] = createContextHook(() => {
         return () => unsubscribeDoc();
       } else {
         setUser(null);
+        setDeviceStatus(null);
         setIsLoading(false);
       }
     });
     return () => unsubscribe();
   }, []);
 
-  // Check if a pending unlock exists for this email
+  // Check if a pending unlock exists for this email.
+  // NOTE: pendingUnlocks docs are not readable by clients under the
+  // secure rules — the server applies them in the createAppToken
+  // callable. This stays as a best-effort fallback.
   const checkPendingUnlock = async (email: string, userId: string) => {
     try {
       const pendingRef = doc(db, "pendingUnlocks", email);
@@ -70,6 +134,30 @@ export const [AuthContext, useAuth] = createContextHook(() => {
       }
     } catch (error) {
       console.error("Failed to check pending unlock:", error);
+    }
+  };
+
+  // Website → app handoff: sign in with the one-time token minted by the
+  // createAppToken Cloud Function, then register this phone.
+  const completeWebHandoff = async (token: string): Promise<"ok" | "limit"> => {
+    const credential = await signInWithCustomToken(auth, token);
+    if (credential.user.email) {
+      await checkPendingUnlock(credential.user.email, credential.user.uid).catch(() => {});
+    }
+    return registerCurrentDevice(credential.user.uid);
+  };
+
+  // Remove a registered phone from the account; if this phone was blocked
+  // by the limit, retry registration right away (a slot just opened).
+  const removeDevice = async (deviceId: string) => {
+    if (!user) return;
+    await updateDoc(doc(db, "users", user.userId), {
+      [`devices.${deviceId}`]: deleteField(),
+    });
+    if (deviceStatus !== "ok") {
+      await registerCurrentDevice(user.userId).catch((error) => {
+        console.error("[Auth] Re-registration after remove failed:", error);
+      });
     }
   };
 
@@ -143,5 +231,9 @@ export const [AuthContext, useAuth] = createContextHook(() => {
     signOut,
     isSigningIn,
     isSigningUp,
+    completeWebHandoff,
+    registerCurrentDevice,
+    removeDevice,
+    deviceStatus,
   };
 });
