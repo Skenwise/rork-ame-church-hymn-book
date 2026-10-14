@@ -81,7 +81,7 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
       // No login page needed — user stays on home with free hymns
       // The lock system will handle premium content restrictions
       return;
-    } else if (user && !inAuthGroup && segments[0] !== "unlock" && segments[0] !== "hymn" && segments[0] !== "settings" && segments[0] !== "auth-callback") {
+    } else if (user && !inAuthGroup && segments[0] !== "unlock" && segments[0] !== "hymn" && segments[0] !== "settings" && segments[0] !== "auth-callback" && segments[0] !== "device-limit") {
       router.replace("/");
     }
   }, [user, isLoading, segments, router]);
@@ -114,6 +114,7 @@ function RootLayoutNav() {
       {/* <Stack.Screen name="settings" options={{ headerShown: false }} /> */}
       <Stack.Screen name="hymn/[id]" options={{ headerShown: false }} />
       <Stack.Screen name="auth-callback" options={{ headerShown: false }} />
+      <Stack.Screen name="device-limit" options={{ headerShown: false }} />
       <Stack.Screen 
         name="unlock" 
         options={{ 

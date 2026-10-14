@@ -3,10 +3,12 @@ import { useState } from "react";
 import { useAuth } from "@/contexts/auth-context";
 
 export const [PurchasesContext, usePurchases] = createContextHook(() => {
-  const { user } = useAuth();
+  const { user, deviceStatus } = useAuth();
   const [isPurchasing, setIsPurchasing] = useState(false);
 
-  const isPremium = user?.premiumUnlocked ?? false;
+  // Premium requires both: the account paid, AND this phone is registered
+  // as one of the allowed devices (2-device limit).
+  const isPremium = (user?.premiumUnlocked ?? false) && deviceStatus === "ok";
 
   // This will be called after GeePay payment succeeds
   // For now it's a placeholder — real unlock happens via Firebase Function webhook
