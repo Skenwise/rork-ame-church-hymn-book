@@ -109,8 +109,7 @@ export const [AuthContext, useAuth] = createContextHook(() => {
       console.error("[Auth] Sign up failed:", error);
       switch (error.code) {
         case "auth/email-already-in-use":
-          Alert.alert("Account Exists", "This email is already registered. Please sign in instead.");
-          router.push("/sign-in");
+          Alert.alert("Account Exists", "This email is already registered. Please sign in on our website instead.");
           break;
         case "auth/weak-password":
           Alert.alert("Weak Password", "Password must be at least 6 characters.");
@@ -128,7 +127,7 @@ export const [AuthContext, useAuth] = createContextHook(() => {
 
   const signOut = async () => {
     await firebaseSignOut(auth);
-    router.replace("/sign-in");
+    router.replace("/");
   };
 
   const signInWithGoogle = async () => {

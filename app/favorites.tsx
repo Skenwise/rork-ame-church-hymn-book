@@ -14,10 +14,10 @@ import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 
 export default function FavoritesScreen() {
-  const { favoriteHymns, isDarkMode: isDark, textScale } = useApp();
+  const { favoriteHymns, isDarkMode: isDark, textScale, canAccessHymn } = useApp();
 
   const renderHymnItem = ({ item }: { item: typeof favoriteHymns[0] }) => {
-    const isLocked = !item.isUnlocked;
+    const isLocked = !canAccessHymn(item.number);
 
     return (
       <TouchableOpacity
