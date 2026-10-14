@@ -2626,7 +2626,7 @@ export const HYMNS: Hymn[] = [
       "Fikilishenyi ubulyo Lesa mfumu mwebacine\nAbantu ba fyalo fyonse Basange ubupususho",
       "Makufi ya muno calo Yalefukamina iwe\nUkuti indimi shonse Shilumbanye shina Iyobe",
       "Yesu mfumu ututeke Niwe uleto mutende\nUkulubaluba kwesu Ekwaonaule calo",
-      "Mone calo cesu mfumu Welele fibi fyaciko\nWitekele ku bukali Kuti Iwafwo lupwa Iwesu",
+      "Mone calo cesu mfumu Welele fibi fyaciko\nWitekela ku bukali Kuti lwafwo lupwa Iwesu",
       "Utukanye twilasula Amafunde yobe yonse\nWise utwimye fye bonse Tumfwe ifyacine cobe.\nAmen"
     ],
   },
@@ -2640,14 +2640,10 @@ export const HYMNS: Hymn[] = [
     versesBemba: [
       "Muntungulule mwe mfumu ku mulonga\nWa menshi yenu ayamweo\nAyabengeshima nga kulusitali\nUmulonga uyo wa mweo",
       "Iseni Iseni Iseni Iseni\nMwise munwe ayabupe fye\nIseni Iseni Iseni Iseni uwaumfwe cilaka ese",
-      "Nga nanmwa menshi ya mulopa wa mweo\nNaposhiwe cine ku m’tima\nKukabila konse ne cilaka fyapwa\nMwe mfumu nimwe nkwela yandi",
-      "Iseni Iseni Iseni Iseni\nMwise munwe ayabupe fye\nIseni Iseni Iseni Iseni uwaumfwe cilaka ese",
+      "Nga nanmwa menshi ya mulonga wa mweo\nNaposhiwe cine ku m’tima\nKukabila konse ne cilaka fyapwa\nMwe mfumu nimwe nkwela yandi",
       "We mupashi wacine sumina lesa\nUpokelele cabupe fye\nCetekela uposhiwe mu mutima\nMwe mfumu nimwe nkwela yandi",
-      "Iseni Iseni Iseni Iseni\nMwise munwe ayabupe fye\nIseni Iseni Iseni Iseni uwaumfwe cilaka ese",
       "Ifyabako fyonse fya calo ca panshi\nMwe mfumu nimwe mwafibumba\nMpili na mabemba makumbi ku mulu\nMwe mfumu nimwe mwafibumba",
-      "Iseni Iseni Iseni Iseni\nMwise munwe ayabupe fye\nIseni Iseni Iseni Iseni uwaumfwe cilaka ese",
       "Mwe mfumu nimwe mwasosele ku bantu\nMwatuminyo mwana wa mpanga\nKu kwisakukulule fibi fya calo\nKuti calo cibe cintungwa",
-      "Iseni Iseni Iseni Iseni\nMwise munwe ayabupe fye\nIseni Iseni Iseni Iseni uwaumfwe cilaka ese\nAmen"
     ],
   },
   {
