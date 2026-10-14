@@ -34,7 +34,14 @@ service cloud.firestore {
       allow create: if isAuthed()
         && request.auth.uid == userId
         && (!('premiumUnlocked' in request.resource.data)
-            || request.resource.data.premiumUnlocked == false)
+            || request.resource.data.premiumUnlocked == false
+            // Pay-then-join: premium may start true only when the payment
+            // webhook left a pending unlock for this exact email.
+            || (
+              request.resource.data.premiumUnlocked == true
+              && request.resource.data.email is string
+              && get(/databases/$(database)/documents/pendingUnlocks/$(request.resource.data.email)).exists
+            ))
         && (!('devices' in request.resource.data)
             || request.resource.data.devices.size() <= 2);
       allow update: if isAuthed() && (
@@ -44,9 +51,14 @@ service cloud.firestore {
         || (
           request.auth.uid == userId
           // premiumUnlocked is FROZEN on self-edits: only the payment
-          // webhook / server functions may change it.
+          // webhook / server functions may change it — unless a pending
+          // unlock exists for this user's email (pay-then-join flow).
           && (!('premiumUnlocked' in request.resource.data)
-              || request.resource.data.premiumUnlocked == resource.data.premiumUnlocked)
+              || request.resource.data.premiumUnlocked == resource.data.premiumUnlocked
+              || (
+                request.resource.data.premiumUnlocked == true
+                && get(/databases/$(database)/documents/pendingUnlocks/$(request.auth.token.email)).exists
+              ))
           && (!('email' in request.resource.data)
               || request.resource.data.email == resource.data.email)
           // 2-device limit, enforced in the database itself.
@@ -67,7 +79,12 @@ service cloud.firestore {
     }
 
     match /pendingUnlocks/{email} {
-      allow read, write: if false; // server only (createAppToken applies them)
+      // Created only by the payment webhook (Admin SDK). The owner may
+      // read/delete their OWN pending unlock (legacy client-side apply
+      // flow used by join/sign-up).
+      allow read: if isAuthed() && request.auth.token.email == email;
+      allow delete: if isAuthed() && request.auth.token.email == email;
+      allow create, update: if false; // server only
     }
 
     // ============================================
