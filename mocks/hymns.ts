@@ -221,7 +221,7 @@ export const HYMNS: Hymn[] = [
   {
     id: "38",
     number: 38,
-    title: ,
+    title: "Joy to the World",
     titleBemba: "Mukashana wa Africa",
     category: "Christmas",
     verses: [
@@ -1149,7 +1149,7 @@ export const HYMNS: Hymn[] = [
     versesBemba: [
       "Abafita balelosha, ababulanda,\nBalelila ne cikonko pantu ali bashile",
       "Umfwa malilo umo mwibala\nAbafita balelosha\nEmwalala shikulu",
-      "Imishila ya pikana mputa sha cani\nEmo shikulu alele\nMumushili tondolo"
+      "Imishila ya pikana mputa sha cani\nEmo shikulu alele\nMumushili tondolo",
       "Tekuti nje ku milimo, ne wa bulanda\nNdepwisho bulanda bwandi\nPakulisha pe sese",
       "Lesa shifwe mutupale, fwebana benu,\nTwiminine mu lupanda\nApaculile Yesu",
       "Lesa tumenyu lubuto, pa bena Africa,\nBatungululwe ku mweo\nUwalaile Yesu",
@@ -2718,6 +2718,7 @@ export const HYMNS: Hymn[] = [
       "Ulwimbo Iwa kutemwa lulewama\nUlo abalubuliwa baleimba\nYesu uyo wafwile atutule\nFwe bantungwa fwebalepepa Iesa",
       "Balya baleimba mwibumba lilya\nAmalaya yabo baliyasamba\nNefwe bene katula mutusambe\nKuti tutendeke ukwimba ulwimbo",
       "Bonse twalubulwa mu bufumu bu\nPantu pali ifwe epo afwila\nPantu Yesu Kristu ni mfumu ya pe\nAcimfishe fintu fyonse mu calo",
+    ],
   },
   {
     id: "184",
@@ -2941,7 +2942,7 @@ export const HYMNS: Hymn[] = [
     verses: [],
     versesBemba: [
       "Naumfwe shiwi Iyafuma\nNaumfwe shiwi lyafuma\nKu mulu lyanjeba lyati\nLembo tile; balishuka\nAba lefwila mu mfumu",
-      "Panuma yaifi fyonse\nMupashi asosa ati:\n“kabese bese batushe\nKu macushi yabo yonse”,
+      "Panuma yaifi fyonse\nMupashi asosa ati:\n“kabese bese batushe\nKu macushi yabo yonse”",
       "Ati, “imilimo yabo ilebakonka bonse fye\nLembo tile;Balishuka\nEfyo mupashi asosa"
     ],
   },

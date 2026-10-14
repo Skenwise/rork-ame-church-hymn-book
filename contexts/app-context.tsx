@@ -10,7 +10,7 @@ import { usePurchases } from "./purchases-context";
 
 export const [AppContext, useApp] = createContextHook(() => {
   const { user } = useAuth();
-  const { isPremium: isRCPremium, isLoadingCustomerInfo } = usePurchases();
+  const { isPremium: isRCPremium, isLoadingOfferings } = usePurchases();
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [textScale, setTextScale] = useState<TextScale>(1.0);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -102,7 +102,7 @@ export const [AppContext, useApp] = createContextHook(() => {
     textScale,
     isDarkMode,
     language,
-    isLoadingAppState: isLoadingAppState || isLoadingCustomerInfo,
+    isLoadingAppState: isLoadingAppState || isLoadingOfferings,
     availableHymns,
     favoriteHymns,
     canAccessHymn,

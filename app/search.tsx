@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { Search, Heart, Filter, ChevronRight, Lock } from "lucide-react-native";
 import React, { useState, useMemo } from "react";
 import {
@@ -20,7 +20,7 @@ import { Hymn } from "@/types/hymn";
 type FilterType = "all" | "favorites" | "category";
 
 export default function SearchScreen() {
-  const { isDarkMode: isDark, textScale, favorites } = useApp();
+  const { isDarkMode: isDark, textScale, favorites, canAccessHymn, language } = useApp();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<FilterType>("all");
 
@@ -32,6 +32,7 @@ export default function SearchScreen() {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter((hymn: Hymn) =>
           hymn.title.toLowerCase().includes(query) ||
+          (hymn.titleBemba || "").toLowerCase().includes(query) ||
           hymn.number.toString().includes(query) ||
           (hymn.category || "").toLowerCase().includes(query)
       );
@@ -54,14 +55,13 @@ export default function SearchScreen() {
 
   const renderHymnItem = ({ item }: { item: Hymn }) => {
     const isFavorite = favorites.has(item.id);
-    const hasAccess = true; // placeholder; can integrate canAccessHymn from context when available
+    const hasAccess = canAccessHymn(item.number);
+    const displayTitle = language === "bemba" && item.titleBemba ? item.titleBemba : item.title;
 
     return (
       <TouchableOpacity
         style={[styles.hymnRow, isDark ? styles.hymnRowDark : styles.hymnRowLight]}
-        onPress={() => {
-          // Navigate to hymn detail
-        }}
+        onPress={() => router.push(`/hymn/${item.id}`)}
       >
         <View style={styles.hymnLeft}>
           <View style={styles.badge}>
@@ -75,7 +75,7 @@ export default function SearchScreen() {
                 { fontSize: Math.round(16 * textScale) },
               ]}
             >
-              {item.title}
+              {displayTitle}
             </Text>
             <Text
               style={[
