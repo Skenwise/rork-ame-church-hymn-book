@@ -1,17 +1,14 @@
 import { router, Stack } from "expo-router";
-import { Search, Crown, Settings, Church, Languages, ArrowUpAZ, Hash, LogIn, Sparkles, ChevronRight, Heart, BookOpen, Cross, Users, Star } from "lucide-react-native";
-import React, { useState, useMemo, useRef } from "react";
+import { Search, Crown, Church, Languages, LogIn, Sparkles, ChevronRight, Heart, BookOpen, Cross, Star } from "lucide-react-native";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   View,
   Text,
-  TextInput,
   FlatList,
   TouchableOpacity,
   StyleSheet,
   StatusBar,
-  Animated,
-  Dimensions,
-  Linking,
+  AppState,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -22,9 +19,6 @@ import { useAuth } from "@/contexts/auth-context";
 import { HYMNS } from "@/mocks/hymns";
 
 type SortType = "numerical" | "alphabetical";
-
-const { width } = Dimensions.get("window");
-const categoryCardWidth = (width - 40 - 12) / 2;
 
 const categories: { name: string; icon: any; colors: [string, string] }[] = [
   { name: "Praise & Worship", icon: Church, colors: [colors.crimson, colors.professionalBlue] },
@@ -43,47 +37,39 @@ const getHymnOfTheDay = () => {
   return HYMNS[dayOfYear % HYMNS.length];
 };
 
+const computeGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good Morning";
+  if (hour < 17) return "Good Afternoon";
+  return "Good Evening";
+};
+
 export default function HomeScreen() {
   const { isPaid, canAccessHymn, isDarkMode: isDark, language, toggleLanguage } = useApp();
   const { user } = useAuth();
-  const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState<SortType>("numerical");
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
-  const searchHeightAnim = useRef(new Animated.Value(0)).current;
 
   // NEW: Get hymn of the day
   const hymnOfTheDay = getHymnOfTheDay();
 
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return "Good Morning";
-    if (hour < 17) return "Good Afternoon";
-    return "Good Evening";
-  };
+  const [greeting, setGreeting] = useState(computeGreeting);
 
-  const toggleSearch = () => {
-    const toValue = isSearchExpanded ? 0 : 56;
-    Animated.spring(searchHeightAnim, {
-      toValue,
-      useNativeDriver: false,
-    }).start();
-    setIsSearchExpanded(!isSearchExpanded);
-  };
+  // Keep the greeting in step with the clock even when the app stays open
+  // across a morning / afternoon / evening boundary.
+  useEffect(() => {
+    const refresh = () => setGreeting(computeGreeting());
+    const interval = setInterval(refresh, 60_000);
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state === "active") refresh();
+    });
+    return () => {
+      clearInterval(interval);
+      subscription.remove();
+    };
+  }, []);
 
   const filteredHymns = useMemo(() => {
-    let hymns = [...HYMNS];
-
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      hymns = hymns.filter(
-        (hymn) =>
-          hymn.title.toLowerCase().includes(query) ||
-          (hymn.titleBemba && hymn.titleBemba.toLowerCase().includes(query)) ||
-          hymn.number.toString().includes(query) ||
-          (hymn.lyrics && hymn.lyrics.toLowerCase().includes(query)) ||
-          (hymn.lyricsBemba && hymn.lyricsBemba.toLowerCase().includes(query))
-      );
-    }
+    const hymns = [...HYMNS];
 
     if (sortType === "alphabetical") {
       hymns.sort((a, b) => {
@@ -96,7 +82,7 @@ export default function HomeScreen() {
     }
 
     return hymns;
-  }, [searchQuery, sortType, language]);
+  }, [sortType, language]);
 
   const renderCategoryItem = ({ item }: { item: typeof categories[0] }) => {
     const IconComponent = item.icon;
@@ -192,7 +178,7 @@ export default function HomeScreen() {
       <View style={styles.greetingRow}>
         <View style={styles.greetingLeft}>
           <Text style={[styles.greetingText, isDark ? styles.textDark : styles.textLight]}>
-            {getGreeting()}
+            {greeting}
           </Text>
           <Text style={styles.appNameText}>
             AME Church Hymns
@@ -216,7 +202,7 @@ export default function HomeScreen() {
               <Crown size={14} color={isPaid ? colors.amber : colors.mutedGray} />
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity style={styles.signInPill} onPress={() => Linking.openURL("https://17thdistrictrayac.org/sign-in?source=app")}>
+            <TouchableOpacity style={styles.signInPill} onPress={() => router.push("/sign-in")}>
               <LogIn size={16} color={colors.white} />
               <Text style={styles.signInPillText}>Sign In</Text>
             </TouchableOpacity>
@@ -224,20 +210,11 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      <Animated.View style={[styles.searchBarContainer, { height: searchHeightAnim }]}>
-        <View style={[styles.searchBar, isDark ? styles.searchBarDark : styles.searchBarLight]}>
-          <Search size={20} color={isDark ? colors.dark.textSecondary : colors.light.textSecondary} />
-          <TextInput
-            style={[styles.searchInput, isDark ? styles.textDark : styles.textLight]}
-            placeholder="Search hymns..."
-            placeholderTextColor={isDark ? colors.dark.textSecondary : colors.light.textSecondary}
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-          />
-        </View>
-      </Animated.View>
-
-      <View style={styles.heroCard}>
+      <TouchableOpacity
+        style={styles.heroCard}
+        activeOpacity={0.9}
+        onPress={() => router.push(`/hymn/${hymnOfTheDay.id}`)}
+      >
         <LinearGradient
           colors={isDark ? [colors.crimson, "#5E0B0B", colors.darkBackground] : [colors.crimson, "#8B1A1F", "#2A0505"]}
           style={styles.heroGradient}
@@ -247,7 +224,11 @@ export default function HomeScreen() {
               <Sparkles size={12} color={colors.amber} />
               <Text style={styles.heroBadgeText}>HYMN OF THE DAY</Text>
             </View>
-            <Church size={24} color={colors.white} style={{ opacity: 0.5 }} />
+            {canAccessHymn(hymnOfTheDay.number) ? (
+              <Church size={24} color={colors.white} style={{ opacity: 0.5 }} />
+            ) : (
+              <Crown size={20} color={colors.amber} />
+            )}
           </View>
           <View style={styles.heroBottom}>
             <Text style={styles.heroNumber}>{hymnOfTheDay.number}</Text>
@@ -255,15 +236,19 @@ export default function HomeScreen() {
             <Text style={styles.heroCategory}>{hymnOfTheDay.category}</Text>
           </View>
         </LinearGradient>
-      </View>
+      </TouchableOpacity>
 
       {!isPaid && (
-        <View style={styles.previewBanner}>
+        <TouchableOpacity
+          style={styles.previewBanner}
+          activeOpacity={0.8}
+          onPress={() => router.push("/sign-in")}
+        >
           <Crown size={20} color={colors.amber} />
           <Text style={[styles.previewText, isDark ? styles.textDark : styles.textLight]}>
             Preview the first 10 hymns. Sign in for full access.
           </Text>
-        </View>
+        </TouchableOpacity>
       )}
 
       <View style={styles.browseCategories}>

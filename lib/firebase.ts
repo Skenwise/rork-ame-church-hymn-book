@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+// @ts-ignore
+import { initializeAuth, getReactNativePersistence, getAuth, Auth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBTQ0VOv8HQX7-DZWZoij9zvxukaP5tS3o",
@@ -12,5 +14,26 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+
+// Persist auth across app restarts (React Native has no localStorage).
+// The RN build of getReactNativePersistence is required — if it is missing
+// (wrong build resolved), sessions silently stop surviving restarts, so we
+// log loudly instead of failing quietly.
+let auth: Auth;
+try {
+  if (typeof getReactNativePersistence !== "function") {
+    throw new Error("getReactNativePersistence is not available in this build");
+  }
+  auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage),
+  });
+} catch (error) {
+  console.error(
+    "[firebase] Native auth persistence could not be initialised — users will NOT stay signed in after restarting the app:",
+    error
+  );
+  auth = getAuth(app);
+}
+
+export { auth };
 export const db = getFirestore(app);

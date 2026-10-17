@@ -128,18 +128,10 @@ export default function HymnDetailScreen() {
           </Text>
           <TouchableOpacity
             style={styles.signInButtonLarge}
-            onPress={() => Linking.openURL("https://17thdistrictrayac.org/sign-in?source=app")}
+            onPress={() => Linking.openURL("https://17thdistrictrayac.org/join")}
           >
             <LogIn size={20} color={colors.white} />
-            <Text style={styles.signInButtonLargeText}>Sign In</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.createAccountButton, isDark ? styles.createAccountButtonDark : styles.createAccountButtonLight]}
-            onPress={() => Linking.openURL("https://17thdistrictrayac.org/join?source=app")}
-          >
-            <Text style={[styles.createAccountButtonText, isDark ? styles.textDark : styles.textLight]}>
-              Create Account
-            </Text>
+            <Text style={styles.signInButtonLargeText}>Become a Member</Text>
           </TouchableOpacity>
         </View>
       ) : (

@@ -1,5 +1,5 @@
 import { Stack, router } from "expo-router";
-import { Search, Heart, Filter, ChevronRight, Lock } from "lucide-react-native";
+import { Search, Heart, ChevronRight, Lock, ArrowLeft } from "lucide-react-native";
 import React, { useState, useMemo } from "react";
 import {
   View,
@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
-  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -23,6 +22,15 @@ export default function SearchScreen() {
   const { isDarkMode: isDark, textScale, favorites, canAccessHymn, language } = useApp();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<FilterType>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  const categories = useMemo(
+    () =>
+      Array.from(
+        new Set(HYMNS.map((h) => h.category).filter((c): c is string => !!c))
+      ).sort(),
+    []
+  );
 
   const filteredHymns = useMemo(() => {
     let filtered: typeof HYMNS = [...HYMNS];
@@ -34,7 +42,9 @@ export default function SearchScreen() {
           hymn.title.toLowerCase().includes(query) ||
           (hymn.titleBemba || "").toLowerCase().includes(query) ||
           hymn.number.toString().includes(query) ||
-          (hymn.category || "").toLowerCase().includes(query)
+          (hymn.category || "").toLowerCase().includes(query) ||
+          hymn.verses.some((line) => line.toLowerCase().includes(query)) ||
+          (hymn.versesBemba || []).some((line) => line.toLowerCase().includes(query))
       );
     }
 
@@ -44,14 +54,16 @@ export default function SearchScreen() {
         filtered = filtered.filter((hymn: Hymn) => favorites.has(hymn.id));
         break;
       case "category":
-        // For now, just show all - could be expanded to select specific category
+        if (selectedCategory !== "all") {
+          filtered = filtered.filter((hymn: Hymn) => hymn.category === selectedCategory);
+        }
         break;
       default:
         break;
     }
 
     return filtered;
-  }, [searchQuery, selectedFilter, favorites]);
+  }, [searchQuery, selectedFilter, favorites, selectedCategory]);
 
   const renderHymnItem = ({ item }: { item: Hymn }) => {
     const isFavorite = favorites.has(item.id);
@@ -114,6 +126,9 @@ export default function SearchScreen() {
       <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.header}>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <ArrowLeft size={24} color={isDark ? colors.dark.text : colors.light.text} />
+        </TouchableOpacity>
         <Text style={[styles.headerTitle, isDark ? styles.textDark : styles.textLight]}>
           Search Hymns
         </Text>
@@ -161,6 +176,38 @@ export default function SearchScreen() {
         ))}
       </View>
 
+      {selectedFilter === "category" && (
+        <View style={styles.categoriesContainer}>
+          <FlatList
+            data={["all", ...categories]}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(c) => c}
+            contentContainerStyle={styles.categoryChips}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[
+                  styles.categoryChip,
+                  isDark ? styles.categoryChipDark : styles.categoryChipLight,
+                  selectedCategory === item && styles.categoryChipActive,
+                ]}
+                onPress={() => setSelectedCategory(item)}
+              >
+                <Text
+                  style={[
+                    styles.categoryChipText,
+                    isDark ? styles.categoryChipTextDark : styles.categoryChipTextLight,
+                    selectedCategory === item && styles.categoryChipTextActive,
+                  ]}
+                >
+                  {item === "all" ? "All Categories" : item}
+                </Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      )}
+
       <FlatList
         data={filteredHymns}
         keyExtractor={(item) => item.id.toString()}
@@ -190,8 +237,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.dark.background,
   },
   header: {
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 16,
+    gap: 12,
+  },
+  backButton: {
+    padding: 4,
   },
   headerTitle: {
     fontSize: 28,
@@ -233,6 +286,44 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 16,
     gap: 8,
+  },
+  categoriesContainer: {
+    marginBottom: 16,
+  },
+  categoryChips: {
+    paddingHorizontal: 20,
+    gap: 8,
+  },
+  categoryChip: {
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 16,
+    borderWidth: 1,
+  },
+  categoryChipLight: {
+    borderColor: colors.light.border,
+    backgroundColor: colors.light.surface,
+  },
+  categoryChipDark: {
+    borderColor: colors.dark.border,
+    backgroundColor: colors.dark.surface,
+  },
+  categoryChipActive: {
+    backgroundColor: colors.crimson,
+    borderColor: colors.crimson,
+  },
+  categoryChipText: {
+    fontSize: 13,
+    fontWeight: "500" as const,
+  },
+  categoryChipTextLight: {
+    color: colors.light.textSecondary,
+  },
+  categoryChipTextDark: {
+    color: colors.dark.textSecondary,
+  },
+  categoryChipTextActive: {
+    color: colors.white,
   },
   filterPill: {
     paddingHorizontal: 16,

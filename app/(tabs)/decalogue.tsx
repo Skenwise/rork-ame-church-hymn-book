@@ -98,18 +98,10 @@ export default function DecalogueScreen() {
                   </Text>
                   <TouchableOpacity
                     style={styles.signInButton}
-                    onPress={() => Linking.openURL("https://17thdistrictrayac.org/sign-in")}
-                  >
-                    <LogIn size={16} color={colors.white} />
-                    <Text style={styles.signInButtonText}>Sign In</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={[styles.joinButton, isDark ? styles.joinButtonDark : styles.joinButtonLight]}
                     onPress={() => Linking.openURL("https://17thdistrictrayac.org/join")}
                   >
-                    <Text style={[styles.joinButtonText, isDark ? styles.textDark : styles.textLight]}>
-                      Create Account
-                    </Text>
+                    <LogIn size={16} color={colors.white} />
+                    <Text style={styles.signInButtonText}>Become a Member</Text>
                   </TouchableOpacity>
                 </View>
               )}

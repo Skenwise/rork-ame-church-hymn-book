@@ -1,5 +1,5 @@
-import { Stack } from "expo-router";
-import { Moon, Sun, Type, LogOut, User, Smartphone, Trash2 } from "lucide-react-native";
+import { Stack, router } from "expo-router";
+import { Moon, Sun, Type, LogOut, LogIn, User, Smartphone, Trash2, Crown } from "lucide-react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -9,8 +9,10 @@ import {
   ScrollView,
   Alert,
   ActivityIndicator,
+  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Constants from "expo-constants";
 import { doc, getDoc } from "firebase/firestore";
 
 import colors from "@/constants/colors";
@@ -27,7 +29,7 @@ interface RegisteredDevice {
 }
 
 export default function SettingsScreen() {
-  const { user, signOut, removeDevice } = useAuth();
+  const { user, signOut, removeDevice, deviceStatus, registerCurrentDevice } = useAuth();
   const { textScale, updateTextScale, isDarkMode, toggleDarkMode, isPaid } = useApp();
   const isDark = isDarkMode;
   const [isSigningOut, setIsSigningOut] = useState(false);
@@ -169,19 +171,52 @@ export default function SettingsScreen() {
                 </View>
               </View>
             </View>
+            {!user && (
+              <TouchableOpacity style={styles.accountActionButton} onPress={() => router.push("/sign-in")}>
+                <LogIn size={18} color={colors.white} />
+                <Text style={styles.accountActionButtonText}>Sign In</Text>
+              </TouchableOpacity>
+            )}
+            {user && !isPaid && (
+              <TouchableOpacity
+                style={styles.accountActionButton}
+                onPress={() => Linking.openURL("https://17thdistrictrayac.org/join")}
+              >
+                <Crown size={18} color={colors.white} />
+                <Text style={styles.accountActionButtonText}>Become a Member</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
 
         {/* My Devices Section */}
-        {user && (
+        {user && user.premiumUnlocked && (
           <View style={styles.section}>
             <Text style={[styles.sectionTitle, isDark ? styles.subtextDark : styles.subtextLight]}>
               MY DEVICES
             </Text>
             <View style={[styles.card, isDark ? styles.cardDark : styles.cardLight]}>
               <Text style={[styles.devicesHint, isDark ? styles.subtextDark : styles.subtextLight]}>
-                Premium access works on up to 2 phones.
+                {user.vip ? "VIP account — unlimited devices" : "Premium access works on up to 2 phones."}
               </Text>
+              {!user.vip && deviceStatus === "ok" && (
+                <Text style={[styles.devicesHint, isDark ? styles.subtextDark : styles.subtextLight]}>
+                  This phone is registered
+                </Text>
+              )}
+              {!user.vip && deviceStatus === null && (
+                <View style={styles.deviceRegistrationRow}>
+                  <Text style={[styles.devicesHint, isDark ? styles.subtextDark : styles.subtextLight]}>
+                    Still setting up this phone…
+                  </Text>
+                  <TouchableOpacity
+                    style={styles.retryRegisterButton}
+                    onPress={() => registerCurrentDevice(user.userId).catch(() => {})}
+                  >
+                    <Text style={styles.retryRegisterButtonText}>Retry</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
               {devicesLoading ? (
                 <ActivityIndicator size="small" color={colors.light.primary} style={{ marginVertical: 12 }} />
               ) : (
@@ -290,30 +325,43 @@ export default function SettingsScreen() {
           <Text style={[styles.sectionTitle, isDark ? styles.subtextDark : styles.subtextLight]}>
             SESSION
           </Text>
-          <TouchableOpacity
-            style={[
-              styles.card,
-              styles.signOutCard,
-              isDark ? styles.signOutCardDark : styles.signOutCardLight,
-              isSigningOut && styles.signOutCardDisabled,
-            ]}
-            onPress={handleSignOut}
-            disabled={isSigningOut}
-          >
-            {isSigningOut ? (
-              <ActivityIndicator size="small" color={colors.error} />
-            ) : (
-              <LogOut size={20} color={colors.error} />
-            )}
-            <Text style={styles.signOutText}>
-              {isSigningOut ? "Signing Out..." : "Sign Out"}
-            </Text>
-          </TouchableOpacity>
+          {user ? (
+            <TouchableOpacity
+              style={[
+                styles.card,
+                styles.signOutCard,
+                isDark ? styles.signOutCardDark : styles.signOutCardLight,
+                isSigningOut && styles.signOutCardDisabled,
+              ]}
+              onPress={handleSignOut}
+              disabled={isSigningOut}
+            >
+              {isSigningOut ? (
+                <ActivityIndicator size="small" color={colors.error} />
+              ) : (
+                <LogOut size={20} color={colors.error} />
+              )}
+              <Text style={styles.signOutText}>
+                {isSigningOut ? "Signing Out..." : "Sign Out"}
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={[styles.card, styles.signOutCard, isDark ? styles.signOutCardDark : styles.signOutCardLight]}
+              onPress={() => router.push("/sign-in")}
+            >
+              <LogIn size={20} color={colors.churchBlue} />
+              <Text style={[styles.signOutText, { color: colors.churchBlue }]}>Sign In</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         <View style={styles.footer}>
           <Text style={[styles.footerText, isDark ? styles.subtextDark : styles.subtextLight]}>
-            African Methodist Episcopal Church Hymns v1.0.0
+            African Methodist Episcopal Church Hymns v{Constants.expoConfig?.version ?? "?"}
+            {Constants.expoConfig?.android?.versionCode
+              ? ` (build ${Constants.expoConfig.android.versionCode})`
+              : ""}
           </Text>
         </View>
       </ScrollView>
@@ -423,6 +471,17 @@ const styles = StyleSheet.create({
   signOutCardDark: { backgroundColor: "#2a1a1a" },
   signOutCardDisabled: { opacity: 0.6 },
   signOutText: { fontSize: 16, fontWeight: "600" as const, color: colors.error },
+  accountActionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    backgroundColor: colors.churchBlue,
+    borderRadius: 10,
+    paddingVertical: 12,
+    marginTop: 14,
+  },
+  accountActionButtonText: { color: colors.white, fontSize: 15, fontWeight: "600" as const },
   footer: { alignItems: "center", paddingVertical: 32 },
   footerText: { fontSize: 13 },
   textLight: { color: colors.light.text },
@@ -441,4 +500,21 @@ const styles = StyleSheet.create({
   deviceInfo: { flex: 1 },
   deviceName: { fontSize: 15, fontWeight: "500" as const },
   deviceRemoveButton: { padding: 4 },
+  deviceRegistrationRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginTop: 4,
+  },
+  retryRegisterButton: {
+    backgroundColor: colors.professionalBlue,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 6,
+  },
+  retryRegisterButtonText: {
+    color: colors.white,
+    fontSize: 13,
+    fontWeight: "600" as const,
+  },
 });

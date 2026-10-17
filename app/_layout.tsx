@@ -68,12 +68,36 @@ function LoadingScreen() {
 }
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, deviceStatus } = useAuth();
   const segments = useSegments();
   const router = useRouter();
 
+  // Only auto-open the device screen once per limit episode, otherwise the
+  // "Continue with free hymns" button would bounce straight back here.
+  const limitRedirected = React.useRef(false);
+
   useEffect(() => {
     if (isLoading) return;
+
+    if (deviceStatus !== "limit") {
+      limitRedirected.current = false;
+    }
+
+    // Confirmed over the 2-phone limit (and not a VIP): show the device
+    // screen instead of silently letting paid content stay locked.
+    if (
+      user &&
+      user.vip !== true &&
+      deviceStatus === "limit" &&
+      !limitRedirected.current &&
+      segments[0] !== "device-limit" &&
+      segments[0] !== "sign-in" &&
+      segments[0] !== "auth-callback"
+    ) {
+      limitRedirected.current = true;
+      router.replace("/device-limit");
+      return;
+    }
 
     const inAuthGroup = segments[0] === "(tabs)";
 
@@ -81,10 +105,13 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
       // No login page needed — user stays on home with free hymns
       // The lock system will handle premium content restrictions
       return;
-    } else if (user && !inAuthGroup && segments[0] !== "unlock" && segments[0] !== "hymn" && segments[0] !== "settings" && segments[0] !== "auth-callback" && segments[0] !== "device-limit") {
+    } else if (user && (segments[0] === "sign-in" || segments[0] === "auth-callback")) {
+      // Only steer signed-in users away from the auth screens. Every other
+      // stack route (search, category, favorites, hymn, unlock, device-limit…)
+      // must stay reachable — the content-lock system gates premium access.
       router.replace("/");
     }
-  }, [user, isLoading, segments, router]);
+  }, [user, isLoading, deviceStatus, segments, router]);
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -114,6 +141,7 @@ function RootLayoutNav() {
       {/* <Stack.Screen name="settings" options={{ headerShown: false }} /> */}
       <Stack.Screen name="hymn/[id]" options={{ headerShown: false }} />
       <Stack.Screen name="auth-callback" options={{ headerShown: false }} />
+      <Stack.Screen name="sign-in" options={{ headerShown: false }} />
       <Stack.Screen name="device-limit" options={{ headerShown: false }} />
       <Stack.Screen 
         name="unlock" 

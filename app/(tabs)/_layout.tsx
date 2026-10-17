@@ -1,7 +1,6 @@
 import { Tabs } from "expo-router";
 import { BookOpen, Church, ScrollText, Home, Settings } from "lucide-react-native";
 import React from "react";
-import { Platform, StyleSheet } from "react-native";
 
 import { useApp } from "@/contexts/app-context";
 
