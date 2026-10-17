@@ -105,7 +105,10 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
       // No login page needed — user stays on home with free hymns
       // The lock system will handle premium content restrictions
       return;
-    } else if (user && !inAuthGroup && segments[0] !== "unlock" && segments[0] !== "hymn" && segments[0] !== "settings" && segments[0] !== "auth-callback" && segments[0] !== "sign-in" && segments[0] !== "device-limit") {
+    } else if (user && (segments[0] === "sign-in" || segments[0] === "auth-callback")) {
+      // Only steer signed-in users away from the auth screens. Every other
+      // stack route (search, category, favorites, hymn, unlock, device-limit…)
+      // must stay reachable — the content-lock system gates premium access.
       router.replace("/");
     }
   }, [user, isLoading, deviceStatus, segments, router]);
