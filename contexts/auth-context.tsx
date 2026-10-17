@@ -1,11 +1,12 @@
 import { router } from "expo-router";
 import createContextHook from "@nkzw/create-context-hook";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Alert } from "react-native";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithCustomToken,
+  sendPasswordResetEmail,
   signOut as firebaseSignOut,
   onAuthStateChanged,
   updateProfile,
@@ -41,6 +42,7 @@ export const [AuthContext, useAuth] = createContextHook(() => {
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
   const [deviceStatus, setDeviceStatus] = useState<DeviceStatus>(null);
+  const userDocUnsubRef = useRef<(() => void) | null>(null);
 
   // Register (or touch) this phone on the user's account.
   // Returns "ok" when this phone is one of the allowed devices,
@@ -103,34 +105,66 @@ export const [AuthContext, useAuth] = createContextHook(() => {
     return "error" as const;
   };
 
+  // Mirror of the current user document. Its unsubscribe is held in a ref so
+  // it is always torn down on sign-out / unmount: returning it from inside the
+  // async auth callback would be ignored by Firebase and leak the listener
+  // (letting a signed-out account's data leak back into the app).
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser: User | null) => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser: User | null) => {
       if (firebaseUser) {
+        // Unblock the UI immediately. Gating the whole app on the Firestore
+        // read meant an offline launch could strand the user on the splash
+        // forever — KISS: show the app, let premium fill in when it arrives.
+        setIsLoading(false);
+
         // Keep this phone's registration/lastSeen fresh on every launch.
         registerWithRetry(firebaseUser.uid).catch((error) => {
           console.error("[Auth] Device registration failed:", error);
         });
 
-        const userRef = doc(db, "users", firebaseUser.uid);
-        const unsubscribeDoc = onSnapshot(userRef, (snap) => {
-          const data = snap.data();
-          setUser({
-            userId: firebaseUser.uid,
-            email: firebaseUser.email || "",
-            displayName: firebaseUser.displayName || "",
-            premiumUnlocked: data?.premiumUnlocked || false,
-            vip: data?.vip === true,
-          });
-          setIsLoading(false);
-        });
-        return () => unsubscribeDoc();
+        userDocUnsubRef.current?.();
+        userDocUnsubRef.current = onSnapshot(
+          doc(db, "users", firebaseUser.uid),
+          (snap) => {
+            const data = snap.data();
+            setUser({
+              userId: firebaseUser.uid,
+              email: firebaseUser.email || "",
+              displayName: firebaseUser.displayName || "",
+              premiumUnlocked: data?.premiumUnlocked || false,
+              vip: data?.vip === true,
+            });
+            setIsLoading(false);
+          },
+          (error) => {
+            // A denied/offline read must not hide the user or hang the app.
+            // Keep any known account; otherwise fall back to identity only.
+            console.error("[Auth] User snapshot failed:", error);
+            setUser((prev) =>
+              prev ?? {
+                userId: firebaseUser.uid,
+                email: firebaseUser.email || "",
+                displayName: firebaseUser.displayName || "",
+                premiumUnlocked: false,
+                vip: false,
+              }
+            );
+            setIsLoading(false);
+          }
+        );
       } else {
+        userDocUnsubRef.current?.();
+        userDocUnsubRef.current = null;
         setUser(null);
         setDeviceStatus(null);
         setIsLoading(false);
       }
     });
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+      userDocUnsubRef.current?.();
+      userDocUnsubRef.current = null;
+    };
   }, []);
 
   // Check if a pending unlock exists for this email.
@@ -199,19 +233,31 @@ export const [AuthContext, useAuth] = createContextHook(() => {
     }
   };
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (email: string, password: string): Promise<"ok" | "no-account" | "error"> => {
     setIsSigningIn(true);
     try {
       const { user: firebaseUser } = await signInWithEmailAndPassword(auth, email, password);
-      // Check pending unlock on every sign in too
-      await checkPendingUnlock(email, firebaseUser.uid);
-      router.replace("/");
+      // A pending-unlock lookup must never turn a successful login into a failure.
+      await checkPendingUnlock(email, firebaseUser.uid).catch(() => {});
+      setIsSigningIn(false);
+      return "ok";
     } catch (error: any) {
       console.error("[Auth] Sign in failed:", error);
-      Alert.alert("Error", "Invalid email or password. Please try again.");
-    } finally {
       setIsSigningIn(false);
+      const code = error?.code;
+      if (
+        code === "auth/user-not-found" ||
+        code === "auth/invalid-credential" ||
+        code === "auth/invalid-login-credentials"
+      ) {
+        return "no-account";
+      }
+      return "error";
     }
+  };
+
+  const sendPasswordReset = async (email: string): Promise<void> => {
+    await sendPasswordResetEmail(auth, email);
   };
 
   const signUp = async (email: string, password: string, displayName: string) => {
@@ -264,6 +310,7 @@ export const [AuthContext, useAuth] = createContextHook(() => {
     user,
     isLoading,
     signIn,
+    sendPasswordReset,
     signUp,
     signInWithGoogle,
     signOut,

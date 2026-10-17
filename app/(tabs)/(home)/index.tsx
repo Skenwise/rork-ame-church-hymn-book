@@ -216,7 +216,7 @@ export default function HomeScreen() {
               <Crown size={14} color={isPaid ? colors.amber : colors.mutedGray} />
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity style={styles.signInPill} onPress={() => Linking.openURL("https://17thdistrictrayac.org/sign-in?source=app")}>
+            <TouchableOpacity style={styles.signInPill} onPress={() => router.push("/sign-in")}>
               <LogIn size={16} color={colors.white} />
               <Text style={styles.signInPillText}>Sign In</Text>
             </TouchableOpacity>

@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { View, ActivityIndicator, Text, StyleSheet, TouchableOpacity, Linking } from "react-native";
+import { View, ActivityIndicator, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { XCircle, RefreshCw } from "lucide-react-native";
 import { useAuth } from "@/contexts/auth-context";
-
-const SIGN_IN_URL = "https://17thdistrictrayac.org/sign-in?source=app";
 
 type Phase = "working" | "no-token" | "error";
 
@@ -56,8 +54,9 @@ export default function AuthCallback() {
   }, [token, completeWebHandoff, router, attempt]);
 
   if (phase === "no-token" || phase === "error") {
+    const isNoToken = phase === "no-token";
     const message =
-      phase === "no-token"
+      isNoToken
         ? "No sign-in token arrived in the app. This can happen if an older app version opened the link."
         : statusText ||
           "We couldn't finish signing you in. Please check your internet connection and try again.";
@@ -65,20 +64,33 @@ export default function AuthCallback() {
       <View style={styles.container}>
         <XCircle size={56} color="#DC2626" />
         <Text style={styles.errorTitle}>
-          {phase === "no-token" ? "Sign-in link incomplete" : "Sign-in failed"}
+          {isNoToken ? "Sign-in link incomplete" : "Sign-in failed"}
         </Text>
         <Text style={styles.errorBody}>{message}</Text>
-        <TouchableOpacity
-          style={styles.retryButton}
-          onPress={() => setAttempt((a) => a + 1)}
-          disabled={phase === "no-token"}
-        >
-          <RefreshCw size={18} color="#FFFFFF" />
-          <Text style={styles.retryButtonText}>Try Again</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.secondaryButton} onPress={() => Linking.openURL(SIGN_IN_URL)}>
-          <Text style={styles.secondaryButtonText}>Back to Sign In</Text>
-        </TouchableOpacity>
+        
+        {isNoToken ? (
+          <TouchableOpacity
+            style={styles.retryButton}
+            onPress={() => router.replace("/sign-in")}
+          >
+            <Text style={styles.retryButtonText}>Sign In</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.retryButton}
+            onPress={() => setAttempt((a) => a + 1)}
+          >
+            <RefreshCw size={18} color="#FFFFFF" />
+            <Text style={styles.retryButtonText}>Try Again</Text>
+          </TouchableOpacity>
+        )}
+
+        {!isNoToken && (
+          <TouchableOpacity style={styles.secondaryButton} onPress={() => router.replace("/sign-in")}>
+            <Text style={styles.secondaryButtonText}>Back to Sign In</Text>
+          </TouchableOpacity>
+        )}
+
         <TouchableOpacity style={styles.linkButton} onPress={() => router.replace("/(tabs)/(home)")}>
           <Text style={styles.linkButtonText}>Continue as guest</Text>
         </TouchableOpacity>

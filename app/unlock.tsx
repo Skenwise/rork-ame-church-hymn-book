@@ -1,5 +1,5 @@
 import { router, Stack } from "expo-router";
-import { Crown, Check, ExternalLink } from "lucide-react-native";
+import { Crown, Check, LogIn } from "lucide-react-native";
 import React from "react";
 import {
   View,
@@ -7,28 +7,17 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  ActivityIndicator,
   Linking,
-  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useApp } from "@/contexts/app-context";
 import { usePurchases } from "@/contexts/purchases-context";
 
-// Direct checkout URL with source=app parameter
-const PAYMENT_URL = "https://17thdistrictrayac.org/checkout?product=Hymn+Book&price=50&currency=ZMW&source=app";
+const MEMBERSHIP_URL = "https://17thdistrictrayac.org/join";
 
 export default function UnlockScreen() {
   const { isDarkMode: isDark } = useApp();
-  const { isPremium, isPurchasing } = usePurchases();
-
-  const handleUnlock = async () => {
-    try {
-      await Linking.openURL(PAYMENT_URL);
-    } catch (error) {
-      Alert.alert("Error", "Could not open page. Please try again.");
-    }
-  };
+  const { isPremium } = usePurchases();
 
   const features = [
     "Access all 100+ traditional hymns",
@@ -83,7 +72,7 @@ export default function UnlockScreen() {
 
         <View style={styles.featuresContainer}>
           <Text style={[styles.featuresTitle, isDark ? styles.textDark : styles.textLight]}>
-            What's Included
+            What’s Included
           </Text>
           {features.map((feature, index) => (
             <View key={index} style={styles.featureRow}>
@@ -104,22 +93,15 @@ export default function UnlockScreen() {
         </View>
 
         <TouchableOpacity
-          style={[styles.unlockButton, isPurchasing && styles.unlockButtonDisabled]}
-          onPress={handleUnlock}
-          disabled={isPurchasing}
+          style={styles.unlockButton}
+          onPress={() => Linking.openURL(MEMBERSHIP_URL)}
         >
-          {isPurchasing ? (
-            <ActivityIndicator color="#fff" />
-          ) : (
-            <>
-              <ExternalLink size={20} color="#fff" />
-              <Text style={styles.unlockButtonText}>Get Full Access</Text>
-            </>
-          )}
+          <LogIn size={20} color="#fff" />
+          <Text style={styles.unlockButtonText}>Become a Member</Text>
         </TouchableOpacity>
 
         <Text style={[styles.note, isDark ? styles.subtextDark : styles.subtextLight]}>
-          You'll be taken to our website to activate full access. Return to the app once done — it will unlock automatically.
+          Membership is available through our website.
         </Text>
 
         <TouchableOpacity

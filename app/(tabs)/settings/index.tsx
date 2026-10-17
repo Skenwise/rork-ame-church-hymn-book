@@ -1,5 +1,5 @@
-import { Stack } from "expo-router";
-import { Moon, Sun, Type, LogOut, User, Smartphone, Trash2 } from "lucide-react-native";
+import { Stack, router } from "expo-router";
+import { Moon, Sun, Type, LogOut, LogIn, User, Smartphone, Trash2, Crown } from "lucide-react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -9,6 +9,7 @@ import {
   ScrollView,
   Alert,
   ActivityIndicator,
+  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Constants from "expo-constants";
@@ -170,6 +171,21 @@ export default function SettingsScreen() {
                 </View>
               </View>
             </View>
+            {!user && (
+              <TouchableOpacity style={styles.accountActionButton} onPress={() => router.push("/sign-in")}>
+                <LogIn size={18} color={colors.white} />
+                <Text style={styles.accountActionButtonText}>Sign In</Text>
+              </TouchableOpacity>
+            )}
+            {user && !isPaid && (
+              <TouchableOpacity
+                style={styles.accountActionButton}
+                onPress={() => Linking.openURL("https://17thdistrictrayac.org/join")}
+              >
+                <Crown size={18} color={colors.white} />
+                <Text style={styles.accountActionButtonText}>Become a Member</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
 
@@ -309,25 +325,35 @@ export default function SettingsScreen() {
           <Text style={[styles.sectionTitle, isDark ? styles.subtextDark : styles.subtextLight]}>
             SESSION
           </Text>
-          <TouchableOpacity
-            style={[
-              styles.card,
-              styles.signOutCard,
-              isDark ? styles.signOutCardDark : styles.signOutCardLight,
-              isSigningOut && styles.signOutCardDisabled,
-            ]}
-            onPress={handleSignOut}
-            disabled={isSigningOut}
-          >
-            {isSigningOut ? (
-              <ActivityIndicator size="small" color={colors.error} />
-            ) : (
-              <LogOut size={20} color={colors.error} />
-            )}
-            <Text style={styles.signOutText}>
-              {isSigningOut ? "Signing Out..." : "Sign Out"}
-            </Text>
-          </TouchableOpacity>
+          {user ? (
+            <TouchableOpacity
+              style={[
+                styles.card,
+                styles.signOutCard,
+                isDark ? styles.signOutCardDark : styles.signOutCardLight,
+                isSigningOut && styles.signOutCardDisabled,
+              ]}
+              onPress={handleSignOut}
+              disabled={isSigningOut}
+            >
+              {isSigningOut ? (
+                <ActivityIndicator size="small" color={colors.error} />
+              ) : (
+                <LogOut size={20} color={colors.error} />
+              )}
+              <Text style={styles.signOutText}>
+                {isSigningOut ? "Signing Out..." : "Sign Out"}
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={[styles.card, styles.signOutCard, isDark ? styles.signOutCardDark : styles.signOutCardLight]}
+              onPress={() => router.push("/sign-in")}
+            >
+              <LogIn size={20} color={colors.churchBlue} />
+              <Text style={[styles.signOutText, { color: colors.churchBlue }]}>Sign In</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         <View style={styles.footer}>
@@ -445,6 +471,17 @@ const styles = StyleSheet.create({
   signOutCardDark: { backgroundColor: "#2a1a1a" },
   signOutCardDisabled: { opacity: 0.6 },
   signOutText: { fontSize: 16, fontWeight: "600" as const, color: colors.error },
+  accountActionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    backgroundColor: colors.churchBlue,
+    borderRadius: 10,
+    paddingVertical: 12,
+    marginTop: 14,
+  },
+  accountActionButtonText: { color: colors.white, fontSize: 15, fontWeight: "600" as const },
   footer: { alignItems: "center", paddingVertical: 32 },
   footerText: { fontSize: 13 },
   textLight: { color: colors.light.text },
