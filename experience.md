@@ -28,3 +28,12 @@
 - VPS 164.90.227.4: SSH port opens but rejects all local keys (Permission denied) and each retry wave re-triggers fail2ban (refused). STOP probing; verify via Firestore doc polling instead. Health: api /health=200.
 - Gilbert uid = Crw7saTozXMAyyZyd0bEZ6pu1B92. Doc before flip: premiumUnlocked=true (paid 2026-04-11), devices field ABSENT (never registered once), vip absent → flipped vip=true via REST updateMask (2026-10-15). Live rules deployed (vip freeze) — ruleset compiled+released; both repos' firestore.rules identical (verify with diff after cp).
 - Build: `cd android && ./gradlew assembleRelease` (~2min), apksigner MD5 must equal v1.0.5's 1531ff5e… or upgrade install fails. Output → ~/Downloads/AME-Church-Hymn-Book-v1.0.6.apk (versionCode 6, signed, 96MB).
+
+## 2026-10-17 — v1.0.9 build + Google Play 16 KB page-size rejection (fix)
+- Play BLOCKED the first v1.0.9 upload: **"Your app does not support 16 KB memory page sizes"** (hard error; since Nov 2025 required for 64-bit libs).
+- Root cause: `android/app/build.gradle` (Expo template) hardcodes `com.facebook.fresco:animated-gif:2.5.0` + `:webpsupport:2.5.0`. Those AARs ship `libgifimage.so` / `libstatic-webp.so` with ELF `PT_LOAD p_align=0x1000` (4 KB). RN core fresco 3.6.0's own libs ARE aligned — only the pinned 2.5.0 override was stale. (Also dragged animated-base/animated-drawable/fbcore/imagepipeline-base down to 2.5.0.)
+- Fix: in app/build.gradle set `def frescoVersion = "3.6.0"`, use it for animated-gif/webpsupport/animated-webp, AND `configurations.all { resolutionStrategy.eachDependency { if (group=="com.facebook.fresco") useVersion("3.6.0") } }` to clear the 2.5.0 leftovers. Rebuild `bundleRelease` → arm64-v8a + x86_64 all 0x4000 ✅.
+- Diagnosis tool (reusable): parse ELF program headers straight out of the AAB with python `zipfile`+`struct` (readelf cannot read a pipe). Requirement: every `PT_LOAD` `p_align >= 0x4000` (16 KB). Handle ELF32 vs ELF64 header offsets (`e_phoff`@0x1C/0x20, p_align@0x1C/0x30).
+- NOTE: 32-bit ABIs (armeabi-v7a/x86) are ALL 4 KB-aligned — but Play only enforces 64-bit, so not blocking. AGP already 8.11.0 (the "bump AGP" advice did not apply); `useLegacyPackaging` does NOT change ELF p_align so it won't satisfy the check.
+- ⚠️ `android/` is gitignored → this fix exists only in the local prebuild and is LOST on `expo prebuild`. A config plugin would make it durable.
+- Outputs: ~/Downloads/AME-Church-Hymn-Book-v1.0.9.aab (Play upload) + -v1.0.9.apk (sideload), both signed (cert MD5 1531ff5e…), versionCode 8 / 1.0.9.
