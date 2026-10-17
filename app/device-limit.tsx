@@ -97,7 +97,10 @@ export default function DeviceLimit() {
           {devices.map((device) => (
             <View key={device.id} style={styles.deviceCard}>
               <View style={styles.deviceInfo}>
-                <Text style={styles.deviceName}>{device.name}</Text>
+                <Text style={styles.deviceName}>
+                  {device.name}
+                  {device.id === currentDeviceId ? "  ·  This device" : ""}
+                </Text>
                 <Text style={styles.deviceMeta}>Last used {formatLastSeen(device.lastSeen)}</Text>
               </View>
               <Pressable
