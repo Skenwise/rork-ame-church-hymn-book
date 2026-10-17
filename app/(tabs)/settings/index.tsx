@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Constants from "expo-constants";
 import { doc, getDoc } from "firebase/firestore";
 
 import colors from "@/constants/colors";
@@ -27,7 +28,7 @@ interface RegisteredDevice {
 }
 
 export default function SettingsScreen() {
-  const { user, signOut, removeDevice } = useAuth();
+  const { user, signOut, removeDevice, deviceStatus, registerCurrentDevice } = useAuth();
   const { textScale, updateTextScale, isDarkMode, toggleDarkMode, isPaid } = useApp();
   const isDark = isDarkMode;
   const [isSigningOut, setIsSigningOut] = useState(false);
@@ -173,15 +174,33 @@ export default function SettingsScreen() {
         </View>
 
         {/* My Devices Section */}
-        {user && (
+        {user && user.premiumUnlocked && (
           <View style={styles.section}>
             <Text style={[styles.sectionTitle, isDark ? styles.subtextDark : styles.subtextLight]}>
               MY DEVICES
             </Text>
             <View style={[styles.card, isDark ? styles.cardDark : styles.cardLight]}>
               <Text style={[styles.devicesHint, isDark ? styles.subtextDark : styles.subtextLight]}>
-                Premium access works on up to 2 phones.
+                {user.vip ? "VIP account — unlimited devices" : "Premium access works on up to 2 phones."}
               </Text>
+              {!user.vip && deviceStatus === "ok" && (
+                <Text style={[styles.devicesHint, isDark ? styles.subtextDark : styles.subtextLight]}>
+                  This phone is registered
+                </Text>
+              )}
+              {!user.vip && deviceStatus === null && (
+                <View style={styles.deviceRegistrationRow}>
+                  <Text style={[styles.devicesHint, isDark ? styles.subtextDark : styles.subtextLight]}>
+                    Still setting up this phone…
+                  </Text>
+                  <TouchableOpacity
+                    style={styles.retryRegisterButton}
+                    onPress={() => registerCurrentDevice(user.userId).catch(() => {})}
+                  >
+                    <Text style={styles.retryRegisterButtonText}>Retry</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
               {devicesLoading ? (
                 <ActivityIndicator size="small" color={colors.light.primary} style={{ marginVertical: 12 }} />
               ) : (
@@ -313,7 +332,10 @@ export default function SettingsScreen() {
 
         <View style={styles.footer}>
           <Text style={[styles.footerText, isDark ? styles.subtextDark : styles.subtextLight]}>
-            African Methodist Episcopal Church Hymns v1.0.0
+            African Methodist Episcopal Church Hymns v{Constants.expoConfig?.version ?? "?"}
+            {Constants.expoConfig?.android?.versionCode
+              ? ` (build ${Constants.expoConfig.android.versionCode})`
+              : ""}
           </Text>
         </View>
       </ScrollView>
@@ -441,4 +463,21 @@ const styles = StyleSheet.create({
   deviceInfo: { flex: 1 },
   deviceName: { fontSize: 15, fontWeight: "500" as const },
   deviceRemoveButton: { padding: 4 },
+  deviceRegistrationRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginTop: 4,
+  },
+  retryRegisterButton: {
+    backgroundColor: colors.professionalBlue,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 6,
+  },
+  retryRegisterButtonText: {
+    color: colors.white,
+    fontSize: 13,
+    fontWeight: "600" as const,
+  },
 });

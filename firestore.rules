@@ -43,7 +43,9 @@ service cloud.firestore {
               && get(/databases/$(database)/documents/pendingUnlocks/$(request.resource.data.email)).exists
             ))
         && (!('devices' in request.resource.data)
-            || request.resource.data.devices.size() <= 2);
+            || request.resource.data.devices.size() <= 2)
+        // vip is frozen on self-edits (owner accounts only; server-granted).
+        && (!('vip' in request.resource.data) || request.resource.data.vip == false);
       allow update: if isAuthed() && (
         // Legacy admin-panel edits (MembersAdmin toggle/delete) — see
         // KNOWN LIMITATION above.
@@ -61,6 +63,8 @@ service cloud.firestore {
               ))
           && (!('email' in request.resource.data)
               || request.resource.data.email == resource.data.email)
+          // vip is frozen on self-edits (owner accounts only; server-granted).
+          && (!('vip' in request.resource.data) || request.resource.data.vip == resource.data.vip)
           // 2-device limit, enforced in the database itself.
           && (!('devices' in request.resource.data)
               || request.resource.data.devices.size() <= 2)

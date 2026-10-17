@@ -29,9 +29,11 @@ interface AuthUser {
   email: string;
   displayName: string;
   premiumUnlocked: boolean;
+  vip: boolean;
 }
 
 export type DeviceStatus = "ok" | "limit" | null;
+export type HandoffResult = "ok" | "limit" | "error";
 
 export const [AuthContext, useAuth] = createContextHook(() => {
   const [user, setUser] = useState<AuthUser | null>(null);
@@ -81,11 +83,31 @@ export const [AuthContext, useAuth] = createContextHook(() => {
     return result;
   };
 
+  // Registration can hit transient network/permission blips right after a
+  // deep-link handoff. Retry a few times so deviceStatus reliably settles
+  // to "ok" or "limit" instead of being stuck null. On total failure we
+  // return "error" — NEVER "limit": a dead network is not a device limit.
+  const registerWithRetry = async (userId: string): Promise<HandoffResult> => {
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        return await registerCurrentDevice(userId);
+      } catch (error) {
+        console.error(`[Auth] Device registration attempt ${attempt} failed:`, error);
+        if (attempt < 3) {
+          await new Promise((resolve) => setTimeout(resolve, attempt * 1500));
+        }
+      }
+    }
+    // All attempts threw: network/permission problem, not a device limit.
+    setDeviceStatus((prev) => prev ?? null);
+    return "error" as const;
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser: User | null) => {
       if (firebaseUser) {
         // Keep this phone's registration/lastSeen fresh on every launch.
-        registerCurrentDevice(firebaseUser.uid).catch((error) => {
+        registerWithRetry(firebaseUser.uid).catch((error) => {
           console.error("[Auth] Device registration failed:", error);
         });
 
@@ -97,6 +119,7 @@ export const [AuthContext, useAuth] = createContextHook(() => {
             email: firebaseUser.email || "",
             displayName: firebaseUser.displayName || "",
             premiumUnlocked: data?.premiumUnlocked || false,
+            vip: data?.vip === true,
           });
           setIsLoading(false);
         });
@@ -139,12 +162,27 @@ export const [AuthContext, useAuth] = createContextHook(() => {
 
   // Website → app handoff: sign in with the one-time token minted by the
   // createAppToken Cloud Function, then register this phone.
-  const completeWebHandoff = async (token: string): Promise<"ok" | "limit"> => {
+  const completeWebHandoff = async (token: string): Promise<HandoffResult> => {
     const credential = await signInWithCustomToken(auth, token);
     if (credential.user.email) {
       await checkPendingUnlock(credential.user.email, credential.user.uid).catch(() => {});
     }
-    return registerCurrentDevice(credential.user.uid);
+    const result = await registerWithRetry(credential.user.uid);
+    if (result === "ok") {
+      return "ok";
+    }
+    // VIP accounts are never blocked by device registration: the phone
+    // registration still ran (it shows in the device list), but a limit
+    // or a network failure must not lock the owner out of paid hymns.
+    try {
+      const snap = await getDoc(doc(db, "users", credential.user.uid));
+      if (snap.data()?.vip === true) {
+        return "ok";
+      }
+    } catch (error) {
+      console.error("[Auth] VIP check failed:", error);
+    }
+    return result;
   };
 
   // Remove a registered phone from the account; if this phone was blocked

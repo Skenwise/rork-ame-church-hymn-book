@@ -44,3 +44,7 @@ yarn-error.*
 rork-eslint.config.js
 coregoogle-services.json
 lib/firebase.ts
+
+# Service account keys — never commit
+districtrayac-firebase-adminsdk*.json
+*firebase-adminsdk*.json

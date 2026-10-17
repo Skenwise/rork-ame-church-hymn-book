@@ -6,9 +6,15 @@ export const [PurchasesContext, usePurchases] = createContextHook(() => {
   const { user, deviceStatus } = useAuth();
   const [isPurchasing, setIsPurchasing] = useState(false);
 
-  // Premium requires both: the account paid, AND this phone is registered
-  // as one of the allowed devices (2-device limit).
-  const isPremium = (user?.premiumUnlocked ?? false) && deviceStatus === "ok";
+  // Paid = unlocked. Registration is background paperwork: a paying user
+  // is never blocked by device status. The 2-device limit only locks
+  // content when registration has CONFIRMED this phone exceeds the limit
+  // ("limit"). While registration is still in flight — or hits a transient
+  // network error — deviceStatus is null: a paying customer must never be
+  // locked out because of that. VIP users bypass the device limit entirely.
+  // premiumUnlocked is frozen on client edits (Firestore rules), so it is
+  // trustworthy here.
+  const isPremium = (user?.premiumUnlocked ?? false) && (user?.vip === true || deviceStatus !== "limit");
 
   // This will be called after GeePay payment succeeds
   // For now it's a placeholder — real unlock happens via Firebase Function webhook
