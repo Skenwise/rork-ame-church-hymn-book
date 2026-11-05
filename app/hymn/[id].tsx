@@ -7,12 +7,12 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
+import { openJoin } from "@/lib/app-links";
 import { HYMNS } from "@/mocks/hymns";
 
 type Language = "english" | "bemba";
@@ -128,8 +128,9 @@ export default function HymnDetailScreen() {
           </Text>
           <TouchableOpacity
             style={styles.signInButtonLarge}
-            onPress={() => Linking.openURL("https://17thdistrictrayac.org/join")}
+            onPress={openJoin}
           >
+
             <LogIn size={20} color={colors.white} />
             <Text style={styles.signInButtonLargeText}>Become a Member</Text>
           </TouchableOpacity>

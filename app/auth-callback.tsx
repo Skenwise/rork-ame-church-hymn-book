@@ -1,37 +1,45 @@
 import { useEffect, useRef, useState } from "react";
-import { View, ActivityIndicator, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, ActivityIndicator, Text, StyleSheet, TouchableOpacity, Linking } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { XCircle, RefreshCw } from "lucide-react-native";
 import { useAuth } from "@/contexts/auth-context";
+import { SIGN_IN_URL, openExternal } from "@/lib/app-links";
 
-type Phase = "working" | "no-token" | "error";
+type Phase = "working" | "no-token" | "error" | "expired";
 
 export default function AuthCallback() {
   const router = useRouter();
-  const { token } = useLocalSearchParams<{ token?: string }>();
+  const params = useLocalSearchParams<{ token?: string | string[] }>();
+  const token = Array.isArray(params.token) ? params.token[0] : params.token;
   const { completeWebHandoff } = useAuth();
   const [phase, setPhase] = useState<Phase>("working");
   const [statusText, setStatusText] = useState("Signing you in…");
-  const processed = useRef(false);
+  const handoffRef = useRef(completeWebHandoff);
+  useEffect(() => { handoffRef.current = completeWebHandoff; }, [completeWebHandoff]);
   const [attempt, setAttempt] = useState(0);
+  const processedKey = useRef<string | null>(null);
 
   useEffect(() => {
-    // Re-runs when the user taps "Try Again" (attempt changes).
+    const key = `${token ?? "none"}:${attempt}`;
+    if (processedKey.current === key) return;
+    processedKey.current = key;
+
+    // Re-runs only when the token changes or the user taps "Try Again".
     setPhase("working");
     setStatusText("Signing you in…");
-    processed.current = false;
 
     (async () => {
       try {
+        console.log("[handoff] auth-callback token:", token ? "present" : "missing");
         if (!token) {
           setPhase("no-token");
           return;
         }
-        if (processed.current) return;
-        processed.current = true;
 
         setStatusText("Signing you in…");
-        const status = await completeWebHandoff(String(token));
+        console.log("[handoff] signing in…");
+        const status = await handoffRef.current(String(token));
+        console.log("[handoff] result:", status);
         if (status === "limit") {
           router.replace("/device-limit");
           return;
@@ -39,43 +47,46 @@ export default function AuthCallback() {
         if (status === "error") {
           setPhase("error");
           setStatusText(
-            "Your hymns are paid for, but we couldn't reach our servers to finish setting up this phone. Please check your internet connection and try again."
+            "We couldn't finish setting up this phone. Please check your internet connection and try again."
           );
           return;
         }
         setStatusText("Activating your hymns…");
         router.replace("/(tabs)/(home)");
-      } catch (error) {
-        // Visible failure — never silently dump the user as a guest.
-        console.error("[AuthCallback] Web handoff failed:", error);
+      } catch (error: any) {
+        const code = error?.code;
+        console.error("[handoff] failed:", code || error);
+        if (code === "auth/invalid-custom-token" || code === "auth/custom-token-mismatch") {
+          setPhase("expired");
+          return;
+        }
         setPhase("error");
       }
     })();
-  }, [token, completeWebHandoff, router, attempt]);
+  }, [token, attempt, router]);
 
-  if (phase === "no-token" || phase === "error") {
+  if (phase === "no-token" || phase === "error" || phase === "expired") {
     const isNoToken = phase === "no-token";
-    const message =
-      isNoToken
-        ? "No sign-in token arrived in the app. This can happen if an older app version opened the link."
+    const isExpired = phase === "expired";
+    const message = isNoToken
+      ? "No sign-in token arrived in the app. Please go back to the website and tap 'Return to the app'."
+      : isExpired
+        ? "This sign-in link has expired. Please sign in again on our website."
         : statusText ||
           "We couldn't finish signing you in. Please check your internet connection and try again.";
+    const title = isNoToken
+      ? "Sign-in link incomplete"
+      : isExpired
+        ? "Sign-in link expired"
+        : "Sign-in failed";
+
     return (
       <View style={styles.container}>
         <XCircle size={56} color="#DC2626" />
-        <Text style={styles.errorTitle}>
-          {isNoToken ? "Sign-in link incomplete" : "Sign-in failed"}
-        </Text>
+        <Text style={styles.errorTitle}>{title}</Text>
         <Text style={styles.errorBody}>{message}</Text>
-        
-        {isNoToken ? (
-          <TouchableOpacity
-            style={styles.retryButton}
-            onPress={() => router.replace("/sign-in")}
-          >
-            <Text style={styles.retryButtonText}>Sign In</Text>
-          </TouchableOpacity>
-        ) : (
+
+        {phase === "error" && (
           <TouchableOpacity
             style={styles.retryButton}
             onPress={() => setAttempt((a) => a + 1)}
@@ -85,11 +96,14 @@ export default function AuthCallback() {
           </TouchableOpacity>
         )}
 
-        {!isNoToken && (
-          <TouchableOpacity style={styles.secondaryButton} onPress={() => router.replace("/sign-in")}>
-            <Text style={styles.secondaryButtonText}>Back to Sign In</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          style={isNoToken || isExpired ? styles.retryButton : styles.secondaryButton}
+          onPress={() => void openExternal(SIGN_IN_URL)}
+        >
+          <Text style={isNoToken || isExpired ? styles.retryButtonText : styles.secondaryButtonText}>
+            {isNoToken ? "Sign In" : "Open Website"}
+          </Text>
+        </TouchableOpacity>
 
         <TouchableOpacity style={styles.linkButton} onPress={() => router.replace("/(tabs)/(home)")}>
           <Text style={styles.linkButtonText}>Continue as guest</Text>

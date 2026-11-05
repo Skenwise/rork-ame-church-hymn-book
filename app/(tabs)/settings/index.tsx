@@ -1,4 +1,4 @@
-import { Stack, router } from "expo-router";
+import { Stack } from "expo-router";
 import { Moon, Sun, Type, LogOut, LogIn, User, Smartphone, Trash2, Crown } from "lucide-react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import {
@@ -9,7 +9,6 @@ import {
   ScrollView,
   Alert,
   ActivityIndicator,
-  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Constants from "expo-constants";
@@ -20,6 +19,7 @@ import { db } from "@/lib/firebase";
 import { getDeviceId } from "@/lib/device";
 import { useApp } from "@/contexts/app-context";
 import { useAuth } from "@/contexts/auth-context";
+import { openJoin, openSignIn } from "@/lib/app-links";
 import { TextScale } from "@/types/hymn";
 
 interface RegisteredDevice {
@@ -172,7 +172,7 @@ export default function SettingsScreen() {
               </View>
             </View>
             {!user && (
-              <TouchableOpacity style={styles.accountActionButton} onPress={() => router.push("/sign-in")}>
+              <TouchableOpacity style={styles.accountActionButton} onPress={openSignIn}>
                 <LogIn size={18} color={colors.white} />
                 <Text style={styles.accountActionButtonText}>Sign In</Text>
               </TouchableOpacity>
@@ -180,7 +180,7 @@ export default function SettingsScreen() {
             {user && !isPaid && (
               <TouchableOpacity
                 style={styles.accountActionButton}
-                onPress={() => Linking.openURL("https://17thdistrictrayac.org/join")}
+                onPress={openJoin}
               >
                 <Crown size={18} color={colors.white} />
                 <Text style={styles.accountActionButtonText}>Become a Member</Text>
@@ -348,7 +348,7 @@ export default function SettingsScreen() {
           ) : (
             <TouchableOpacity
               style={[styles.card, styles.signOutCard, isDark ? styles.signOutCardDark : styles.signOutCardLight]}
-              onPress={() => router.push("/sign-in")}
+              onPress={openSignIn}
             >
               <LogIn size={20} color={colors.churchBlue} />
               <Text style={[styles.signOutText, { color: colors.churchBlue }]}>Sign In</Text>

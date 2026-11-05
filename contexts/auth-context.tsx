@@ -23,7 +23,7 @@ import {
   deleteField,
 } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
-import { getDeviceId, getDeviceName, MAX_DEVICES } from "@/lib/device";
+import { getDeviceId, getLegacyDeviceId, getInstallTime, getDeviceName, MAX_DEVICES } from "@/lib/device";
 
 interface AuthUser {
   userId: string;
@@ -49,6 +49,8 @@ export const [AuthContext, useAuth] = createContextHook(() => {
   // "limit" when both device slots are taken by other phones.
   const registerCurrentDevice = async (userId: string): Promise<"ok" | "limit"> => {
     const deviceId = await getDeviceId();
+    const legacyId = await getLegacyDeviceId();
+    const installTime = await getInstallTime();
     const deviceName = getDeviceName();
     const now = Date.now();
     const staleMs = 30 * 24 * 60 * 60 * 1000;
@@ -58,26 +60,75 @@ export const [AuthContext, useAuth] = createContextHook(() => {
       const snap = await tx.get(userRef);
       const devices: Record<string, any> = { ...(snap.data()?.devices ?? {}) };
 
-      if (devices[deviceId]) {
-        devices[deviceId] = { ...devices[deviceId], name: deviceName, lastSeen: now };
-        tx.set(userRef, { devices }, { merge: true });
-        return "ok" as const;
+      // Adopt the previous installation-scoped id so updating from an older
+      // build reuses this phone's existing slot instead of adding a new one.
+      if (legacyId && legacyId !== deviceId && devices[legacyId]) {
+        if (!devices[deviceId]) {
+          devices[deviceId] = { ...devices[legacyId] };
+        }
+        delete devices[legacyId];
       }
 
-      // Free up slots held by phones unused for 30+ days (3A).
-      for (const [id, d] of Object.entries(devices)) {
-        const lastSeen = d?.lastSeen ?? d?.registeredAt ?? 0;
-        if (now - lastSeen > staleMs) {
-          delete devices[id];
+      // Fresh install (no local legacy id) with every slot taken: adopt the
+      // most recently used entry with this phone's name instead of blocking
+      // the owner on the device-limit screen.
+      if (!devices[deviceId] && installTime && Object.keys(devices).length >= MAX_DEVICES) {
+        const candidates = Object.entries(devices)
+          .filter(
+            ([, d]) =>
+              d?.name === deviceName &&
+              (d?.lastSeen ?? d?.registeredAt ?? 0) < installTime
+          )
+          .sort((a, b) => (b[1]?.lastSeen ?? 0) - (a[1]?.lastSeen ?? 0));
+        if (candidates.length > 0) {
+          const [oldId, oldData] = candidates[0];
+          devices[deviceId] = { ...oldData, name: deviceName, lastSeen: now };
+          delete devices[oldId];
         }
       }
 
-      if (Object.keys(devices).length >= MAX_DEVICES) {
-        return "limit" as const;
+      let current = devices[deviceId];
+
+      if (current) {
+        current = { ...current, name: deviceName, lastSeen: now };
+        devices[deviceId] = current;
+      } else {
+        // Free up slots held by phones unused for 30+ days (3A).
+        for (const [id, d] of Object.entries(devices)) {
+          const lastSeen = d?.lastSeen ?? d?.registeredAt ?? 0;
+          if (now - lastSeen > staleMs) {
+            delete devices[id];
+          }
+        }
+
+        if (Object.keys(devices).length >= MAX_DEVICES) {
+          return "limit" as const;
+        }
+
+        current = { name: deviceName, registeredAt: now, lastSeen: now };
+        devices[deviceId] = current;
       }
 
-      devices[deviceId] = { name: deviceName, registeredAt: now, lastSeen: now };
-      tx.set(userRef, { devices }, { merge: true });
+        // Clean up entries created by the old concurrent-registration race:
+        // same device name, registered within seconds of this one.
+        const registeredAt = typeof current?.registeredAt === "number" ? current.registeredAt : null;
+        if (registeredAt !== null) {
+          for (const [id, d] of Object.entries(devices)) {
+            if (id === deviceId) continue;
+            const otherRegisteredAt = typeof d?.registeredAt === "number" ? d.registeredAt : 0;
+            if (d?.name === deviceName && Math.abs(otherRegisteredAt - registeredAt) <= 10_000) {
+              delete devices[id];
+            }
+          }
+        }
+
+
+      // Replace the whole `devices` map so deleted keys are actually removed.
+      if (snap.exists()) {
+        tx.update(userRef, { devices });
+      } else {
+        tx.set(userRef, { devices });
+      }
       return "ok" as const;
     });
 
@@ -89,20 +140,40 @@ export const [AuthContext, useAuth] = createContextHook(() => {
   // deep-link handoff. Retry a few times so deviceStatus reliably settles
   // to "ok" or "limit" instead of being stuck null. On total failure we
   // return "error" — NEVER "limit": a dead network is not a device limit.
+  // Concurrent callers (the auth listener and the website handoff) share one
+  // in-flight registration so a fresh install cannot register twice.
+  const registrationRef = useRef<{ userId: string; promise: Promise<HandoffResult> } | null>(null);
+
   const registerWithRetry = async (userId: string): Promise<HandoffResult> => {
-    for (let attempt = 1; attempt <= 3; attempt++) {
-      try {
-        return await registerCurrentDevice(userId);
-      } catch (error) {
-        console.error(`[Auth] Device registration attempt ${attempt} failed:`, error);
-        if (attempt < 3) {
-          await new Promise((resolve) => setTimeout(resolve, attempt * 1500));
+    const existing = registrationRef.current;
+    if (existing && existing.userId === userId) {
+      return existing.promise;
+    }
+
+    const promise = (async (): Promise<HandoffResult> => {
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          return await registerCurrentDevice(userId);
+        } catch (error) {
+          console.error(`[Auth] Device registration attempt ${attempt} failed:`, error);
+          if (attempt < 3) {
+            await new Promise((resolve) => setTimeout(resolve, attempt * 1500));
+          }
         }
       }
+      // All attempts threw: network/permission problem, not a device limit.
+      setDeviceStatus((prev) => prev ?? null);
+      return "error" as const;
+    })();
+
+    registrationRef.current = { userId, promise };
+    try {
+      return await promise;
+    } finally {
+      if (registrationRef.current?.promise === promise) {
+        registrationRef.current = null;
+      }
     }
-    // All attempts threw: network/permission problem, not a device limit.
-    setDeviceStatus((prev) => prev ?? null);
-    return "error" as const;
   };
 
   // Mirror of the current user document. Its unsubscribe is held in a ref so
@@ -197,26 +268,37 @@ export const [AuthContext, useAuth] = createContextHook(() => {
   // Website → app handoff: sign in with the one-time token minted by the
   // createAppToken Cloud Function, then register this phone.
   const completeWebHandoff = async (token: string): Promise<HandoffResult> => {
-    const credential = await signInWithCustomToken(auth, token);
-    if (credential.user.email) {
-      await checkPendingUnlock(credential.user.email, credential.user.uid).catch(() => {});
-    }
-    const result = await registerWithRetry(credential.user.uid);
-    if (result === "ok") {
-      return "ok";
-    }
-    // VIP accounts are never blocked by device registration: the phone
-    // registration still ran (it shows in the device list), but a limit
-    // or a network failure must not lock the owner out of paid hymns.
+    console.log("[handoff] completeWebHandoff: signing in");
+    console.log("[handoff] signing in…");
     try {
-      const snap = await getDoc(doc(db, "users", credential.user.uid));
-      if (snap.data()?.vip === true) {
+      const credential = await signInWithCustomToken(auth, token);
+      console.log("[handoff] completeWebHandoff: signed in");
+      if (credential.user.email) {
+        await checkPendingUnlock(credential.user.email, credential.user.uid).catch(() => {});
+      }
+      const result = await registerWithRetry(credential.user.uid);
+      if (result === "ok") {
+        console.log("[handoff] result: ok");
         return "ok";
       }
-    } catch (error) {
-      console.error("[Auth] VIP check failed:", error);
+      // VIP accounts are never blocked by device registration: the phone
+      // registration still ran (it shows in the device list), but a limit
+      // or a network failure must not lock the owner out of paid hymns.
+      try {
+        const snap = await getDoc(doc(db, "users", credential.user.uid));
+        if (snap.data()?.vip === true) {
+          console.log("[handoff] result: ok (vip)");
+          return "ok";
+        }
+      } catch (error) {
+        console.error("[Auth] VIP check failed:", error);
+      }
+      console.log("[handoff] result:", result);
+      return result;
+    } catch (error: any) {
+      console.error("[handoff] sign in failed:", error.code);
+      throw error;
     }
-    return result;
   };
 
   // Remove a registered phone from the account; if this phone was blocked
