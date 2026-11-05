@@ -29,7 +29,7 @@ interface RegisteredDevice {
 }
 
 export default function SettingsScreen() {
-  const { user, signOut, removeDevice, deviceStatus, registerCurrentDevice, isOffline } = useAuth();
+  const { user, signOut, removeDevice, deviceStatus, registerCurrentDevice, isOffline, lastSyncedAt } = useAuth();
   const { textScale, updateTextScale, isDarkMode, toggleDarkMode, isPaid } = useApp();
   const isDark = isDarkMode;
   const [isSigningOut, setIsSigningOut] = useState(false);
@@ -169,9 +169,12 @@ export default function SettingsScreen() {
                     {isPaid ? "✦ Premium" : user ? "Free Preview" : "Not signed in"}
                   </Text>
                 </View>
-                {isOffline && user && (
+                {user && (
                   <Text style={[styles.offlineNote, isDark ? styles.subtextDark : styles.subtextLight]}>
-                    Offline — showing last confirmed status
+                    {isOffline ? "Offline — " : ""}
+                    {lastSyncedAt
+                      ? `Last confirmed ${new Date(lastSyncedAt).toLocaleString()}`
+                      : "Membership not confirmed yet"}
                   </Text>
                 )}
               </View>

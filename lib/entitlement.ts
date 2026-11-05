@@ -13,6 +13,16 @@ export interface CachedEntitlement {
 }
 
 const keyFor = (uid: string) => `entitlement.v1.${uid}`;
+const LAST_UID_KEY = "entitlement.v1.lastUid";
+
+export async function getLastUid(): Promise<string | null> {
+  try {
+    return await AsyncStorage.getItem(LAST_UID_KEY);
+  } catch (error) {
+    console.warn("[entitlement] last-account read failed:", error);
+    return null;
+  }
+}
 
 export async function loadEntitlement(uid: string): Promise<CachedEntitlement | null> {
   if (!uid) return null;
@@ -38,7 +48,10 @@ export async function loadEntitlement(uid: string): Promise<CachedEntitlement | 
 export async function saveEntitlement(entitlement: CachedEntitlement): Promise<void> {
   if (!entitlement.uid) return;
   try {
-    await AsyncStorage.setItem(keyFor(entitlement.uid), JSON.stringify(entitlement));
+    await AsyncStorage.multiSet([
+      [keyFor(entitlement.uid), JSON.stringify(entitlement)],
+      [LAST_UID_KEY, entitlement.uid],
+    ]);
   } catch (error) {
     console.warn("[entitlement] cache write failed:", error);
   }
@@ -47,7 +60,10 @@ export async function saveEntitlement(entitlement: CachedEntitlement): Promise<v
 export async function clearEntitlement(uid: string): Promise<void> {
   if (!uid) return;
   try {
-    await AsyncStorage.removeItem(keyFor(uid));
+    const last = await AsyncStorage.getItem(LAST_UID_KEY);
+    const keys = [keyFor(uid)];
+    if (last === uid) keys.push(LAST_UID_KEY);
+    await AsyncStorage.multiRemove(keys);
   } catch (error) {
     // swallow errors
   }

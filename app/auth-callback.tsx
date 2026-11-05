@@ -60,6 +60,16 @@ export default function AuthCallback() {
           setPhase("expired");
           return;
         }
+        if (code === "entitlement/sync-failed") {
+          setStatusText(
+            "Couldn't confirm your membership. Please check your internet connection and tap Try Again. We only need this once — after that the app stays unlocked offline."
+          );
+          setPhase("error");
+          return;
+        }
+        setStatusText(
+          "We couldn't finish signing you in. Please check your internet connection and try again."
+        );
         setPhase("error");
       }
     })();
