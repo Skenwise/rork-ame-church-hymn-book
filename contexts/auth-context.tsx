@@ -24,6 +24,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { getDeviceId, getLegacyDeviceId, getInstallTime, getDeviceName, MAX_DEVICES } from "@/lib/device";
+import { loadEntitlement, saveEntitlement, clearEntitlement } from "@/lib/entitlement";
 
 interface AuthUser {
   userId: string;
@@ -42,6 +43,11 @@ export const [AuthContext, useAuth] = createContextHook(() => {
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
   const [deviceStatus, setDeviceStatus] = useState<DeviceStatus>(null);
+  const [lastSyncedAt, setLastSyncedAt] = useState<number | null>(null);
+  const [isOffline, setIsOffline] = useState(false);
+  const serverSyncRef = useRef(0);
+  const hydratedUidRef = useRef<string | null>(null);
+  const offlineTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const userDocUnsubRef = useRef<(() => void) | null>(null);
 
   // Register (or touch) this phone on the user's account.
@@ -188,6 +194,54 @@ export const [AuthContext, useAuth] = createContextHook(() => {
         // forever — KISS: show the app, let premium fill in when it arrives.
         setIsLoading(false);
 
+        if (hydratedUidRef.current !== firebaseUser.uid) {
+          // New account (or first restore): start its sync window clean so the
+          // cached receipt can hydrate before the network answers.
+          hydratedUidRef.current = firebaseUser.uid;
+          serverSyncRef.current = 0;
+          setLastSyncedAt(null);
+          setIsOffline(false);
+          setUser(null);
+          loadEntitlement(firebaseUser.uid)
+            .then((cached) => {
+              if (!cached) {
+                // Signed in but nothing cached (fresh install): show the
+                // identity as free rather than looking signed out offline.
+                if (serverSyncRef.current === 0) {
+                  setUser({
+                    userId: firebaseUser.uid,
+                    email: firebaseUser.email || "",
+                    displayName: firebaseUser.displayName || "",
+                    premiumUnlocked: false,
+                    vip: false,
+                  });
+                }
+                return;
+              }
+              // Never overwrite a snapshot that already succeeded for this user.
+              if (serverSyncRef.current > 0 && serverSyncRef.current >= cached.verifiedAt) return;
+              setUser({
+                userId: firebaseUser.uid,
+                email: cached.email || firebaseUser.email || "",
+                displayName: cached.displayName || firebaseUser.displayName || "",
+                premiumUnlocked: cached.premiumUnlocked,
+                vip: cached.vip,
+              });
+              setDeviceStatus(cached.deviceStatus ?? null);
+              setLastSyncedAt(cached.verifiedAt);
+              setIsLoading(false);
+            })
+            .catch((error) => console.warn("[Auth] entitlement cache read failed:", error));
+
+          // Firestore's listener stays silent while offline (it retries instead
+          // of erroring), so surface "offline" after a short window. The cached
+          // receipt keeps the app unlocked either way.
+          if (offlineTimerRef.current) clearTimeout(offlineTimerRef.current);
+          offlineTimerRef.current = setTimeout(() => {
+            if (serverSyncRef.current === 0) setIsOffline(true);
+          }, 6000);
+        }
+
         // Keep this phone's registration/lastSeen fresh on every launch.
         registerWithRetry(firebaseUser.uid).catch((error) => {
           console.error("[Auth] Device registration failed:", error);
@@ -198,6 +252,13 @@ export const [AuthContext, useAuth] = createContextHook(() => {
           doc(db, "users", firebaseUser.uid),
           (snap) => {
             const data = snap.data();
+            serverSyncRef.current = Date.now();
+            if (offlineTimerRef.current) {
+              clearTimeout(offlineTimerRef.current);
+              offlineTimerRef.current = null;
+            }
+            setLastSyncedAt(serverSyncRef.current);
+            setIsOffline(false);
             setUser({
               userId: firebaseUser.uid,
               email: firebaseUser.email || "",
@@ -208,8 +269,18 @@ export const [AuthContext, useAuth] = createContextHook(() => {
             setIsLoading(false);
           },
           (error) => {
+            if (offlineTimerRef.current) {
+              clearTimeout(offlineTimerRef.current);
+              offlineTimerRef.current = null;
+            }
+            // Firestore reports a missing connection as "unavailable". Only
+            // that (and timeouts) should surface as "offline"; a rules error
+            // must not be disguised as a network problem.
+            const code = (error as { code?: string })?.code;
+            setIsOffline(code === "unavailable" || code === "deadline-exceeded");
             // A denied/offline read must not hide the user or hang the app.
-            // Keep any known account; otherwise fall back to identity only.
+            // Keep any known account (including cached premium); otherwise
+            // fall back to identity only.
             console.error("[Auth] User snapshot failed:", error);
             setUser((prev) =>
               prev ?? {
@@ -228,6 +299,14 @@ export const [AuthContext, useAuth] = createContextHook(() => {
         userDocUnsubRef.current = null;
         setUser(null);
         setDeviceStatus(null);
+        hydratedUidRef.current = null;
+        serverSyncRef.current = 0;
+        if (offlineTimerRef.current) {
+          clearTimeout(offlineTimerRef.current);
+          offlineTimerRef.current = null;
+        }
+        setLastSyncedAt(null);
+        setIsOffline(false);
         setIsLoading(false);
       }
     });
@@ -235,8 +314,25 @@ export const [AuthContext, useAuth] = createContextHook(() => {
       unsubscribe();
       userDocUnsubRef.current?.();
       userDocUnsubRef.current = null;
+      if (offlineTimerRef.current) {
+        clearTimeout(offlineTimerRef.current);
+        offlineTimerRef.current = null;
+      }
     };
   }, []);
+
+  useEffect(() => {
+    if (!user || !lastSyncedAt) return;
+    void saveEntitlement({
+      uid: user.userId,
+      email: user.email,
+      displayName: user.displayName,
+      premiumUnlocked: user.premiumUnlocked,
+      vip: user.vip,
+      deviceStatus,
+      verifiedAt: lastSyncedAt,
+    });
+  }, [user, deviceStatus, lastSyncedAt]);
 
   // Check if a pending unlock exists for this email.
   // NOTE: pendingUnlocks docs are not readable by clients under the
@@ -380,6 +476,13 @@ export const [AuthContext, useAuth] = createContextHook(() => {
   };
 
   const signOut = async () => {
+    // Clear this account's cached receipt: signing out returns the phone to
+    // free preview, exactly like the server-side entitlement.
+    if (user?.userId) await clearEntitlement(user.userId);
+    hydratedUidRef.current = null;
+    serverSyncRef.current = 0;
+    setLastSyncedAt(null);
+    setIsOffline(false);
     await firebaseSignOut(auth);
     router.replace("/");
   };
@@ -402,5 +505,7 @@ export const [AuthContext, useAuth] = createContextHook(() => {
     registerCurrentDevice,
     removeDevice,
     deviceStatus,
+    isOffline,
+    lastSyncedAt,
   };
 });

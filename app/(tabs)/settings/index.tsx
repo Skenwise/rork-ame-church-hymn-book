@@ -29,7 +29,7 @@ interface RegisteredDevice {
 }
 
 export default function SettingsScreen() {
-  const { user, signOut, removeDevice, deviceStatus, registerCurrentDevice } = useAuth();
+  const { user, signOut, removeDevice, deviceStatus, registerCurrentDevice, isOffline } = useAuth();
   const { textScale, updateTextScale, isDarkMode, toggleDarkMode, isPaid } = useApp();
   const isDark = isDarkMode;
   const [isSigningOut, setIsSigningOut] = useState(false);
@@ -166,9 +166,14 @@ export default function SettingsScreen() {
                 </Text>
                 <View style={[styles.statusBadge, { backgroundColor: isPaid ? colors.professionalBlue : colors.crimson }]}>
                   <Text style={styles.statusText}>
-                    {isPaid ? "✦ Premium" : "Free Preview"}
+                    {isPaid ? "✦ Premium" : user ? "Free Preview" : "Not signed in"}
                   </Text>
                 </View>
+                {isOffline && user && (
+                  <Text style={[styles.offlineNote, isDark ? styles.subtextDark : styles.subtextLight]}>
+                    Offline — showing last confirmed status
+                  </Text>
+                )}
               </View>
             </View>
             {!user && (
@@ -414,6 +419,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   statusText: { color: colors.white, fontSize: 12, fontWeight: "600" as const },
+  offlineNote: { fontSize: 11, marginTop: 4 },
   settingRow: {
     flexDirection: "row",
     justifyContent: "space-between",

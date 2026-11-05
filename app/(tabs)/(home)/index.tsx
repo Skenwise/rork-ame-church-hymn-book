@@ -17,7 +17,7 @@ import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
 import { useAuth } from "@/contexts/auth-context";
 import { HYMNS } from "@/mocks/hymns";
-import { openSignIn } from "@/lib/app-links";
+import { openSignIn, openJoin } from "@/lib/app-links";
 
 type SortType = "numerical" | "alphabetical";
 
@@ -244,12 +244,14 @@ export default function HomeScreen() {
         <TouchableOpacity
           style={styles.previewBanner}
           activeOpacity={0.8}
-          onPress={openSignIn}
+          onPress={user ? openJoin : openSignIn}
         >
 
           <Crown size={20} color={colors.amber} />
           <Text style={[styles.previewText, isDark ? styles.textDark : styles.textLight]}>
-            Preview the first 10 hymns. Sign in for full access.
+            {user
+              ? "Become a member to unlock all hymns."
+              : "Preview the first 10 hymns. Sign in for full access."}
           </Text>
         </TouchableOpacity>
       )}
