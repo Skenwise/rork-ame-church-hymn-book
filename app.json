@@ -2,7 +2,7 @@
   "expo": {
     "name": "AME Church Hymn Book",
     "slug": "ame-church-hymn-book",
-    "version": "1.0.8",
+    "version": "1.0.14",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "rayac-hymn",
@@ -24,7 +24,7 @@
       },
       "package": "app.rork.ame_church_hymn_book",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 7
+      "versionCode": 14
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
@@ -37,7 +37,8 @@
         }
       ],
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      "./plugins/with-android-release-config"
     ],
     "experiments": {
       "typedRoutes": true
