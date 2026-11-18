@@ -47,3 +47,8 @@ coregoogle-services.json
 # Service account keys — never commit
 districtrayac-firebase-adminsdk*.json
 *firebase-adminsdk*.json
+
+# local artifacts (not source)
+sys
+.playwright-mcp/
+graphify-out/

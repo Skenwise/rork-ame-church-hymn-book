@@ -7,7 +7,6 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -17,6 +16,7 @@ import {
 } from "@/constants/decalogue";
 import colors from "@/constants/colors";
 import { useApp } from "@/contexts/app-context";
+import { openJoin } from "@/lib/app-links";
 
 type Language = "english" | "bemba";
 
@@ -98,7 +98,7 @@ export default function DecalogueScreen() {
                   </Text>
                   <TouchableOpacity
                     style={styles.signInButton}
-                    onPress={() => Linking.openURL("https://17thdistrictrayac.org/join")}
+                    onPress={openJoin}
                   >
                     <LogIn size={16} color={colors.white} />
                     <Text style={styles.signInButtonText}>Become a Member</Text>

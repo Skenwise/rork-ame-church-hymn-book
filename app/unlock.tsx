@@ -7,13 +7,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useApp } from "@/contexts/app-context";
 import { usePurchases } from "@/contexts/purchases-context";
-
-const MEMBERSHIP_URL = "https://17thdistrictrayac.org/join";
+import { openJoin } from "@/lib/app-links";
 
 export default function UnlockScreen() {
   const { isDarkMode: isDark } = useApp();
@@ -94,8 +92,9 @@ export default function UnlockScreen() {
 
         <TouchableOpacity
           style={styles.unlockButton}
-          onPress={() => Linking.openURL(MEMBERSHIP_URL)}
+          onPress={openJoin}
         >
+
           <LogIn size={20} color="#fff" />
           <Text style={styles.unlockButtonText}>Become a Member</Text>
         </TouchableOpacity>

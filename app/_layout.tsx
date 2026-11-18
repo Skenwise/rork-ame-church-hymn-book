@@ -1,7 +1,7 @@
 import { Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
-import { View, StyleSheet, Image, Animated, Platform, Text } from "react-native";
+import { View, StyleSheet, Image, Animated, Platform, Text, Linking } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { AppContext, useApp } from "@/contexts/app-context";
@@ -91,7 +91,6 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
       deviceStatus === "limit" &&
       !limitRedirected.current &&
       segments[0] !== "device-limit" &&
-      segments[0] !== "sign-in" &&
       segments[0] !== "auth-callback"
     ) {
       limitRedirected.current = true;
@@ -100,17 +99,6 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     }
 
     const inAuthGroup = segments[0] === "(tabs)";
-
-    if (!user && inAuthGroup) {
-      // No login page needed — user stays on home with free hymns
-      // The lock system will handle premium content restrictions
-      return;
-    } else if (user && (segments[0] === "sign-in" || segments[0] === "auth-callback")) {
-      // Only steer signed-in users away from the auth screens. Every other
-      // stack route (search, category, favorites, hymn, unlock, device-limit…)
-      // must stay reachable — the content-lock system gates premium access.
-      router.replace("/");
-    }
   }, [user, isLoading, deviceStatus, segments, router]);
 
   if (isLoading) {
@@ -118,6 +106,63 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   }
 
   return <>{children}</>;
+}
+
+function extractHandoffToken(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    const fromQuery = parsed.searchParams.get("token");
+    if (fromQuery) return fromQuery;
+    if (parsed.hash) {
+      const fromHash = new URLSearchParams(parsed.hash.replace(/^#/, "")).get("token");
+      if (fromHash) return fromHash;
+    }
+  } catch {
+    // fall through to the regex for unusual intent URLs
+  }
+  const match = /[?&#]token=([^&]+)/.exec(url);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+function DeepLinkHandler() {
+  const router = useRouter();
+  const lastToken = React.useRef<string | null>(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+
+    const handleUrl = (url: string | null | undefined) => {
+      if (!url || cancelled) return;
+      const token = extractHandoffToken(url);
+      const safeUrl = url.split("?")[0].split("#")[0];
+      console.log("[handoff] url received:", safeUrl, "| token:", token ? "present" : "missing");
+      if (!token || lastToken.current === token) return;
+      lastToken.current = token;
+      router.replace({ pathname: "/auth-callback", params: { token } });
+    };
+
+    let attempts = 0;
+    const readInitialUrl = async () => {
+      const url = await Linking.getInitialURL();
+      if (url) {
+        handleUrl(url);
+        return;
+      }
+      if (attempts < 4 && !cancelled) {
+        attempts += 1;
+        setTimeout(readInitialUrl, 400);
+      }
+    };
+    void readInitialUrl();
+
+    const subscription = Linking.addEventListener("url", ({ url }) => handleUrl(url));
+    return () => {
+      cancelled = true;
+      subscription.remove();
+    };
+  }, [router]);
+
+  return null;
 }
 
 function RootLayoutNav() {
@@ -141,7 +186,6 @@ function RootLayoutNav() {
       {/* <Stack.Screen name="settings" options={{ headerShown: false }} /> */}
       <Stack.Screen name="hymn/[id]" options={{ headerShown: false }} />
       <Stack.Screen name="auth-callback" options={{ headerShown: false }} />
-      <Stack.Screen name="sign-in" options={{ headerShown: false }} />
       <Stack.Screen name="device-limit" options={{ headerShown: false }} />
       <Stack.Screen 
         name="unlock" 
@@ -241,6 +285,7 @@ export default function RootLayout() {
           <AppContext>
             <GestureHandlerRootView>
               <AuthGuard>
+                <DeepLinkHandler />
                 <RootLayoutNav />
               </AuthGuard>
             </GestureHandlerRootView>
